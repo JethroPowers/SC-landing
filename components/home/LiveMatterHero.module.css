@@ -1,0 +1,389 @@
+.heroSection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.heroTrack {
+  display: none;
+}
+
+.heroFallback {
+  padding: 68px 0 84px;
+}
+
+.heroCopy {
+  max-width: 900px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.heroCopy h1 {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-bottom: 22px;
+  color: var(--paper);
+  font-size: clamp(3rem, 4.2vw, 4.3rem);
+  line-height: 1.01;
+}
+
+.heroCopy > p {
+  max-width: 720px;
+  margin-inline: auto;
+  color: rgba(251, 250, 246, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.audience {
+  max-width: 680px;
+  margin: 16px auto 24px;
+  color: rgba(251, 250, 246, 0.56);
+  font-size: 0.78rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  align-items: center;
+}
+
+.secondaryLink {
+  padding: 10px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  font-weight: 680;
+}
+
+.fallbackStages {
+  display: grid;
+  gap: 64px;
+  margin-top: 72px;
+}
+
+.fallbackStage {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.fallbackHeading {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.fallbackHeading > span,
+.stageContext > span {
+  color: var(--gold-2);
+  font-size: 0.7rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.fallbackHeading h2 {
+  margin-bottom: 8px;
+  color: var(--paper);
+  font-size: 1.85rem;
+}
+
+.fallbackHeading p {
+  color: rgba(251, 250, 246, 0.62);
+}
+
+.scatteredGrid,
+.structuredGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.fragment,
+.structuredField {
+  min-height: 104px;
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.fragment > div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 18px;
+  color: rgba(251, 250, 246, 0.5);
+  font-size: 0.7rem;
+}
+
+.fragment svg {
+  color: var(--gold-2);
+}
+
+.fragment strong,
+.structuredField strong {
+  display: block;
+  font-size: 0.86rem;
+}
+
+.structuredField > span,
+.controlledFacts dt,
+.controlledAction span {
+  display: block;
+  margin-bottom: 7px;
+  color: rgba(251, 250, 246, 0.46);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.controlledView {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.controlledHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 18px 0;
+}
+
+.controlledHeader > div span,
+.controlledHeader > div strong {
+  display: block;
+}
+
+.controlledHeader > div span {
+  color: var(--gold-2);
+  font-size: 0.68rem;
+}
+
+.controlledHeader > div strong {
+  margin-top: 4px;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.45rem;
+}
+
+.reviewState {
+  color: var(--gold-2);
+  font-size: 0.66rem;
+  font-weight: 740;
+  text-transform: uppercase;
+}
+
+.controlledFacts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.controlledFacts div {
+  min-width: 0;
+  padding: 16px 14px 16px 0;
+}
+
+.controlledFacts dd {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.controlledAction {
+  display: grid;
+  grid-template-columns: 24px 1fr 1.2fr;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.controlledAction svg {
+  color: #d59a75;
+}
+
+.controlledAction strong {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.stageResult {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-top: 18px;
+  color: #9cc9b7;
+  font-size: 0.75rem;
+  font-weight: 680;
+}
+
+.stageResult svg {
+  flex: 0 0 auto;
+}
+
+@media (min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  .heroFallback {
+    display: none;
+  }
+
+  .heroTrack {
+    display: block;
+    min-height: 220svh;
+  }
+
+  .heroSticky {
+    position: sticky;
+    top: 74px;
+    min-height: calc(100svh - 74px);
+  }
+
+  .heroCanvas {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 24px;
+    min-height: calc(100svh - 74px);
+    align-content: center;
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+
+  .heroCopy {
+    grid-column: 2 / span 10;
+  }
+
+  .heroCopy h1 {
+    font-size: clamp(3rem, 4vw, 4rem);
+  }
+
+  .matterFrame {
+    grid-column: 2 / span 10;
+    align-self: end;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .stageContext {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+    gap: 40px;
+    align-items: end;
+    padding: 14px 0;
+  }
+
+  .stageContext h2 {
+    margin: 5px 0 0;
+    color: var(--paper);
+    font-size: 1.35rem;
+  }
+
+  .stageContext p {
+    margin: 0;
+    color: rgba(251, 250, 246, 0.6);
+    font-size: 0.85rem;
+  }
+
+  .stageScene {
+    min-height: 208px;
+    padding: 15px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .stageScene > div:first-child {
+    min-height: 154px;
+  }
+
+  .scatteredGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .structuredGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .fragment:nth-child(2) {
+    transform: translateY(18px);
+  }
+
+  .fragment:nth-child(4) {
+    transform: translateY(10px);
+  }
+
+  .stageProgress {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .stageProgress button {
+    display: flex;
+    gap: 12px;
+    padding: 10px 16px 11px 0;
+    border: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    background: transparent;
+    color: rgba(251, 250, 246, 0.42);
+    text-align: left;
+    text-transform: capitalize;
+  }
+
+  .stageProgress button + button {
+    padding-left: 16px;
+  }
+
+  .stageProgress button:last-child {
+    border-right: 0;
+  }
+
+  .stageProgress button[aria-current="step"] {
+    color: var(--paper);
+  }
+
+  .stageProgress span {
+    color: var(--gold-2);
+    font-size: 0.68rem;
+  }
+
+  .stageProgress strong {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .heroFallback {
+    padding-top: 64px;
+  }
+
+  .heroCopy h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroActions,
+  .heroActions :global(.button) {
+    width: 100%;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .secondaryLink {
+    width: fit-content;
+  }
+
+  .scatteredGrid,
+  .structuredGrid,
+  .controlledFacts {
+    grid-template-columns: 1fr;
+  }
+
+  .controlledHeader,
+  .controlledAction {
+    grid-template-columns: 1fr;
+  }
+
+  .controlledAction {
+    gap: 10px;
+  }
+}
