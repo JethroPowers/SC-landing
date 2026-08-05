@@ -26,6 +26,21 @@ export default defineConfig({
         ...devices["iPhone 13"],
         browserName: "chromium"
       }
+    },
+    {
+      name: "short-desktop-chromium",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1366, height: 650 }
+      }
+    },
+    {
+      name: "reduced-motion-chromium",
+      use: {
+        ...devices["Desktop Chrome"],
+        contextOptions: { reducedMotion: "reduce" },
+        viewport: { width: 1440, height: 1000 }
+      }
     }
   ],
   webServer: remoteBaseUrl

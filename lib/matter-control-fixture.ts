@@ -17,6 +17,32 @@ export type WorkspaceViewId =
   | "change"
   | "closeout";
 
+export type MatterControlNarrativeTheme = "ivory" | "ink" | "parchment";
+
+export type MatterControlNarrativeChapter = {
+  id: string;
+  label: string;
+  shortLabel: string;
+  navigationLabel: string;
+  title: string;
+  summary: string;
+  kind: "process" | "change" | "boundary" | "offer";
+  processStepIndex?: number;
+  defaultView?: WorkspaceViewId;
+  theme: MatterControlNarrativeTheme;
+  visualState:
+    | "selected"
+    | "minimised"
+    | "mapped"
+    | "evidence"
+    | "blockers"
+    | "review"
+    | "closeout"
+    | "change"
+    | "boundary"
+    | "offer";
+};
+
 export type ReadinessMetric = {
   label: string;
   value: string;
@@ -69,6 +95,7 @@ export type FictionalMatterFixture = {
   matterFacts: Array<{ label: string; value: string }>;
   currentIssues: Array<{ label: string; value: string; status: MatterStatus }>;
   steps: MatterControlStep[];
+  narrativeChapters: MatterControlNarrativeChapter[];
   readinessMetrics: ReadinessMetric[];
   dependencies: DependencyRecord[];
   reviewQuestions: ReviewQuestion[];
@@ -202,6 +229,143 @@ export const fictionalMatter: FictionalMatterFixture = {
       recordChange:
         "Immediate actions, owners, target dates, retention decision, feedback and next-stage decision are recorded.",
       output: "Final diagnostic record and closeout summary."
+    }
+  ],
+  narrativeChapters: [
+    {
+      id: "selected",
+      label: "01",
+      shortLabel: "Selected",
+      navigationLabel: "Matter selected",
+      title: "One current matter starts with a clear boundary.",
+      summary:
+        "A founder should be able to see what is in scope, who owns the relationship and what the diagnostic may touch before any reconstruction begins.",
+      kind: "process",
+      processStepIndex: 0,
+      defaultView: "matter",
+      theme: "ivory",
+      visualState: "selected"
+    },
+    {
+      id: "minimised",
+      label: "02",
+      shortLabel: "Minimised",
+      navigationLabel: "Information minimised and received",
+      title: "Only the operating facts needed for control are received.",
+      summary:
+        "The diagnostic works from pseudonymous states and existing locations—not a new store of passports, bank statements or source-of-wealth files.",
+      kind: "process",
+      processStepIndex: 1,
+      defaultView: "matter",
+      theme: "ivory",
+      visualState: "minimised"
+    },
+    {
+      id: "mapped",
+      label: "03",
+      shortLabel: "Mapped",
+      navigationLabel: "Matter map reconstructed",
+      title: "Six partial versions become one management view.",
+      summary:
+        "Household, objective, four possible routes, current stage and responsible people align without Sovereignty Control deciding the advice.",
+      kind: "process",
+      processStepIndex: 2,
+      defaultView: "matter",
+      theme: "parchment",
+      visualState: "mapped"
+    },
+    {
+      id: "evidence",
+      label: "04",
+      shortLabel: "Readiness",
+      navigationLabel: "Evidence and dependencies registered",
+      title: "Readiness becomes visible before it becomes urgent.",
+      summary:
+        "The practice can now see what is complete, missing, dependent and overdue across the same current matter record.",
+      kind: "process",
+      processStepIndex: 3,
+      defaultView: "readiness",
+      theme: "ink",
+      visualState: "evidence"
+    },
+    {
+      id: "blockers",
+      label: "05",
+      shortLabel: "Controlled",
+      navigationLabel: "Blockers assigned and controlled",
+      title: "Every blocker gets an owner, consequence and next action.",
+      summary:
+        "The six-day provider delay, source-of-funds direction and two owner gaps stop living as informal memory and become controllable work.",
+      kind: "process",
+      processStepIndex: 4,
+      defaultView: "readiness",
+      theme: "ink",
+      visualState: "blockers"
+    },
+    {
+      id: "review",
+      label: "06",
+      shortLabel: "Review",
+      navigationLabel: "Advisor-review questions prepared",
+      title: "Advisor time is reserved for questions that require judgement.",
+      summary:
+        "Two professional questions arrive with context, evidence state, consequence and a named firm owner rather than a file that must be rebuilt.",
+      kind: "process",
+      processStepIndex: 5,
+      defaultView: "review",
+      theme: "ink",
+      visualState: "review"
+    },
+    {
+      id: "closeout",
+      label: "07",
+      shortLabel: "Closeout",
+      navigationLabel: "Closeout and next actions agreed",
+      title: "The diagnostic closes with a usable operating pack.",
+      summary:
+        "The firm leaves with corrected records, named immediate actions and an explicit decision about whether any further validation is justified.",
+      kind: "process",
+      processStepIndex: 6,
+      defaultView: "closeout",
+      theme: "ink",
+      visualState: "closeout"
+    },
+    {
+      id: "change",
+      label: "08",
+      shortLabel: "Change",
+      navigationLabel: "Change reaches the matter",
+      title: "Programme intelligence matters when it reaches the affected work.",
+      summary:
+        "A fictional dependent-eligibility update is connected to Route C and SC-024 while the firm retains responsibility for confirming its professional effect.",
+      kind: "change",
+      defaultView: "change",
+      theme: "ink",
+      visualState: "change"
+    },
+    {
+      id: "boundary",
+      label: "09",
+      shortLabel: "Boundary",
+      navigationLabel: "The professional boundary",
+      title: "The firm keeps the judgement. Control keeps the matter ready for it.",
+      summary:
+        "Operational support becomes more useful—not less—when client relationships, professional judgement, advice and final decisions remain explicit.",
+      kind: "boundary",
+      theme: "parchment",
+      visualState: "boundary"
+    },
+    {
+      id: "offer",
+      label: "10",
+      shortLabel: "Start",
+      navigationLabel: "Start with one matter",
+      title: "Test the method on one matter before considering anything broader.",
+      summary:
+        "The current offer is a complimentary diagnostic for one active, recent or anonymised matter, with no obligation to continue.",
+      kind: "offer",
+      theme: "ink",
+      visualState: "offer"
     }
   ],
   readinessMetrics: [

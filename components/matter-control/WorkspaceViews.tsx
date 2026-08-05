@@ -7,7 +7,8 @@ import {
   History,
   LayoutList
 } from "lucide-react";
-import { KeyboardEvent, useRef } from "react";
+import { useRef } from "react";
+import type { KeyboardEvent, ReactNode } from "react";
 import type {
   FictionalMatterFixture,
   WorkspaceViewId
@@ -21,7 +22,7 @@ type WorkspaceViewsProps = {
   onViewChange: (view: WorkspaceViewId) => void;
 };
 
-const workspaceViews = [
+export const workspaceViews = [
   { id: "matter", label: "Matter", icon: FolderKanban },
   { id: "readiness", label: "Readiness", icon: ClipboardCheck },
   { id: "review", label: "Review Queue", icon: FileQuestion },
@@ -66,9 +67,15 @@ function MatterView({ matter }: { matter: FictionalMatterFixture }) {
   );
 }
 
-function ReadinessView({ matter }: { matter: FictionalMatterFixture }) {
+function ReadinessView({
+  matter,
+  focus
+}: {
+  matter: FictionalMatterFixture;
+  focus?: "evidence" | "blockers";
+}) {
   return (
-    <div>
+    <div data-focus={focus}>
       <div className={styles.viewLeadCompact}>
         <div>
           <span className={styles.kicker}>Readiness control</span>
@@ -243,7 +250,44 @@ function CloseoutView({ matter }: { matter: FictionalMatterFixture }) {
   );
 }
 
-export function WorkspaceViews({ matter, activeView, onViewChange }: WorkspaceViewsProps) {
+type WorkspaceSurfaceProps = WorkspaceViewsProps & {
+  compact?: boolean;
+  focus?: "evidence" | "blockers";
+  instanceId?: string;
+  panelOverride?: ReactNode;
+  panelTestId?: string;
+  testId?: string;
+};
+
+export function WorkspaceViewPanel({
+  matter,
+  view,
+  focus
+}: {
+  matter: FictionalMatterFixture;
+  view: WorkspaceViewId;
+  focus?: "evidence" | "blockers";
+}) {
+  if (view === "matter") return <MatterView matter={matter} />;
+  if (view === "readiness") {
+    return <ReadinessView focus={focus} matter={matter} />;
+  }
+  if (view === "review") return <ReviewQueueView matter={matter} />;
+  if (view === "change") return <ChangeImpactView matter={matter} />;
+  return <CloseoutView matter={matter} />;
+}
+
+export function WorkspaceSurface({
+  matter,
+  activeView,
+  onViewChange,
+  compact = false,
+  focus,
+  instanceId = "default",
+  panelOverride,
+  panelTestId,
+  testId = "workspace"
+}: WorkspaceSurfaceProps) {
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);
 
   function moveFocus(index: number) {
@@ -273,19 +317,10 @@ export function WorkspaceViews({ matter, activeView, onViewChange }: WorkspaceVi
   }
 
   return (
-    <section className={styles.workspaceSection} aria-labelledby="workspace-heading">
-      <div className={styles.sectionHeadingDark}>
-        <div>
-          <span className={styles.kickerLight}>Readiness Workspace</span>
-          <h2 id="workspace-heading">The same matter, prepared for judgement.</h2>
-        </div>
-        <p>
-          Five controlled views share one fictional matter record. Changing view does
-          not change your selected process step.
-        </p>
-      </div>
-
-      <div className={styles.workspace} data-testid="workspace">
+    <div
+      className={`${styles.workspace} ${compact ? styles.workspaceCompact : ""}`}
+      data-testid={testId}
+    >
         <div
           aria-label="Matter workspace views"
           className={styles.viewControl}
@@ -296,10 +331,14 @@ export function WorkspaceViews({ matter, activeView, onViewChange }: WorkspaceVi
             const selected = activeView === view.id;
             return (
               <button
-                aria-controls={`workspace-panel-${view.id}`}
+                aria-controls={
+                  selected
+                    ? `workspace-${instanceId}-panel-${view.id}`
+                    : undefined
+                }
                 aria-selected={selected}
                 className={selected ? styles.viewButtonActive : styles.viewButton}
-                id={`workspace-tab-${view.id}`}
+                id={`workspace-${instanceId}-tab-${view.id}`}
                 key={view.id}
                 onClick={() => onViewChange(view.id)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
@@ -326,57 +365,40 @@ export function WorkspaceViews({ matter, activeView, onViewChange }: WorkspaceVi
         </div>
         <div className={styles.workspacePanels}>
           <div
-            aria-hidden={activeView !== "matter"}
-            aria-labelledby="workspace-tab-matter"
-            className={activeView === "matter" ? styles.workspacePanelActive : styles.workspacePanel}
-            data-testid="workspace-view-matter"
-            id="workspace-panel-matter"
+            aria-labelledby={`workspace-${instanceId}-tab-${activeView}`}
+            className={styles.workspacePanelActive}
+            data-testid={panelTestId ?? `workspace-view-${activeView}`}
+            id={`workspace-${instanceId}-panel-${activeView}`}
+            key={activeView}
             role="tabpanel"
           >
-            <MatterView matter={matter} />
-          </div>
-          <div
-            aria-hidden={activeView !== "readiness"}
-            aria-labelledby="workspace-tab-readiness"
-            className={activeView === "readiness" ? styles.workspacePanelActive : styles.workspacePanel}
-            data-testid="workspace-view-readiness"
-            id="workspace-panel-readiness"
-            role="tabpanel"
-          >
-            <ReadinessView matter={matter} />
-          </div>
-          <div
-            aria-hidden={activeView !== "review"}
-            aria-labelledby="workspace-tab-review"
-            className={activeView === "review" ? styles.workspacePanelActive : styles.workspacePanel}
-            data-testid="workspace-view-review"
-            id="workspace-panel-review"
-            role="tabpanel"
-          >
-            <ReviewQueueView matter={matter} />
-          </div>
-          <div
-            aria-hidden={activeView !== "change"}
-            aria-labelledby="workspace-tab-change"
-            className={activeView === "change" ? styles.workspacePanelActive : styles.workspacePanel}
-            data-testid="workspace-view-change"
-            id="workspace-panel-change"
-            role="tabpanel"
-          >
-            <ChangeImpactView matter={matter} />
-          </div>
-          <div
-            aria-hidden={activeView !== "closeout"}
-            aria-labelledby="workspace-tab-closeout"
-            className={activeView === "closeout" ? styles.workspacePanelActive : styles.workspacePanel}
-            data-testid="workspace-view-closeout"
-            id="workspace-panel-closeout"
-            role="tabpanel"
-          >
-            <CloseoutView matter={matter} />
+            {panelOverride ?? (
+              <WorkspaceViewPanel focus={focus} matter={matter} view={activeView} />
+            )}
           </div>
         </div>
       </div>
+  );
+}
+
+export function WorkspaceViews({ matter, activeView, onViewChange }: WorkspaceViewsProps) {
+  return (
+    <section className={styles.workspaceSection} aria-labelledby="workspace-heading">
+      <div className={styles.sectionHeadingDark}>
+        <div>
+          <span className={styles.kickerLight}>Readiness Workspace</span>
+          <h2 id="workspace-heading">The same matter, prepared for judgement.</h2>
+        </div>
+        <p>
+          Five controlled views share one fictional matter record. Changing view does
+          not change your selected process step.
+        </p>
+      </div>
+      <WorkspaceSurface
+        activeView={activeView}
+        matter={matter}
+        onViewChange={onViewChange}
+      />
     </section>
   );
 }
