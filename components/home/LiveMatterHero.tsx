@@ -109,7 +109,7 @@ function HeroCopy() {
       </div>
       <div className={styles.heroActions}>
         <Link className="button button-gold" href="/contact">
-          Request a private demo <ArrowRight size={17} aria-hidden="true" />
+          Discuss a complimentary diagnostic <ArrowRight size={17} aria-hidden="true" />
         </Link>
         <Link className={styles.secondaryLink} href="/demo-case">
           View demo case

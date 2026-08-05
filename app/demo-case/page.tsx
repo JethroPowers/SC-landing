@@ -36,7 +36,7 @@ export default function DemoCasePage() {
       <section className="demo-operating-change">
         <div className="container demo-change-grid">
           <div>
-            <h2>The software does not recommend a programme. It shows what the advisor must check first.</h2>
+            <h2>The method does not recommend a programme. It shows what the advisor must check first.</h2>
           </div>
           <div className="demo-change-rows">
             <div><span>Uncertain household detail</span><strong>Children’s exact ages become a named client action.</strong></div>
@@ -77,7 +77,7 @@ export default function DemoCasePage() {
       <section className="demo-close">
         <div className="container home-demo-grid">
           <div><h2>Use an anonymised matter in a private demonstration.</h2><p>Tell us the family profile, routes and case stage without naming the client.</p></div>
-          <Link className="button button-primary" href="/contact?interest=case-control">Request a private demo <ArrowRight size={17} /></Link>
+          <Link className="button button-primary" href="/contact?interest=matter-control-diagnostic">Discuss a complimentary matter-control diagnostic <ArrowRight size={17} /></Link>
         </div>
       </section>
     </main>

@@ -497,77 +497,77 @@ export const offerPaths: OfferPath[] = [
   {
     id: "case-control",
     step: "Start",
-    title: "Case Control Sprint",
-    price: "£1,300-£1,500",
-    timing: "7-10 working days",
+    title: "Complimentary Matter Control Diagnostic",
+    price: "Complimentary",
+    timing: "7-10 working days · one matter",
     useWhen: "One live, recent or anonymised matter is spread across email, spreadsheets, PDFs and advisor notes.",
-    outcome: "One case file showing the family, routes, costs, missing documents, blockers, owners and next step.",
+    outcome: "One controlled record showing the household, routes, missing evidence, blockers, owners and next professional questions.",
     buyingTrigger:
       "A complex, delayed or difficult-to-track matter is spread across files, messages and advisor notes.",
     workPerformed:
-      "We map the family, programme routes, cost assumptions, documents, due-diligence questions, blockers and responsibilities.",
+      "We reconstruct the current matter state, register evidence and dependencies, expose ownership gaps and prepare advisor-review questions.",
     firmOutcome:
-      "The firm receives one advisor-ready case file showing what is known, what is missing, what prevents progress and what happens next.",
+      "The firm receives one controlled diagnostic record showing what is known, missing, blocked, unowned and ready for review.",
     engagementFormat:
       "Fixed-scope implementation for one active, recent or anonymised matter.",
     deliverables: [
-      "Client and family map",
-      "Family-cost and route scenarios",
-      "Document readiness and blocker log",
-      "Owners, deadlines and next actions",
-      "Advisor report and client status"
+      "Current-state matter map",
+      "Document-readiness register",
+      "Blocker and dependency register",
+      "Advisor-review questions",
+      "Programme assumptions and action plan"
     ],
     next: "Test the approach on one matter before applying it to other cases."
   },
   {
     id: "programme-control",
-    step: "Programme data",
-    title: "Programme & Pricing Control Sprint",
-    price: "£1,500 setup",
-    timing: "10-14 working days",
-    useWhen: "Programme fees, dependant rules and source notes differ across proposals, spreadsheets and website pages.",
-    outcome: "Five checked programme files covering routes, family rules, fees, sources and effective dates.",
+    step: "Validate recurring control",
+    title: "30-Day Co-Managed Readiness Pilot",
+    price: "Founding terms agreed privately after Stage 0",
+    timing: "30 days · 5-10 named matters",
+    useWhen: "A completed diagnostic shows that several live matters need recurring readiness, blocker and review-queue control.",
+    outcome: "A small portfolio is maintained through four weekly readiness cycles with before-and-after evidence.",
     buyingTrigger:
-      "Advisors are using inconsistent programme fees, family rules or proposal assumptions.",
+      "The firm wants to test whether the method can keep several live matters current over time.",
     workPerformed:
-      "We turn the five programmes used most often into reviewed route, pricing, dependant and source records.",
+      "We establish matter records, run weekly readiness reviews, maintain blockers and prepare advisor-review queues through the firm.",
     firmOutcome:
-      "Advisors compare and quote from the same assumptions while draft changes remain separate from approved client information.",
+      "The firm can measure matter movement, blocker age, ownership and advisor-preparation effort before considering paid continuation.",
     engagementFormat:
-      "Fixed-scope implementation for five priority citizenship or residence programmes.",
+      "Co-managed validation stage offered only after a successful diagnostic decision.",
     deliverables: [
-      "Five checked programme files",
-      "Route and family-pricing tables",
-      "Source register and effective dates",
-      "Outdated-claims audit",
-      "Draft, professional review and publication states"
+      "Five to ten controlled matter records",
+      "Weekly readiness cycle",
+      "Blocker and dependency maintenance",
+      "Advisor-review queue",
+      "Pilot measurement and closeout"
     ],
-    next: "Give every advisor the same current programme and pricing information."
+    next: "Proceed only if delivery is controlled, useful and commercially credible."
   },
   {
     id: "workspace",
-    step: "Operate",
-    title: "Sovereignty Control Workspace",
-    price: "£750-£1,500 onboarding",
-    timing: "£500-£1,000 per month",
-    useWhen: "The firm needs one place to review several active matters and the programme information used in them.",
-    outcome: "A managed workspace for applications, programme files, documents, deadlines and client updates.",
+    step: "Evidence before scale",
+    title: "Future Managed Readiness Desk",
+    price: "Not publicly priced during validation",
+    timing: "Scope follows repeated service evidence",
+    useWhen: "A paid readiness stage demonstrates repeatable value, safe authority boundaries and workable portfolio economics.",
+    outcome: "A proposed managed desk specification grounded in observed matter volume, service effort and firm value.",
     buyingTrigger:
-      "The firm wants the same programme, document and case checks across several active matters.",
+      "Repeated use provides evidence for a defined paid operating service.",
     workPerformed:
-      "We configure the case structure, programme records, document states, responsibilities and monthly review list with the team.",
+      "Any later desk is scoped from validated states, authority, response standards, portfolio limits and delivery economics.",
     firmOutcome:
-      "The firm receives a configured and maintained workspace rather than an empty software account.",
+      "The firm receives an honest service proposal only after the method has earned expansion.",
     engagementFormat:
-      "Onboarding followed by monthly programme and active-matter review.",
+      "Not yet offered as an established or already-scaled managed service.",
     deliverables: [
-      "Active case dashboard",
-      "Programme records and change alerts",
-      "Document status and blocker list",
-      "Owner and deadline tracking",
-      "Client status and report generation"
+      "Defined portfolio and authority matrix",
+      "Readiness Workspace operating record",
+      "Programme-change impact visibility",
+      "Weekly and monthly review cadence",
+      "Measured service-level evidence"
     ],
-    next: "Apply the same case and programme checks across the team."
+    next: "Evidence—not a preselected monthly price—determines the next offer."
   }
 ];
 
@@ -660,51 +660,51 @@ export const useCasePaths: UseCasePath[] = [
 export const workflowSteps: WorkflowStep[] = [
   {
     id: "select",
-    title: "Choose the matter or programme set",
-    description: "Choose one anonymised client matter or five priority programmes.",
-    firmRole: "Provide the current case papers, pricing files and professional context.",
-    controlRole: "Agree which applicants, routes and case stages are in scope.",
-    output: "Agreed case or programme list"
+    title: "Choose and bound one matter",
+    description: "Choose one active, recent or anonymised matter for the diagnostic.",
+    firmRole: "Approve the matter, participation boundary and professional context.",
+    controlRole: "Agree which household, routes and operational stages are in scope.",
+    output: "Approved diagnostic scope"
   },
   {
     id: "map",
-    title: "Review the current files",
-    description: "Find the relevant facts across spreadsheets, PDFs, email, proposals and advisor notes.",
-    firmRole: "Explain how the team prepares a comparison or application and where cases usually stall.",
-    controlRole: "List the applicants, programme routes, documents, third parties and missing facts.",
-    output: "Current case and document map"
+    title: "Reconstruct the current state",
+    description: "Find the relevant operational facts across spreadsheets, PDFs, email, proposals and advisor notes.",
+    firmRole: "Explain how the team handles the matter and where work usually stalls.",
+    controlRole: "Map the household, possible routes, evidence states, dependencies and missing facts.",
+    output: "Current matter map"
   },
   {
     id: "structure",
-    title: "Build the case file",
-    description: "Record applicants, routes, costs, documents, due-diligence questions and blockers.",
-    firmRole: "Check programme assumptions, sources and advice boundaries.",
-    controlRole: "Add statuses, owners, dates and dependencies.",
-    output: "Structured case or programme file"
+    title: "Register readiness and dependencies",
+    description: "Record evidence states, open dependencies, blockers and programme assumptions.",
+    firmRole: "Check evidence thresholds, programme assumptions, sources and advice boundaries.",
+    controlRole: "Add operational statuses, owners, dates and escalation points.",
+    output: "Readiness and dependency registers"
   },
   {
     id: "build",
-    title: "Prepare the working views",
-    description: "Set up the case summary, family-cost comparison, document checklist and report.",
-    firmRole: "Check the views against the way the team handles the matter.",
-    controlRole: "Correct the fields, statuses and next-step rules.",
-    output: "Working case and advisor views"
+    title: "Control blockers and ownership",
+    description: "Age blockers, expose overdue work and assign unowned next actions.",
+    firmRole: "Act on professional escalations and approve any external communication.",
+    controlRole: "Maintain owner, last action, next action, due date and consequence.",
+    output: "Controlled blocker register"
   },
   {
     id: "review",
     title: "Complete professional review",
-    description: "Check programme facts, cost assumptions, advice boundaries and client wording.",
-    firmRole: "Approve what may be used in the matter or sent to the client.",
-    controlRole: "Mark unresolved items and keep draft information out of approved views.",
-    output: "Advisor-reviewed case file"
+    description: "Check source-of-funds direction, programme assumptions and other professional effects.",
+    firmRole: "Answer review questions and approve what may be used in the matter.",
+    controlRole: "Prepare concise questions with context, evidence state and consequence.",
+    output: "Advisor-review queue"
   },
   {
     id: "operate",
-    title: "Use it on active matters",
-    description: "Use the sprint files as delivered or carry the same fields into the monthly workspace.",
-    firmRole: "Run the matters and retain responsibility for all professional advice.",
-    controlRole: "Maintain programme records, case statuses and the monthly review list.",
-    output: "Repeatable case-management process"
+    title: "Close out and decide the next action",
+    description: "Use the diagnostic record at closeout and decide whether a later validation stage is justified.",
+    firmRole: "Approve factual corrections, professional positions, owners and any next-stage decision.",
+    controlRole: "Prepare the immediate action plan, closeout summary and evidence-led recommendation.",
+    output: "Controlled diagnostic closeout"
   }
 ];
 

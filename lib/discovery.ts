@@ -2,13 +2,13 @@ export const siteUrl = "https://sovereigntycontrol.com";
 
 export const llmsText = `# Sovereignty Control
 
-> Sovereignty Control is managed case-management software and programme information for professional firms handling citizenship, residence, tax relocation and cross-border private-client matters.
+> Sovereignty Control is an early-stage managed matter-readiness method for professional firms handling citizenship, residence, relocation and investment-migration matters.
 
-Sovereignty Control helps specialist advisors record applicants and dependants, compare programme routes and indicative family costs, track application documents, identify blockers, assign responsibilities, monitor deadlines and explain client status. It is designed for professional firms, not individual applicants.
+Sovereignty Control helps specialist firms reconstruct matter state, track readiness, control blockers and dependencies, assign operational ownership, prepare advisor-review questions and surface programme changes affecting active work. It is designed for professional firms, not individual applicants.
 
 Sovereignty Intelligence is the programme-information component. It records countries, programmes, qualifying routes, government fees, dependant rules, physical-presence requirements, processing ranges, sources, effective dates and review states. Sovereignty Control applies that reviewed information to active client matters.
 
-Sovereignty Control does not provide legal, tax, immigration or investment advice. Professional firms remain responsible for eligibility decisions, regulated advice, source checks and recommendations. Demo figures are fictional or indicative and require professional review.
+Sovereignty Control does not provide legal, tax, immigration or investment advice. Professional firms retain client relationships, professional judgement, programme assumptions, source-of-funds decisions, final decisions and submissions. The operating method is being validated and is not presented as a mature software platform or already-scaled managed service.
 
 ## Understand the service
 
@@ -16,22 +16,23 @@ Sovereignty Control does not provide legal, tax, immigration or investment advic
 - [Case Control](${siteUrl}/control-system): The connected case, scenario, document, programme-change and client-status views.
 - [Intelligence](${siteUrl}/intelligence): Programme routes, fees, dependant rules, official sources, effective dates, draft updates and release history.
 - [Method](${siteUrl}/method): How one anonymised matter becomes an advisor-reviewed case file.
+- [How Matter Control Works](${siteUrl}/how-matter-control-works): Interactive fictional matter SC-024 from minimised intake through readiness, review, change impact and closeout.
 
 ## Commercial starting points
 
-- [Offers](${siteUrl}/offers): Case Control Sprint, Programme & Pricing Control Sprint and Sovereignty Control Workspace, including price ranges, timing, fit and deliverables.
+- [Offers](${siteUrl}/offers): The complimentary one-matter diagnostic and the evidence gates for any later validation stage.
 - [Use Cases](${siteUrl}/use-cases): CBI/RBI advisory firms, UAE relocation firms, Caribbean authorised agents and private-client practices.
 - [Demo Case](${siteUrl}/demo-case): A fictional British family comparing four Caribbean citizenship programmes.
 
 ## Company and contact
 
 - [About](${siteUrl}/about): Founder background, project history and professional boundaries.
-- [Request a Private Demo](${siteUrl}/contact): Qualified enquiry form. Do not submit client-identifiable information.
+- [Discuss a Complimentary Matter-Control Diagnostic](${siteUrl}/contact): Suitability enquiry form. Do not submit client-identifiable information or matter data.
 
 ## Policies
 
 - [Disclaimer](${siteUrl}/disclaimer): Professional-advice and programme-information limitations.
-- [Privacy](${siteUrl}/privacy): Information collected through demo requests.
+- [Privacy](${siteUrl}/privacy): Information collected through diagnostic enquiries.
 
 ## Extended reference
 
@@ -44,11 +45,11 @@ export const llmsFullText = `# Sovereignty Control: Full Reference
 
 ## What Sovereignty Control is
 
-Sovereignty Control is a founder-led case-management product with managed implementation for firms handling complex citizenship, residence, relocation and tax-migration matters. It turns scattered case and programme information into a maintained working record for the professional team.
+Sovereignty Control is a founder-led matter-readiness operating method being validated with firms handling complex citizenship, residence, relocation and investment-migration matters. It turns scattered operational information into a controlled record for the professional team.
 
 The product is intended for boutique citizenship-by-investment and residence-by-investment advisors, authorised agents, UAE relocation and company-formation firms, immigration practices, tax-relocation teams and other private-client firms coordinating multi-country matters.
 
-It is not a consumer country-comparison website, a public fee calculator, a generic CRM or a substitute for professional judgement.
+It is not a consumer country-comparison website, a public fee calculator, a generic CRM, an established managed service or a substitute for professional judgement.
 
 ## The problem it addresses
 
@@ -60,7 +61,7 @@ The information often sits across email, spreadsheets, PDF proposals, messages, 
 
 Sovereignty Intelligence is the programme-information component. It records countries, programmes, qualifying investment routes, government fees, family and dependant rules, physical-presence requirements, processing ranges, official sources, effective dates, policy notes, draft updates and published releases.
 
-Sovereignty Control is the client-matter component. It uses reviewed programme information to organise applicant and dependant profiles, objectives, route scenarios, indicative family costs, document readiness, blockers, owners, deadlines, advisor review points, client status and advisor-ready reports.
+Sovereignty Control is the proposed managed matter-readiness desk. Its Readiness Workspace organises matter state, evidence readiness, blockers, dependencies, owners, deadlines, advisor-review points and change impact. Its Briefing Workspace supports household scenarios, comparisons and proposal snapshots where needed.
 
 The relationship is: Intelligence records the programme information; Control shows how that information is being used in a live matter.
 
@@ -75,31 +76,21 @@ The relationship is: Intelligence records the programme information; Control sho
 - Programme changes showing the previous value, proposed value, source, effective date, reviewer and affected matters or reports.
 - Internal advisor notes separated from a concise client-facing status and next milestone.
 
-## Managed implementation
+## Validation approach
 
-Sovereignty Control is not presented as self-serve software that a firm must configure alone. A typical engagement starts with one anonymised matter or five priority programmes. Existing information is mapped, structured and reviewed with the firm. Case views, programme files, document lists and status outputs are configured around the firm's real work. The firm remains responsible for programme interpretation and professional advice.
+The current offer is a complimentary Matter Control Diagnostic for one active, recent or anonymised matter over seven to ten working days. It reconstructs the current state, registers document readiness and dependencies, exposes blockers and ownership gaps, prepares advisor-review questions and closes with an immediate action plan. There is no obligation to continue, and Sovereignty Control does not contact the firm's client, provider or authority during this stage.
 
 ## Offers
 
-### Case Control Sprint
+### Complimentary Matter Control Diagnostic
 
-Price: GBP 1,300 to GBP 1,500. Typical timing: 7 to 10 working days.
+Fee: complimentary. Scope: one active, recent or anonymised matter. Timing: seven to ten working days. Commitment: no obligation to continue.
 
-For a firm with one active, recent or anonymised matter that is difficult to track. Outputs can include a client and family profile, route comparison, indicative family-cost model, document checklist, missing-item tracker, blockers, responsibilities, deadlines, client-status summary and advisor-ready report.
+Outputs include a matter map, document-readiness register, blocker and dependency register, advisor-review questions, programme-assumption register, immediate action plan and closeout summary.
 
-### Programme & Pricing Control Sprint
+### Later stages
 
-Price: GBP 1,500 setup. Optional ongoing review: GBP 350 to GBP 600 per month. Typical initial timing: 10 to 14 working days.
-
-For a firm whose programme fees, route tables, dependant rules and source notes are spread across proposals, spreadsheets, pages and PDFs. The sprint structures five programmes, records source and effective-date information, separates draft and published values and identifies outdated or inconsistent claims.
-
-### Sovereignty Control Workspace
-
-Price: GBP 750 to GBP 1,500 onboarding, then GBP 500 to GBP 1,000 per month.
-
-For a firm ready to manage several active matters and programme files through a maintained workspace. It can include active-matter views, family-cost modelling, document readiness, blockers, responsibilities, deadlines, client status, reports, programme-change review and a monthly working review.
-
-Founding pricing may be available while the workspace is developed with early specialist firms. The website does not claim fabricated customer numbers, performance results, regulatory status or institutional scale.
+A 30-day co-managed readiness pilot may be discussed privately only after a successful diagnostic closeout. Any paid sprint or future managed desk must be justified by controlled delivery, repeatable matter patterns, safe authority boundaries and demonstrated operational value. No public recurring price is presented during validation.
 
 ## Main use cases
 
@@ -114,7 +105,7 @@ The public demo follows a fictional British principal applicant, spouse and two 
 
 ## Professional boundaries
 
-Sovereignty Control provides case-management software, structured programme information and managed workflow support for professional firms. It does not provide legal, tax, immigration or investment advice. It does not determine eligibility, recommend an investment, make a regulated filing or guarantee an approval. Programme rules, costs, requirements and client recommendations must be checked by qualified professionals before use.
+Sovereignty Control supports operational matter reconstruction, readiness, blocker control and advisor-review preparation. It does not provide legal, tax, immigration or investment advice. It does not determine eligibility, approve source of funds, recommend an investment, make a regulated filing or guarantee an approval. Programme rules, costs, requirements and client decisions must be confirmed by the firm's qualified professionals.
 
 Do not submit client-identifiable or sensitive matter information through the public enquiry form.
 
@@ -138,6 +129,7 @@ Do not submit client-identifiable or sensitive matter information through the pu
 - ${siteUrl}/use-cases
 - ${siteUrl}/offers
 - ${siteUrl}/method
+- ${siteUrl}/how-matter-control-works
 - ${siteUrl}/demo-case
 - ${siteUrl}/about
 - ${siteUrl}/contact
@@ -154,7 +146,7 @@ export const homepageStructuredData = {
       name: "Sovereignty Control",
       url: siteUrl,
       description:
-        "Founder-led case-management software and managed implementation for professional firms handling citizenship, residence and relocation matters.",
+        "Early-stage managed matter-readiness method for professional firms handling citizenship, residence and relocation matters.",
       founder: {
         "@type": "Person",
         name: "Jethro Powers"
@@ -174,7 +166,7 @@ export const homepageStructuredData = {
       url: siteUrl,
       name: "Sovereignty Control",
       description:
-        "Case management and programme information for citizenship, residence and relocation firms.",
+        "Matter readiness and programme intelligence for citizenship, residence and relocation firms.",
       inLanguage: "en-GB",
       publisher: { "@id": `${siteUrl}/#organization` }
     },
@@ -184,9 +176,9 @@ export const homepageStructuredData = {
       name: "Sovereignty Control",
       url: `${siteUrl}/what-we-do`,
       serviceType:
-        "Managed case-management software and programme information for specialist cross-border advisory firms",
+        "Managed matter-readiness diagnostic for specialist cross-border advisory firms",
       description:
-        "Records applicants, programme routes, indicative family costs, application documents, blockers, responsibilities, deadlines, programme changes and client status.",
+        "Reconstructs matter state, records readiness, blockers, dependencies, owners, advisor-review questions and programme-change impact.",
       provider: { "@id": `${siteUrl}/#organization` },
       areaServed: "Worldwide",
       audience: {
@@ -200,21 +192,21 @@ export const homepageStructuredData = {
         itemListElement: [
           {
             "@type": "Offer",
-            name: "Case Control Sprint",
+            name: "Complimentary Matter Control Diagnostic",
             url: `${siteUrl}/offers#case-control`,
-            description: "One anonymised client matter prepared as an advisor-reviewed case file."
+            description: "One active, recent or anonymised matter reconstructed into a controlled diagnostic record."
           },
           {
             "@type": "Offer",
-            name: "Programme & Pricing Control Sprint",
+            name: "30-Day Co-Managed Readiness Pilot",
             url: `${siteUrl}/offers#programme-control`,
-            description: "Five programme records with route, fee, dependant, source and review controls."
+            description: "A later validation stage discussed privately after a successful diagnostic closeout."
           },
           {
             "@type": "Offer",
-            name: "Sovereignty Control Workspace",
+            name: "Future Managed Readiness Desk",
             url: `${siteUrl}/offers#workspace`,
-            description: "A maintained workspace for multiple active matters and programme files."
+            description: "A future evidence-led offer, not an established or already-scaled service."
           }
         ]
       }

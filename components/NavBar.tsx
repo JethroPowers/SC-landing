@@ -44,7 +44,7 @@ export function NavBar() {
 
         <div className="nav-actions">
           <Link className="button button-primary" href="/contact">
-            Request demo
+            Discuss diagnostic
             <ArrowRight size={17} aria-hidden="true" />
           </Link>
           <button

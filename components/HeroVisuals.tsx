@@ -219,7 +219,7 @@ export function PolicyHeroVisual({ type }: { type: "privacy" | "disclaimer" }) {
       <strong>{type === "privacy" ? "Sensitive data stays out of enquiry forms." : "Professional advice stays with qualified firms."}</strong>
       <p>
         {type === "privacy"
-          ? "Use the demo request for firm details and a high-level description of the case problem only."
+          ? "Use the diagnostic enquiry for firm details and a high-level description of the operational problem only."
           : "Sovereignty Control records case information; it does not make legal, tax, immigration or investment decisions."}
       </p>
       <div>

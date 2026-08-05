@@ -1,6 +1,6 @@
 # Sovereignty Control
 
-Multi-page B2B website for Sovereignty Control, a managed case-management product for professional firms handling citizenship, residence, relocation and tax-migration matters.
+Multi-page B2B website for Sovereignty Control, an early-stage managed matter-readiness method for professional firms handling citizenship, residence, relocation and investment-migration matters.
 
 ## Local development
 
@@ -18,7 +18,7 @@ npm run typecheck
 npm run build
 ```
 
-## Demo requests
+## Diagnostic enquiries
 
 The contact form posts to `/api/demo-requests`. Development submissions are accepted without external storage. Production requires:
 
@@ -36,4 +36,4 @@ The site includes canonical metadata, JSON-LD, `robots.txt`, `sitemap.xml`, `/ll
 
 ## Professional boundary
 
-Sovereignty Control provides case-management software, structured programme information and workflow support. It does not provide legal, tax, immigration or investment advice.
+Sovereignty Control supports matter reconstruction, readiness, blockers, dependencies and advisor-review preparation. It does not provide legal, tax, immigration or investment advice.

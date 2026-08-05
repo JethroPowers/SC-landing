@@ -6,7 +6,7 @@ import { PolicyHeroVisual } from "@/components/HeroVisuals";
 export const metadata: Metadata = {
   title: "Privacy",
   description:
-    "Privacy information for Sovereignty Control demo requests and professional-firm enquiries.",
+    "Privacy information for Sovereignty Control diagnostic discussions and professional-firm enquiries.",
   alternates: { canonical: "/privacy" }
 };
 
@@ -15,9 +15,9 @@ export default function PrivacyPage() {
     <main>
       <Hero
         title="Privacy for high-level firm enquiries, not client matter intake."
-        subtitle="Sovereignty Control collects only the information needed to understand whether a private demo or sprint is relevant to your firm. Do not submit client-identifiable information through demo request forms."
+        subtitle="Sovereignty Control collects only the information needed to understand whether a complimentary diagnostic is relevant to your firm. Do not submit client-identifiable information or matter data through the enquiry form."
         variant="plain"
-        primaryLabel="Request a private demo"
+        primaryLabel="Discuss a complimentary diagnostic"
         primaryHref="/contact"
       >
         <PolicyHeroVisual type="privacy" />
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               and a short message about the case or programme-data problem.
             </p>
             <p className="muted">
-              Demo enquiries should not include client names, passports,
+              Diagnostic enquiries should not include client names, passports,
               addresses, source-of-funds records, legal advice, tax advice or
               other sensitive client-identifiable information.
             </p>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
             <h3>Use of information</h3>
             <p className="muted">
               Submitted information is used to review the enquiry, decide a
-              suitable demo path and respond to the professional firm.
+              suitable diagnostic path and respond to the professional firm.
             </p>
           </article>
           <article className="card">

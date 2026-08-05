@@ -13,7 +13,7 @@ type CTASectionProps = {
 export function CTASection({
   title,
   description,
-  primaryLabel = "Request a private demo",
+  primaryLabel = "Discuss a complimentary matter-control diagnostic",
   primaryHref = "/contact",
   secondaryLabel,
   secondaryHref
@@ -22,14 +22,14 @@ export function CTASection({
     <section className="section section-dark">
       <div className="container split">
         <div>
-          <p className="eyebrow">Private demo</p>
+          <p className="eyebrow">Current validation offer</p>
           <h2>{title}</h2>
           {description ? <p className="lead">{description}</p> : null}
         </div>
         <div className="dark-panel">
           <p className="muted">
-            Intelligence controls the programme knowledge. Control turns that
-            intelligence into case operations.
+            Intelligence controls the programme knowledge. Sovereignty Control
+            prepares the operational matter record for the firm's judgement.
           </p>
           <div className="cta-actions">
             <Link className="button button-gold" href={primaryHref}>

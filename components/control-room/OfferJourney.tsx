@@ -21,7 +21,7 @@ export function OfferJourney() {
             </div>
           </div>
           <aside className={styles.offerRecord}>
-            <span className="small">Price and timing</span>
+            <span className="small">Commercial position</span>
             <strong className={styles.offerPrice}>{offer.price}</strong>
             <span className="small">{offer.timing}</span>
             <div className={styles.offerFormat}>
@@ -38,8 +38,8 @@ export function OfferJourney() {
                 {offer.deliverables.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </div>
-            <Link className="button button-primary" href={`/contact?interest=${offer.id}`}>
-              Request a private demo <ArrowRight size={17} aria-hidden="true" />
+            <Link className="button button-primary" href="/contact?interest=matter-control-diagnostic">
+              Discuss the complimentary diagnostic <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </aside>
           <div className={styles.offerTransition}>

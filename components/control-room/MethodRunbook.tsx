@@ -13,8 +13,8 @@ export function MethodRunbook() {
   return (
     <div className={`container ${styles.method}`} ref={ref}>
       <aside className={styles.methodRail}>
-        <p className="small">Case Control Sprint</p>
-        <strong>From case papers to advisor review</strong>
+        <p className="small">Complimentary diagnostic</p>
+        <strong>From scattered matter state to advisor review</strong>
         <div className={styles.methodProgress}>
           <motion.span style={reducedMotion ? { height: "100%", width: "100%" } : { height: scrollYProgress }} />
         </div>

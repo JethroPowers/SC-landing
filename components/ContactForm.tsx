@@ -14,20 +14,23 @@ const firmTypes = [
 ];
 
 const mainProblems = [
-  "Messy client cases",
+  "Matter status reconstruction",
   "Programme pricing/data control",
-  "Family-cost comparisons",
+  "Blocker or dependency control",
   "Document readiness",
-  "Client status visibility",
+  "Advisor-review preparation",
   "Other"
 ];
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
 const interests = [
-  { value: "case-control", label: "Case Control Sprint" },
-  { value: "programme-control", label: "Programme & Pricing Control Sprint" },
-  { value: "workspace", label: "Sovereignty Control Workspace" }
+  {
+    value: "matter-control-diagnostic",
+    label: "Complimentary Matter Control Diagnostic"
+  },
+  { value: "readiness-pilot", label: "30-Day Co-Managed Readiness Pilot" },
+  { value: "other", label: "Another matter-readiness question" }
 ];
 
 export function ContactForm({ initialInterest }: { initialInterest?: string }) {
@@ -64,7 +67,7 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
   return (
     <form className="form-shell" onSubmit={handleSubmit}>
       <div className="form-intro">
-        <p className="micro">Private demo request</p>
+        <p className="micro">Diagnostic discussion</p>
         <p className="small">
           Required fields are marked. Please do not submit client-identifiable
           information through this form.
@@ -151,12 +154,12 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
       <div className="hero-actions">
         <button className="button button-primary" type="submit" disabled={status === "submitting"}>
           <Send size={18} aria-hidden="true" />
-          {status === "submitting" ? "Submitting..." : "Request private demo"}
+          {status === "submitting" ? "Submitting..." : "Discuss complimentary diagnostic"}
         </button>
       </div>
       {status === "success" ? (
         <div className="form-status success" role="status">
-          Thank you. We will review your firm and reply with a suitable demo path.
+          Thank you. We will review the request and reply about diagnostic suitability.
           For sensitive matters, please do not submit client-identifiable
           information through this form.
         </div>

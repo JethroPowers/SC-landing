@@ -18,7 +18,7 @@ export function Hero({
   title,
   subtitle,
   variant = "default",
-  primaryLabel = "Request a private demo",
+  primaryLabel = "Discuss a complimentary diagnostic",
   primaryHref = "/contact",
   secondaryLabel,
   secondaryHref,

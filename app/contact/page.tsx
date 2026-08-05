@@ -3,8 +3,8 @@ import { CheckCircle2, ShieldAlert } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Request Demo",
-  description: "Request a private demonstration using an anonymised matter or the programme-data problem your firm needs to solve.",
+  title: "Discuss the Complimentary Diagnostic",
+  description: "Discuss whether one active, recent or anonymised matter is suitable for the complimentary matter-control diagnostic.",
   alternates: { canonical: "/contact" }
 };
 
@@ -20,10 +20,11 @@ export default async function ContactPage({
       <section className="contact-intro">
         <div className="container contact-intro-grid">
           <div>
-            <h1>Tell us which case or programme-data problem your firm needs to fix.</h1>
+            <h1>Discuss one matter that would benefit from clearer operational control.</h1>
             <p>
-              Tell us whether the issue is family pricing, programme information,
-              application documents, stalled matters or client status. Do not name a client.
+              The complimentary diagnostic covers one active, recent or anonymised
+              matter over seven to ten working days. There is no obligation to continue.
+              Do not name a client or submit matter data through this form.
             </p>
           </div>
           <div className="contact-note">
@@ -37,10 +38,10 @@ export default async function ContactPage({
           <aside>
             <h2>What the first discussion covers.</h2>
             {[
-              "The matter or programme-data problem causing the most rework.",
-              "Where applicant details, documents, fees and status currently live.",
-              "Which sprint or workspace path is proportionate.",
-              "Which programme facts and recommendations require professional review."
+              "Whether one matter is suitable for a controlled diagnostic.",
+              "Where status, missing items, blockers and dependencies currently live.",
+              "The pseudonymous intake and data-handling boundary.",
+              "Which questions and programme assumptions remain with the firm's advisor."
             ].map((item) => (
               <div className="contact-agenda-line" key={item}><CheckCircle2 size={17} />{item}</div>
             ))}

@@ -53,8 +53,8 @@ export default function HomePage() {
                 Do not send client-identifiable information through the enquiry form.
               </p>
             </div>
-            <Link className="button button-primary" href="/contact?interest=case-control">
-              Request a private demo <ArrowRight size={17} aria-hidden="true" />
+            <Link className="button button-primary" href="/contact?interest=matter-control-diagnostic">
+              Discuss a complimentary matter-control diagnostic <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </div>
         </section>

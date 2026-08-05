@@ -19,13 +19,13 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   metadataBase: new URL("https://sovereigntycontrol.com"),
   title: {
-    default: "Sovereignty Control | Case management for cross-border advisory firms",
+    default: "Sovereignty Control | Managed matter readiness for professional firms",
     template: "%s | Sovereignty Control"
   },
   description:
-    "Sovereignty Control helps citizenship, residence and relocation firms manage programme routes, family costs, documents, due diligence, deadlines and client updates.",
+    "Sovereignty Control is an early-stage managed matter-readiness method for firms handling citizenship, residence, relocation and investment-migration work.",
   applicationName: "Sovereignty Control",
-  category: "Business software",
+  category: "Professional services",
   robots: {
     index: true,
     follow: true,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sovereignty Control",
     description:
-      "Case management and programme information for citizenship, residence and relocation firms.",
+      "Managed matter readiness, programme intelligence and advisor-review preparation for professional firms.",
     url: "https://sovereigntycontrol.com",
     siteName: "Sovereignty Control",
     type: "website",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Sovereignty Control",
     description:
-      "Case management and programme information for citizenship, residence and relocation firms."
+      "Managed matter readiness, programme intelligence and advisor-review preparation for professional firms."
   }
 };
 

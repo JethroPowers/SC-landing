@@ -7,7 +7,7 @@ import { PolicyHeroVisual } from "@/components/HeroVisuals";
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Sovereignty Control provides case-management software and programme information, not professional advice.",
+    "Sovereignty Control supports matter readiness and programme information, not professional advice.",
   alternates: { canonical: "/disclaimer" }
 };
 
@@ -15,10 +15,10 @@ export default function DisclaimerPage() {
   return (
     <main>
       <Hero
-        title="Case-management software and programme information, not professional advice."
+        title="Matter-readiness support and programme information, not professional advice."
         subtitle={footerDisclaimer}
         variant="plain"
-        primaryLabel="Request a private demo"
+        primaryLabel="Discuss a complimentary diagnostic"
         primaryHref="/contact"
       >
         <PolicyHeroVisual type="disclaimer" />
@@ -46,8 +46,8 @@ export default function DisclaimerPage() {
       </section>
 
       <CTASection
-        title="Review the case-management software with clear advice boundaries."
-        description="The product supports firms that already provide or coordinate professional advice."
+        title="Review the matter-control method with clear advice boundaries."
+        description="The early-stage method supports firms that already provide or coordinate professional advice."
       />
     </main>
   );

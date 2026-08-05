@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function HowItWorksRedirect() {
-  redirect("/method");
+  redirect("/how-matter-control-works");
 }

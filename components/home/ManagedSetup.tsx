@@ -102,8 +102,8 @@ export function ManagedSetup() {
             ))}
           </div>
           <p className={styles.managedClose}>
-            The software records the case and programme information. The setup and
-            review work make it usable for the firm.
+            The controlled record makes the operating method visible. The firm keeps
+            every professional judgement and client decision.
           </p>
         </div>
       </div>

@@ -14,26 +14,26 @@ const workingSession = [
   {
     number: "01",
     title: "We start with a real matter.",
-    copy: "The starting point is one anonymised client matter or five programmes the team quotes regularly.",
+    copy: "The starting point is one active, recent or anonymised matter suitable for the complimentary diagnostic.",
     control: "We record the applicants, dependants, objectives, routes, current files and unanswered questions.",
     firm: "The firm explains the programme and advice context and confirms what requires professional review.",
     output: "A complete case and document map"
   },
   {
     number: "02",
-    title: "We prepare the case and programme files.",
-    copy: "Programme rules, family costs, required documents, due-diligence questions and target dates are recorded with owners and review states.",
-    control: "We build the case summary, comparison, document checklist and next-action list.",
+    title: "We prepare the controlled matter record.",
+    copy: "Document readiness, blockers, dependencies, programme assumptions and target dates are recorded with owners and review states.",
+    control: "We build the matter map, readiness register, advisor-review questions and immediate action plan.",
     firm: "The firm checks sources, programme assumptions, eligibility points and client wording.",
     output: "An advisor-reviewed case file"
   },
   {
     number: "03",
-    title: "We stay involved while the team starts using it.",
-    copy: "The workspace is adjusted against active matters rather than handed over as an empty software account.",
-    control: "We maintain programme records, review changes and correct the case views as requirements become clearer.",
+    title: "We close out and measure the diagnostic.",
+    copy: "The firm reviews one controlled record, applies a factual correction round and decides whether any later validation stage is justified.",
+    control: "We record corrections, practical feedback, next actions, retention and the explicit proceed, revise or stop decision.",
     firm: "The firm runs the client relationship and remains responsible for all professional advice.",
-    output: "A repeatable case-management process"
+    output: "A final controlled diagnostic record"
   }
 ];
 
@@ -77,8 +77,8 @@ export default function WhatWeDoPage() {
       <section className={styles.startingPoints}>
         <div className="container">
           <div className={styles.startingHeading}>
-            <h2>Three entry points, explained through the problem they resolve.</h2>
-            <p>Start with one matter or five programmes before deciding whether the monthly workspace is useful.</p>
+            <h2>Three validation stages, each earned by evidence.</h2>
+            <p>Start with one complimentary matter-control diagnostic. Later stages are neither automatic nor publicly priced.</p>
           </div>
           <div className={styles.offerSequence}>
             {offerPaths.map((offer, index) => (
@@ -96,7 +96,7 @@ export default function WhatWeDoPage() {
                   <div><dt>Engagement</dt><dd>{offer.engagementFormat}</dd></div>
                 </dl>
                 <Link className="text-link" href={`/offers#${offer.id}`}>
-                  See price, timing and deliverables <ArrowRight size={15} />
+                  See position, timing and deliverables <ArrowRight size={15} />
                 </Link>
               </article>
             ))}
@@ -107,16 +107,15 @@ export default function WhatWeDoPage() {
       <section className={styles.close}>
         <div className="container editorial-grid">
           <div className="editorial-title">
-            <h2>Your team is not left to configure an empty account.</h2>
+            <h2>Start with an operating method, not an empty account.</h2>
           </div>
           <div className="editorial-copy">
             <p>
-              We set up the case fields, programme records, document statuses and
-              reports with the firm, then stay involved while advisors begin using
-              them on active matters.
+              The diagnostic reconstructs one matter, exposes blockers and ownership,
+              prepares review questions and closes with a practical action plan.
             </p>
             <Link className="button button-gold" href="/contact">
-              Request a private demo <ArrowRight size={17} />
+              Discuss a complimentary diagnostic <ArrowRight size={17} />
             </Link>
           </div>
         </div>

@@ -8,6 +8,7 @@ const columns = [
       ["What We Do", "/what-we-do"],
       ["Case Control", "/control-system"],
       ["Intelligence", "/intelligence"],
+      ["How Matter Control Works", "/how-matter-control-works"],
       ["Demo Case", "/demo-case"]
     ]
   },
@@ -43,8 +44,8 @@ export function Footer() {
             </span>
           </Link>
           <p className="small" style={{ marginTop: 18, maxWidth: 420 }}>
-            Case-management software and programme information for firms handling
-            citizenship, residence, relocation and tax-migration matters.
+            An early-stage managed matter-readiness method for firms handling
+            citizenship, residence, relocation and investment-migration matters.
           </p>
         </div>
         {columns.map((column) => (
