@@ -17,30 +17,41 @@ export type WorkspaceViewId =
   | "change"
   | "closeout";
 
-export type MatterControlNarrativeTheme = "ivory" | "ink" | "parchment";
+export type MatterControlStoryTheme = "ivory" | "ink" | "parchment";
 
-export type MatterControlNarrativeChapter = {
-  id: string;
-  label: string;
-  shortLabel: string;
-  navigationLabel: string;
+export type MatterControlServiceIntro = {
+  eyebrow: string;
   title: string;
   summary: string;
-  kind: "process" | "change" | "boundary" | "offer";
-  processStepIndex?: number;
-  defaultView?: WorkspaceViewId;
-  theme: MatterControlNarrativeTheme;
-  visualState:
-    | "selected"
-    | "minimised"
-    | "mapped"
-    | "evidence"
-    | "blockers"
-    | "review"
-    | "closeout"
-    | "change"
-    | "boundary"
-    | "offer";
+  scrollLabel: string;
+};
+
+export type MatterControlOperatingPhase = {
+  id: string;
+  number: string;
+  action: string;
+  title: string;
+  summary: string;
+  recordChange: string;
+  firmRetains: string;
+  visualState: "reconstruct" | "control" | "prepare";
+};
+
+export type MatterControlDeliverableGroup = {
+  id: string;
+  number: string;
+  title: string;
+  summary: string;
+  representativeOutput: string;
+  includedOutputs: string[];
+  theme: MatterControlStoryTheme;
+};
+
+export type MatterControlStorySection = {
+  id: string;
+  label: string;
+  theme: MatterControlStoryTheme;
+  kind: "intro" | "transformation" | "deliverables" | "workspace" | "change" | "boundary" | "offer";
 };
 
 export type ReadinessMetric = {
@@ -95,7 +106,10 @@ export type FictionalMatterFixture = {
   matterFacts: Array<{ label: string; value: string }>;
   currentIssues: Array<{ label: string; value: string; status: MatterStatus }>;
   steps: MatterControlStep[];
-  narrativeChapters: MatterControlNarrativeChapter[];
+  serviceIntro: MatterControlServiceIntro;
+  operatingPhases: MatterControlOperatingPhase[];
+  deliverableGroups: MatterControlDeliverableGroup[];
+  storySections: MatterControlStorySection[];
   readinessMetrics: ReadinessMetric[];
   dependencies: DependencyRecord[];
   reviewQuestions: ReviewQuestion[];
@@ -231,142 +245,92 @@ export const fictionalMatter: FictionalMatterFixture = {
       output: "Final diagnostic record and closeout summary."
     }
   ],
-  narrativeChapters: [
+  serviceIntro: {
+    eyebrow: "How Matter Control Works · fictional matter SC-024",
+    title: "We make one live matter ready to manage.",
+    summary:
+      "Sovereignty Control reconstructs the record, controls missing work and prepares the questions your advisors must decide.",
+    scrollLabel: "Scroll to reconstruct"
+  },
+  operatingPhases: [
     {
-      id: "selected",
-      label: "01",
-      shortLabel: "Selected",
-      navigationLabel: "Matter selected",
-      title: "One current matter starts with a clear boundary.",
+      id: "reconstruct",
+      number: "01",
+      action: "Reconstruct",
+      title: "One current matter record.",
       summary:
-        "A founder should be able to see what is in scope, who owns the relationship and what the diagnostic may touch before any reconstruction begins.",
-      kind: "process",
-      processStepIndex: 0,
-      defaultView: "matter",
-      theme: "ivory",
-      visualState: "selected"
+        "Household, objective, four routes, current stage and responsible people align into one management view.",
+      recordChange: "Six partial versions become one current map.",
+      firmRetains: "The firm confirms facts and all route interpretation.",
+      visualState: "reconstruct"
     },
     {
-      id: "minimised",
-      label: "02",
-      shortLabel: "Minimised",
-      navigationLabel: "Information minimised and received",
-      title: "Only the operating facts needed for control are received.",
+      id: "control",
+      number: "02",
+      action: "Control",
+      title: "Every gap becomes controllable.",
       summary:
-        "The diagnostic works from pseudonymous states and existing locations—not a new store of passports, bank statements or source-of-wealth files.",
-      kind: "process",
-      processStepIndex: 1,
-      defaultView: "matter",
-      theme: "ivory",
-      visualState: "minimised"
+        "Evidence, dependencies, blockers, owners and next actions become visible in the same operating record.",
+      recordChange: "Three missing items, four dependencies and one overdue response are registered.",
+      firmRetains: "The firm decides what evidence and advice are sufficient.",
+      visualState: "control"
     },
     {
-      id: "mapped",
-      label: "03",
-      shortLabel: "Mapped",
-      navigationLabel: "Matter map reconstructed",
-      title: "Six partial versions become one management view.",
+      id: "prepare",
+      number: "03",
+      action: "Prepare",
+      title: "Judgement reaches the right questions.",
       summary:
-        "Household, objective, four possible routes, current stage and responsible people align without Sovereignty Control deciding the advice.",
-      kind: "process",
-      processStepIndex: 2,
-      defaultView: "matter",
-      theme: "parchment",
-      visualState: "mapped"
-    },
-    {
-      id: "evidence",
-      label: "04",
-      shortLabel: "Readiness",
-      navigationLabel: "Evidence and dependencies registered",
-      title: "Readiness becomes visible before it becomes urgent.",
-      summary:
-        "The practice can now see what is complete, missing, dependent and overdue across the same current matter record.",
-      kind: "process",
-      processStepIndex: 3,
-      defaultView: "readiness",
-      theme: "ink",
-      visualState: "evidence"
-    },
-    {
-      id: "blockers",
-      label: "05",
-      shortLabel: "Controlled",
-      navigationLabel: "Blockers assigned and controlled",
-      title: "Every blocker gets an owner, consequence and next action.",
-      summary:
-        "The six-day provider delay, source-of-funds direction and two owner gaps stop living as informal memory and become controllable work.",
-      kind: "process",
-      processStepIndex: 4,
-      defaultView: "readiness",
-      theme: "ink",
-      visualState: "blockers"
-    },
-    {
-      id: "review",
-      label: "06",
-      shortLabel: "Review",
-      navigationLabel: "Advisor-review questions prepared",
-      title: "Advisor time is reserved for questions that require judgement.",
-      summary:
-        "Two professional questions arrive with context, evidence state, consequence and a named firm owner rather than a file that must be rebuilt.",
-      kind: "process",
-      processStepIndex: 5,
-      defaultView: "review",
-      theme: "ink",
-      visualState: "review"
-    },
-    {
-      id: "closeout",
-      label: "07",
-      shortLabel: "Closeout",
-      navigationLabel: "Closeout and next actions agreed",
-      title: "The diagnostic closes with a usable operating pack.",
-      summary:
-        "The firm leaves with corrected records, named immediate actions and an explicit decision about whether any further validation is justified.",
-      kind: "process",
-      processStepIndex: 6,
-      defaultView: "closeout",
-      theme: "ink",
-      visualState: "closeout"
-    },
-    {
-      id: "change",
-      label: "08",
-      shortLabel: "Change",
-      navigationLabel: "Change reaches the matter",
-      title: "Programme intelligence matters when it reaches the affected work.",
-      summary:
-        "A fictional dependent-eligibility update is connected to Route C and SC-024 while the firm retains responsibility for confirming its professional effect.",
-      kind: "change",
-      defaultView: "change",
-      theme: "ink",
-      visualState: "change"
-    },
-    {
-      id: "boundary",
-      label: "09",
-      shortLabel: "Boundary",
-      navigationLabel: "The professional boundary",
-      title: "The firm keeps the judgement. Control keeps the matter ready for it.",
-      summary:
-        "Operational support becomes more useful—not less—when client relationships, professional judgement, advice and final decisions remain explicit.",
-      kind: "boundary",
-      theme: "parchment",
-      visualState: "boundary"
-    },
-    {
-      id: "offer",
-      label: "10",
-      shortLabel: "Start",
-      navigationLabel: "Start with one matter",
-      title: "Test the method on one matter before considering anything broader.",
-      summary:
-        "The current offer is a complimentary diagnostic for one active, recent or anonymised matter, with no obligation to continue.",
-      kind: "offer",
-      theme: "ink",
-      visualState: "offer"
+        "Professional issues arrive with context, consequence and the decision required—without rebuilding the matter first.",
+      recordChange: "Two review questions and one held assumption enter the advisor queue.",
+      firmRetains: "The firm advises, approves and makes every final decision.",
+      visualState: "prepare"
     }
+  ],
+  deliverableGroups: [
+    {
+      id: "matter-record",
+      number: "01",
+      title: "A current matter record",
+      summary: "One reliable view of the household, objective, routes, stage and responsible people.",
+      representativeOutput: "Current-state matter map",
+      includedOutputs: ["Matter map", "Document-readiness register"],
+      theme: "ivory"
+    },
+    {
+      id: "control-registers",
+      number: "02",
+      title: "Controlled readiness registers",
+      summary: "Missing work, dependencies, assumptions, owners and escalation points become explicit.",
+      representativeOutput: "Blocker and dependency register",
+      includedOutputs: [
+        "Blocker and dependency register",
+        "Programme-assumption register"
+      ],
+      theme: "parchment"
+    },
+    {
+      id: "advisor-pack",
+      number: "03",
+      title: "An advisor-ready action pack",
+      summary: "The firm receives the questions, priorities and next actions that require its judgement.",
+      representativeOutput: "Immediate action plan",
+      includedOutputs: [
+        "Advisor-review questions",
+        "Immediate action plan",
+        "Closeout summary"
+      ],
+      theme: "ink"
+    }
+  ],
+  storySections: [
+    { id: "opening", label: "What we do", theme: "ivory", kind: "intro" },
+    { id: "transformation", label: "How it works", theme: "ivory", kind: "transformation" },
+    { id: "outputs", label: "What you receive", theme: "ivory", kind: "deliverables" },
+    { id: "workspace", label: "Explore the record", theme: "ink", kind: "workspace" },
+    { id: "change", label: "Change impact", theme: "parchment", kind: "change" },
+    { id: "boundary", label: "Professional boundary", theme: "ivory", kind: "boundary" },
+    { id: "offer", label: "Start with one matter", theme: "ink", kind: "offer" }
   ],
   readinessMetrics: [
     {

@@ -25,7 +25,7 @@ export function useScrollNarrative(chapterCount: number) {
     if (
       typeof window !== "undefined" &&
       !window.matchMedia(
-        "(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)"
+        "(min-width: 1100px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)"
       ).matches
     ) {
       return;
@@ -71,7 +71,7 @@ export function useScrollNarrative(chapterCount: number) {
 
       const mobileTarget = document.getElementById(`matter-chapter-${next}`);
       const cinematic = window.matchMedia(
-        "(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)"
+        "(min-width: 1100px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)"
       ).matches;
 
       if (!cinematic && mobileTarget) {

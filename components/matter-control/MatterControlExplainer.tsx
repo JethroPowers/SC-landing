@@ -2,162 +2,154 @@
 
 import Link from "next/link";
 import {
+  ArrowDown,
   ArrowRight,
   Building2,
   CheckCircle2,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardCheck,
+  FileCheck2,
   FileOutput,
-  RefreshCw,
-  ShieldCheck
+  FolderKanban,
+  History,
+  ListChecks,
+  Scale,
+  ShieldCheck,
+  UserRoundCheck
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import { useScrollNarrative } from "@/components/scroll/useScrollNarrative";
 import {
   fictionalMatter,
-  type MatterControlNarrativeChapter,
+  type MatterControlOperatingPhase,
   type WorkspaceViewId
 } from "@/lib/matter-control-fixture";
-import { MatterEvolutionView } from "./MatterEvolutionView";
-import { NarrativeProgress } from "./NarrativeProgress";
+import { StatusLanguage } from "./StatusLanguage";
 import { WorkspaceSurface } from "./WorkspaceViews";
 import styles from "./MatterControl.module.css";
+
+const deliverableIcons = [FolderKanban, ClipboardCheck, FileOutput];
 
 const responsibilityRows = [
   {
     firm: "Client relationships, professional judgement and legal or regulatory advice",
-    control:
-      "Matter reconstruction, readiness tracking and advisor-review preparation"
+    control: "Matter reconstruction, readiness tracking and review preparation"
   },
   {
-    firm: "Approval of programme assumptions and source-of-funds sufficiency",
-    control:
-      "Programme-assumption records, source dates and confirmation queues"
+    firm: "Programme assumptions, source-of-funds sufficiency and professional effect",
+    control: "Assumption records, source dates and confirmation queues"
   },
   {
     firm: "Final decisions, client wording, filings and submissions",
-    control:
-      "Blocker ownership, dependency control and practical next-action planning"
+    control: "Ownership, dependency control and practical next-action planning"
   }
 ];
 
-const detailFields = [
-  {
-    key: "sovereigntyControl" as const,
-    label: "What Sovereignty Control does",
-    icon: RefreshCw
-  },
-  {
-    key: "firmResponsibility" as const,
-    label: "What the firm remains responsible for",
-    icon: Building2
-  },
-  {
-    key: "recordChange" as const,
-    label: "What changes in the matter record",
-    icon: ShieldCheck
-  },
-  {
-    key: "output" as const,
-    label: "Practical output",
-    icon: FileOutput
-  }
-];
-
-function ChapterDetails({
-  chapter,
-  progress,
-  reducedMotion
-}: {
-  chapter: MatterControlNarrativeChapter;
-  progress: number;
-  reducedMotion: boolean;
-}) {
-  const matter = fictionalMatter;
-  const step =
-    chapter.processStepIndex === undefined
-      ? null
-      : matter.steps[chapter.processStepIndex];
-
-  if (!step) {
-    const notes =
-      chapter.kind === "change"
-        ? [
-            ["System action", "Surface the source change, effective date, route and active-matter exposure."],
-            ["Firm decision", "Confirm the professional effect before any assumption or client position changes."]
-          ]
-        : chapter.kind === "boundary"
-          ? [
-              ["The firm", "Retains the client, the advice, programme assumptions and all final decisions."],
-              ["Sovereignty Control", "Maintains operational clarity, ownership, dependencies and review preparation."]
-            ]
-          : [
-              ["Current offer", "Complimentary · one active, recent or anonymised matter."],
-              ["Entry boundary", "Seven to ten working days · no external contact · no obligation to continue."]
-            ];
-
-    return (
-      <div className={styles.narrativeNotes}>
-        {notes.map(([label, value], index) => (
-          <motion.div
-            animate={{
-              opacity: reducedMotion || progress >= 0.08 + index * 0.17 ? 1 : 0.22,
-              x: reducedMotion || progress >= 0.08 + index * 0.17 ? 0 : -10
-            }}
-            key={label}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-          >
-            <span>{label}</span>
-            <p>{value}</p>
-          </motion.div>
-        ))}
-      </div>
-    );
-  }
-
+function FictionalLabel() {
   return (
-    <div className={styles.narrativeDetails}>
-      {detailFields.map(({ key, label, icon: Icon }, index) => {
-        const revealed = reducedMotion || progress >= index * 0.11;
-        return (
-          <motion.div
-            animate={{ opacity: revealed ? 1 : 0.2, x: revealed ? 0 : -12 }}
-            className={styles.narrativeDetail}
-            key={key}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-          >
-            <div>
-              <Icon size={15} strokeWidth={1.7} aria-hidden="true" />
-              <span>{label}</span>
-            </div>
-            <p>{step[key]}</p>
-          </motion.div>
-        );
-      })}
+    <div className={styles.flowFictionalLabel}>
+      <ShieldCheck size={16} strokeWidth={1.7} aria-hidden="true" />
+      <span><strong>Fictional demonstration matter</strong>No real client or confidential information.</span>
     </div>
   );
 }
 
-function BoundarySurface() {
+function MatterIdentityStrip({ compact = false }: { compact?: boolean }) {
+  const matter = fictionalMatter;
+
   return (
-    <div className={styles.boundarySurface} data-testid="boundary-surface">
-      <div className={styles.boundarySurfaceHead}>
-        <span>Operating authority</span>
-        <strong>Clear support. Clear professional ownership.</strong>
-        <p>
-          Sovereignty Control is an early-stage operating method being validated—not
-          a mature platform, regulated service or substitute for the firm's team.
-        </p>
-      </div>
-      <div className={styles.boundarySurfaceTable}>
-        <div className={styles.boundarySurfaceLabels}>
-          <span>The firm retains</span>
-          <span>Sovereignty Control supports</span>
+    <div
+      aria-label="Fictional matter summary"
+      className={`${styles.flowMatterStrip} ${compact ? styles.flowMatterStripCompact : ""}`}
+    >
+      <strong>{matter.reference}</strong>
+      <span>{matter.household}</span>
+      <span>{matter.objective}</span>
+      <span>{matter.status}</span>
+      <span>Review {matter.nextReviewDate}</span>
+    </div>
+  );
+}
+
+function OpeningMatter() {
+  const matter = fictionalMatter;
+
+  return (
+    <div className={styles.openingRecord} data-testid="opening-matter-record">
+      <div className={styles.openingRecordHead}>
+        <div>
+          <span>Active diagnostic record</span>
+          <strong>{matter.reference}</strong>
         </div>
-        {responsibilityRows.map((row) => (
-          <div className={styles.boundarySurfaceRow} key={row.firm}>
-            <strong>{row.firm}</strong>
-            <span>{row.control}</span>
+        <StatusLanguage status="attention" />
+      </div>
+      <div className={styles.openingRecordCore}>
+        <div>
+          <span>Household</span>
+          <strong>{matter.household}</strong>
+        </div>
+        <div>
+          <span>Objective</span>
+          <strong>{matter.objective}</strong>
+        </div>
+      </div>
+      <div className={styles.openingRecordSignal}>
+        <span>Current operating signal</span>
+        <strong>3 missing evidence items · 1 overdue dependency · 2 questions for review</strong>
+      </div>
+    </div>
+  );
+}
+
+function OpeningSection() {
+  const intro = fictionalMatter.serviceIntro;
+
+  return (
+    <section className={styles.flowOpening} data-testid="story-opening" id="opening">
+      <div className={`container ${styles.flowOpeningInner}`}>
+        <div className={styles.flowOpeningTop}>
+          <div>
+            <span className={styles.flowEyebrow}>{intro.eyebrow}</span>
+            <h1>{intro.title}</h1>
+            <p>{intro.summary}</p>
+            <a className={styles.flowScrollCue} href="#transformation">
+              <span>{intro.scrollLabel}</span>
+              <ArrowDown size={16} aria-hidden="true" />
+            </a>
+          </div>
+          <FictionalLabel />
+        </div>
+        <OpeningMatter />
+      </div>
+    </section>
+  );
+}
+
+function ReconstructVisual() {
+  const matter = fictionalMatter;
+  const routes = ["Route A", "Route B", "Route C", "Route D"];
+
+  return (
+    <div className={styles.phaseReconstruct} data-testid="phase-visual-reconstruct">
+      <div className={styles.phaseRecordHeading}>
+        <span>Current-state matter map</span>
+        <strong>{matter.reference}</strong>
+      </div>
+      <div className={styles.phaseContextGrid}>
+        <div><span>Household</span><strong>Principal, spouse and two children</strong></div>
+        <div><span>Objective</span><strong>Mobility plus long-term residence</strong></div>
+        <div><span>Current stage</span><strong>Matter reconstructed</strong></div>
+        <div><span>Firm sponsor</span><strong>Priya Shah · Firm advisor</strong></div>
+      </div>
+      <div className={styles.phaseRouteRail}>
+        {routes.map((route, index) => (
+          <div key={route}>
+            <span>{route}</span>
+            <strong>{index === 2 ? "Change flagged" : "Under consideration"}</strong>
           </div>
         ))}
       </div>
@@ -165,280 +157,464 @@ function BoundarySurface() {
   );
 }
 
-function OfferSurface({ instanceId }: { instanceId: string }) {
+function ControlVisual() {
   const matter = fictionalMatter;
 
   return (
-    <div className={styles.offerSurface} data-testid={`offer-surface-${instanceId}`}>
-      <div className={styles.offerSurfaceHead}>
+    <div className={styles.phaseControl} data-testid="phase-visual-control">
+      <div className={styles.phaseMetrics}>
+        {matter.readinessMetrics.map((metric) => (
+          <div key={metric.label}>
+            <StatusLanguage status={metric.status} />
+            <strong>{metric.value}</strong>
+            <span>{metric.label}</span>
+          </div>
+        ))}
+      </div>
+      <div className={styles.phaseDependencyList}>
+        {matter.dependencies.slice(0, 3).map((dependency) => (
+          <div key={dependency.item}>
+            <span>{dependency.item}</span>
+            <strong>{dependency.owner}</strong>
+            <small>{dependency.timing}</small>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PrepareVisual() {
+  const matter = fictionalMatter;
+
+  return (
+    <div className={styles.phasePrepare} data-testid="phase-visual-prepare">
+      <div className={styles.phaseReviewHead}>
         <div>
-          <span>Current validation offer</span>
-          <strong>Start with one matter, not a software purchase.</strong>
+          <span>Advisor review queue</span>
+          <strong>Two decisions prepared</strong>
         </div>
-        <ShieldCheck size={24} strokeWidth={1.5} aria-hidden="true" />
+        <UserRoundCheck size={20} aria-hidden="true" />
       </div>
-      <dl className={styles.offerSurfaceFacts}>
-        <div><dt>Fee</dt><dd>{matter.diagnostic.fee}</dd></div>
-        <div><dt>Scope</dt><dd>{matter.diagnostic.scope}</dd></div>
-        <div><dt>Timing</dt><dd>{matter.diagnostic.timing}</dd></div>
-        <div><dt>Commitment</dt><dd>{matter.diagnostic.obligation}</dd></div>
-      </dl>
-      <div className={styles.offerSurfaceAction}>
-        <p>
-          {matter.diagnostic.communicationBoundary}. Participation and data handling
-          are agreed before intake.
-        </p>
-        <Link
-          className="button button-gold"
-          data-testid={`primary-cta-${instanceId}`}
-          href="/contact?interest=matter-control-diagnostic"
-        >
-          Discuss a complimentary matter-control diagnostic
-          <ArrowRight size={17} aria-hidden="true" />
-        </Link>
+      <div className={styles.phaseQuestions}>
+        {matter.reviewQuestions.map((question, index) => (
+          <div key={question.question}>
+            <span>0{index + 1}</span>
+            <strong>{question.question}</strong>
+            <small>{question.owner}</small>
+          </div>
+        ))}
       </div>
-      <details
-        className={styles.offerDisclosure}
-        data-testid={`data-handling-disclosure-${instanceId}`}
-      >
-        <summary>
-          <span><ShieldCheck size={17} aria-hidden="true" />Data handling during the diagnostic</span>
-          <ChevronDown size={17} aria-hidden="true" />
-        </summary>
-        <div>
-          <p>Minimised operational states and existing location references only.</p>
+      <div className={styles.phaseActionBar}>
+        <span>Immediate action plan</span>
+        <strong>Six dated actions · named owners · next 30 days</strong>
+        <StatusLanguage status="ready" />
+      </div>
+    </div>
+  );
+}
+
+function PhaseVisual({ phase }: { phase: MatterControlOperatingPhase }) {
+  if (phase.visualState === "reconstruct") return <ReconstructVisual />;
+  if (phase.visualState === "control") return <ControlVisual />;
+  return <PrepareVisual />;
+}
+
+function PhaseCopy({ phase }: { phase: MatterControlOperatingPhase }) {
+  return (
+    <div className={styles.phaseCopy}>
+      <span>{phase.number} · {phase.action}</span>
+      <h2>{phase.title}</h2>
+      <p>{phase.summary}</p>
+      <div className={styles.phaseChange}>
+        <span>Record change</span>
+        <strong>{phase.recordChange}</strong>
+      </div>
+      <div className={styles.phaseFirmBoundary}>
+        <Building2 size={15} aria-hidden="true" />
+        <span>{phase.firmRetains}</span>
+      </div>
+    </div>
+  );
+}
+
+function TransformationSection() {
+  const phases = fictionalMatter.operatingPhases;
+  const {
+    activeChapter,
+    overallProgress,
+    reducedMotion,
+    scrollToChapter,
+    trackRef
+  } = useScrollNarrative(phases.length);
+  const activePhase = phases[activeChapter];
+
+  return (
+    <section
+      aria-label="Three-stage matter-control transformation"
+      className={styles.flowTransformation}
+      data-testid="transformation-track"
+      id="transformation"
+      ref={trackRef}
+    >
+      <div className={styles.transformationSticky} data-active-phase={activeChapter} data-testid="transformation-canvas">
+        <div className={`container ${styles.transformationCanvas}`}>
+          <div className={styles.transformationIntro}>
+            <span className={styles.flowEyebrow}>One matter · three operating moves</span>
+            <p>Scroll to watch SC-024 move from fragmented status to controlled review.</p>
+          </div>
+          <div className={styles.transformationBody} aria-live="polite">
+            <AnimatePresence initial={false} mode="wait">
+              <motion.div
+                className={styles.transformationCopy}
+                key={`copy-${activePhase.id}`}
+                initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reducedMotion ? undefined : { opacity: 0, y: -12 }}
+                transition={{ duration: 0.32, ease: "easeOut" }}
+              >
+                <PhaseCopy phase={activePhase} />
+              </motion.div>
+            </AnimatePresence>
+            <div className={styles.transformationRecord}>
+              <MatterIdentityStrip compact />
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  className={styles.transformationRecordPanel}
+                  key={`visual-${activePhase.id}`}
+                  initial={reducedMotion ? false : { opacity: 0, scale: 0.985, y: 14 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={reducedMotion ? undefined : { opacity: 0, scale: 0.99, y: -8 }}
+                  transition={{ duration: 0.38, ease: "easeOut" }}
+                >
+                  <PhaseVisual phase={activePhase} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+          <div className={styles.phaseProgress}>
+            <span>How it works</span>
+            <div aria-label="Matter-control operating phases" role="tablist">
+              {phases.map((phase, index) => (
+                <button
+                  aria-label={`${phase.number}. ${phase.action}`}
+                  aria-selected={index === activeChapter}
+                  className={index === activeChapter ? styles.phaseDotActive : styles.phaseDot}
+                  key={phase.id}
+                  onClick={() => scrollToChapter(index)}
+                  role="tab"
+                  type="button"
+                >
+                  {phase.number}
+                </button>
+              ))}
+              <span aria-hidden="true" style={{ transform: `scaleX(${overallProgress})` }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.transformationFallback}>
+        <div className="container">
+          <div className={styles.transformationFallbackIntro}>
+            <span className={styles.flowEyebrow}>One matter · three operating moves</span>
+            <h2>From fragmented status to controlled review.</h2>
+          </div>
+          {phases.map((phase) => (
+            <article className={styles.transformationFallbackPhase} data-testid={`mobile-phase-${phase.id}`} id={`matter-chapter-${Number(phase.number) - 1}`} key={phase.id}>
+              <PhaseCopy phase={phase} />
+              <div className={styles.transformationRecord}>
+                <MatterIdentityStrip compact />
+                <div className={styles.transformationRecordPanel}><PhaseVisual phase={phase} /></div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DeliverablesSection() {
+  const matter = fictionalMatter;
+
+  return (
+    <section className={styles.deliverablesSection} data-testid="story-deliverables" id="outputs">
+      <div className={`container ${styles.flowSectionHeading}`}>
+        <span className={styles.flowEyebrow}>What the firm receives</span>
+        <h2>A controlled record your team can use.</h2>
+      </div>
+      <div className={styles.deliverableBands}>
+        {matter.deliverableGroups.map((group, index) => {
+          const Icon = deliverableIcons[index];
+          return (
+            <article className={`${styles.deliverableBand} ${styles[`deliverableBand_${group.theme}`]}`} key={group.id}>
+              <div className={`container ${styles.deliverableBandInner}`}>
+                <span>{group.number}</span>
+                <div>
+                  <h3>{group.title}</h3>
+                  <p>{group.summary}</p>
+                </div>
+                <div className={styles.deliverableOutput}>
+                  <Icon size={19} strokeWidth={1.6} aria-hidden="true" />
+                  <span>Representative output</span>
+                  <strong>{group.representativeOutput}</strong>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+      <div className={`container ${styles.allOutputsWrap}`}>
+        <details className={styles.allOutputs} data-testid="all-outputs-disclosure">
+          <summary>
+            <span><FileCheck2 size={17} aria-hidden="true" />See everything included</span>
+            <ChevronDown size={17} aria-hidden="true" />
+          </summary>
+          <div>
+            {matter.closeoutOutputs.map((output, index) => (
+              <div key={output.title}>
+                <span>0{index + 1}</span>
+                <strong>{output.title}</strong>
+                <p>{output.sample}</p>
+              </div>
+            ))}
+          </div>
+        </details>
+      </div>
+    </section>
+  );
+}
+
+function SevenStepMethod() {
+  const steps = fictionalMatter.steps;
+  const [activeStep, setActiveStep] = useState(0);
+  const buttons = useRef<Array<HTMLButtonElement | null>>([]);
+  const step = steps[activeStep];
+
+  function selectStep(index: number, focus = false) {
+    const next = Math.max(0, Math.min(steps.length - 1, index));
+    setActiveStep(next);
+    if (focus) buttons.current[next]?.focus();
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      event.preventDefault();
+      selectStep((index + 1) % steps.length, true);
+    }
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      event.preventDefault();
+      selectStep((index - 1 + steps.length) % steps.length, true);
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      selectStep(0, true);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      selectStep(steps.length - 1, true);
+    }
+  }
+
+  return (
+    <details className={styles.methodDisclosure} data-testid="seven-step-method">
+      <summary>
+        <span><ListChecks size={17} aria-hidden="true" />Explore the seven-step method</span>
+        <ChevronDown size={17} aria-hidden="true" />
+      </summary>
+      <div className={styles.methodDisclosureBody}>
+        <div aria-label="Seven-step matter-control method" className={styles.methodTabs} role="tablist">
+          {steps.map((item, index) => (
+            <button
+              aria-label={`${index + 1}. ${item.shortTitle}`}
+              aria-selected={activeStep === index}
+              className={activeStep === index ? styles.methodTabActive : styles.methodTab}
+              key={item.id}
+              onClick={() => selectStep(index)}
+              onKeyDown={(event) => handleKeyDown(event, index)}
+              ref={(node) => { buttons.current[index] = node; }}
+              role="tab"
+              tabIndex={activeStep === index ? 0 : -1}
+              type="button"
+            >
+              <span>0{index + 1}</span>
+              <strong>{item.shortTitle}</strong>
+            </button>
+          ))}
+        </div>
+        <div aria-live="polite" className={styles.methodPanel} role="tabpanel">
+          <span>Step 0{activeStep + 1}</span>
+          <h3>{step.title}</h3>
+          <dl>
+            <div><dt>Sovereignty Control</dt><dd>{step.sovereigntyControl}</dd></div>
+            <div><dt>The firm remains responsible for</dt><dd>{step.firmResponsibility}</dd></div>
+            <div><dt>Matter record change</dt><dd>{step.recordChange}</dd></div>
+            <div><dt>Practical output</dt><dd>{step.output}</dd></div>
+          </dl>
+          <div className={styles.methodActions}>
+            <button aria-label="Previous method step" disabled={activeStep === 0} onClick={() => selectStep(activeStep - 1)} type="button"><ChevronLeft size={16} aria-hidden="true" />Previous</button>
+            <button aria-label="Next method step" disabled={activeStep === steps.length - 1} onClick={() => selectStep(activeStep + 1)} type="button">Next<ChevronRight size={16} aria-hidden="true" /></button>
+          </div>
+        </div>
+      </div>
+    </details>
+  );
+}
+
+function WorkspaceExploreSection() {
+  const [activeView, setActiveView] = useState<WorkspaceViewId>("readiness");
+
+  return (
+    <section className={styles.workspaceExploreSection} data-testid="story-workspace" id="workspace">
+      <div className="container">
+        <div className={styles.workspaceExploreHeading}>
+          <div>
+            <span className={styles.flowEyebrow}>Explore the working record</span>
+            <h2>The detail is here when you need it.</h2>
+          </div>
+          <p>Five views. One fictional matter. You choose what to inspect.</p>
+        </div>
+        <div className={styles.workspaceExploreSurface}>
+          <WorkspaceSurface
+            activeView={activeView}
+            instanceId="explore"
+            matter={fictionalMatter}
+            onViewChange={setActiveView}
+            testId="workspace-explore"
+          />
+        </div>
+        <SevenStepMethod />
+      </div>
+    </section>
+  );
+}
+
+function ChangeImpactSection() {
+  const change = fictionalMatter.changeImpact;
+
+  return (
+    <section className={styles.changeStorySection} data-testid="story-change" id="change">
+      <div className="container">
+        <div className={styles.changeStoryHeading}>
+          <span className={styles.flowEyebrow}>When programme change reaches active work</span>
+          <h2>The issue is surfaced. The firm confirms its effect.</h2>
+        </div>
+        <ol className={styles.changeStorySequence} aria-label="Programme-change impact sequence">
+          {change.sequence.map((item, index) => (
+            <li key={item}>
+              <span>0{index + 1}</span>
+              <strong>{item}</strong>
+            </li>
+          ))}
+        </ol>
+        <div className={styles.changeStoryRecord}>
+          <div>
+            <span>Fictional change event</span>
+            <strong>{change.change}</strong>
+          </div>
+          <dl>
+            <div><dt>Source</dt><dd>{change.source}</dd></div>
+            <div><dt>Published</dt><dd>{change.publicationDate}</dd></div>
+            <div><dt>Effective</dt><dd>{change.effectiveDate}</dd></div>
+            <div><dt>Affected route</dt><dd>{change.route}</dd></div>
+            <div><dt>Previous</dt><dd>{change.previousValue}</dd></div>
+            <div><dt>Current</dt><dd>{change.currentValue}</dd></div>
+          </dl>
+          <p><History size={16} aria-hidden="true" />{change.verificationStatus}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BoundarySection() {
+  return (
+    <section className={styles.boundaryStorySection} data-testid="story-boundary" id="boundary">
+      <div className="container">
+        <div className={styles.boundaryStoryHeading}>
+          <span className={styles.flowEyebrow}>A clear professional boundary</span>
+          <h2>The firm keeps the judgement.</h2>
+          <p>Sovereignty Control keeps the matter ready for it.</p>
+        </div>
+        <div className={styles.boundaryStoryColumns}>
+          <div>
+            <Scale size={21} aria-hidden="true" />
+            <span>The firm</span>
+            <strong>Advises, judges, approves and decides.</strong>
+          </div>
+          <div>
+            <ClipboardCheck size={21} aria-hidden="true" />
+            <span>Sovereignty Control</span>
+            <strong>Reconstructs, tracks, prepares and surfaces.</strong>
+          </div>
+        </div>
+        <details className={styles.boundaryDetails}>
+          <summary><span>See the responsibility split</span><ChevronDown size={17} aria-hidden="true" /></summary>
+          <div>
+            {responsibilityRows.map((row) => (
+              <div key={row.firm}>
+                <strong>{row.firm}</strong>
+                <span>{row.control}</span>
+              </div>
+            ))}
+          </div>
+        </details>
+      </div>
+    </section>
+  );
+}
+
+function OfferSection() {
+  const matter = fictionalMatter;
+
+  return (
+    <section className={styles.flowOfferSection} data-testid="story-offer" id="offer">
+      <div className="container">
+        <div className={styles.flowOfferHeading}>
+          <span className={styles.flowEyebrow}>Start with one matter</span>
+          <h2>Test the method before considering anything broader.</h2>
+          <p>Sovereignty Control is an early-stage operating method being validated—not a mature platform or substitute for the firm.</p>
+        </div>
+        <dl className={styles.flowOfferFacts}>
+          <div><dt>Fee</dt><dd>{matter.diagnostic.fee}</dd></div>
+          <div><dt>Scope</dt><dd>{matter.diagnostic.scope}</dd></div>
+          <div><dt>Timing</dt><dd>{matter.diagnostic.timing}</dd></div>
+          <div><dt>Commitment</dt><dd>{matter.diagnostic.obligation}</dd></div>
+        </dl>
+        <div className={styles.flowOfferAction}>
+          <p>{matter.diagnostic.communicationBoundary}. Participation and data handling are agreed before intake.</p>
+          <Link className="button button-gold" data-testid="primary-cta" href="/contact?interest=matter-control-diagnostic">
+            Discuss a complimentary matter-control diagnostic
+            <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
+        <details className={styles.flowDataDisclosure} data-testid="data-handling-disclosure">
+          <summary>
+            <span><ShieldCheck size={17} aria-hidden="true" />Data handling during the diagnostic</span>
+            <ChevronDown size={17} aria-hidden="true" />
+          </summary>
           <ul>
             {matter.dataBoundaries.map((boundary) => (
               <li key={boundary}><CheckCircle2 size={14} aria-hidden="true" />{boundary}</li>
             ))}
           </ul>
-        </div>
-      </details>
-    </div>
-  );
-}
-
-function ChapterSurface({
-  chapter,
-  chapterIndex,
-  activeView,
-  onViewChange,
-  instanceId
-}: {
-  chapter: MatterControlNarrativeChapter;
-  chapterIndex: number;
-  activeView: WorkspaceViewId;
-  onViewChange: (view: WorkspaceViewId) => void;
-  instanceId: string;
-}) {
-  const matter = fictionalMatter;
-
-  if (chapter.kind === "boundary") return <BoundarySurface />;
-  if (chapter.kind === "offer") return <OfferSurface instanceId={instanceId} />;
-
-  const evolutionState =
-    chapter.visualState === "selected" ||
-    chapter.visualState === "minimised" ||
-    chapter.visualState === "mapped"
-      ? chapter.visualState
-      : null;
-  const panelOverride =
-    evolutionState && activeView === "matter" ? (
-      <MatterEvolutionView matter={matter} state={evolutionState} />
-    ) : undefined;
-  const focus =
-    chapter.visualState === "evidence"
-      ? "evidence"
-      : chapter.visualState === "blockers"
-        ? "blockers"
-        : undefined;
-
-  return (
-    <WorkspaceSurface
-      activeView={activeView}
-      compact
-      focus={focus}
-      instanceId={instanceId}
-      matter={matter}
-      onViewChange={onViewChange}
-      panelOverride={panelOverride}
-      panelTestId={
-        panelOverride
-          ? `matter-evolution-panel-${chapterIndex}-${instanceId}`
-          : `workspace-view-${activeView}-${instanceId}`
-      }
-      testId={`workspace-${instanceId}`}
-    />
-  );
-}
-
-function NarrativeHeader({ compact = false }: { compact?: boolean }) {
-  return (
-    <header className={compact ? styles.narrativeHeaderCompact : styles.narrativeHeader}>
-      <div>
-        <span>Interactive operating explainer</span>
-        <h1>How Matter Control Works</h1>
+        </details>
       </div>
-      <div className={styles.narrativeFictional}>
-        <ShieldCheck size={17} strokeWidth={1.7} aria-hidden="true" />
-        <span><strong>Fictional demonstration matter</strong>No real client or confidential information.</span>
-      </div>
-    </header>
-  );
-}
-
-function FallbackMatterSummary() {
-  const matter = fictionalMatter;
-  const fields = [
-    ["Matter", matter.reference],
-    ["Household", matter.household],
-    ["Objective", matter.objective],
-    ["Routes", `${matter.routeCount} possible routes`],
-    ["Status", matter.status],
-    ["Next review", matter.nextReviewDate]
-  ];
-
-  return (
-    <dl className={styles.fallbackMatterSummary} aria-label="Fictional matter summary">
-      {fields.map(([label, value]) => (
-        <div key={label}>
-          <dt>{label}</dt>
-          <dd>{value}</dd>
-        </div>
-      ))}
-    </dl>
+    </section>
   );
 }
 
 export function MatterControlExplainer() {
-  const matter = fictionalMatter;
-  const chapters = matter.narrativeChapters;
-  const {
-    activeChapter,
-    chapterProgress,
-    overallProgress,
-    scrollToChapter,
-    trackRef
-  } = useScrollNarrative(chapters.length);
-  const [viewOverrides, setViewOverrides] = useState<
-    Partial<Record<number, WorkspaceViewId>>
-  >({});
-  const chapter = chapters[activeChapter];
-
-  function viewFor(index: number) {
-    return viewOverrides[index] ?? chapters[index].defaultView ?? "matter";
-  }
-
-  function changeView(index: number, view: WorkspaceViewId) {
-    setViewOverrides((current) => ({ ...current, [index]: view }));
-  }
-
   return (
-    <main className={styles.narrativePage}>
-      <section
-        aria-label="How Matter Control Works scroll narrative"
-        className={styles.narrativeExperience}
-        ref={trackRef}
-      >
-        <div
-          className={`${styles.narrativeSticky} ${styles[`narrativeTheme_${chapter.theme}`]}`}
-          data-active-chapter={activeChapter}
-          data-testid="narrative-canvas"
-        >
-          <div className={`container ${styles.narrativeCanvas}`}>
-            <NarrativeHeader />
-            <div className={styles.narrativeBody}>
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  className={styles.narrativeCopy}
-                  key={chapter.id}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.34, ease: "easeOut" }}
-                >
-                  <span className={styles.narrativeChapterLabel}>
-                    Chapter {chapter.label} · {chapter.shortLabel}
-                  </span>
-                  <h2>{chapter.title}</h2>
-                  <p className={styles.narrativeSummary}>{chapter.summary}</p>
-                  <ChapterDetails
-                    chapter={chapter}
-                    progress={chapterProgress}
-                    reducedMotion={false}
-                  />
-                </motion.div>
-              </AnimatePresence>
-
-              <div className={styles.narrativeVisual}>
-                <AnimatePresence initial={false} mode="wait">
-                  <motion.div
-                    className={styles.narrativeVisualInner}
-                    key={`${chapter.id}-${viewFor(activeChapter)}`}
-                    initial={{ opacity: 0, scale: 0.985, y: 12 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.99, y: -8 }}
-                    transition={{ duration: 0.38, ease: "easeOut" }}
-                  >
-                    <ChapterSurface
-                      activeView={viewFor(activeChapter)}
-                      chapter={chapter}
-                      chapterIndex={activeChapter}
-                      instanceId="cinematic"
-                      onViewChange={(view) => changeView(activeChapter, view)}
-                    />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-            <NarrativeProgress
-              activeChapter={activeChapter}
-              chapters={chapters}
-              onChapterChange={scrollToChapter}
-              overallProgress={overallProgress}
-            />
-          </div>
-        </div>
-
-        <div className={styles.narrativeFallback}>
-          <div className="container">
-            <NarrativeHeader compact />
-            <FallbackMatterSummary />
-            <NarrativeProgress
-              activeChapter={activeChapter}
-              chapters={chapters}
-              onChapterChange={scrollToChapter}
-              overallProgress={overallProgress}
-            />
-          </div>
-          {chapters.map((item, index) => (
-            <article
-              className={`${styles.fallbackChapter} ${styles[`fallbackTheme_${item.theme}`]}`}
-              data-testid={`mobile-chapter-${index}`}
-              id={`matter-chapter-${index}`}
-              key={item.id}
-            >
-              <div className={`container ${styles.fallbackChapterInner}`}>
-                <div className={styles.fallbackChapterCopy}>
-                  <span>Chapter {item.label} · {item.shortLabel}</span>
-                  <h2>{item.title}</h2>
-                  <p>{item.summary}</p>
-                  <ChapterDetails chapter={item} progress={1} reducedMotion />
-                </div>
-                <div className={styles.fallbackChapterSurface}>
-                  <ChapterSurface
-                    activeView={viewFor(index)}
-                    chapter={item}
-                    chapterIndex={index}
-                    instanceId={`fallback-${index}`}
-                    onViewChange={(view) => changeView(index, view)}
-                  />
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+    <main className={styles.flowPage}>
+      <OpeningSection />
+      <TransformationSection />
+      <DeliverablesSection />
+      <WorkspaceExploreSection />
+      <ChangeImpactSection />
+      <BoundarySection />
+      <OfferSection />
     </main>
   );
 }
