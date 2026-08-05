@@ -25,7 +25,7 @@ const methodSteps = [
 ];
 
 function isPinnedDesktop(testInfo: TestInfo) {
-  return testInfo.project.name === "desktop-chromium";
+  return ["desktop-chromium", "standard-desktop-chromium"].includes(testInfo.project.name);
 }
 
 async function scrollToPhase(page: Page, index: number) {
@@ -43,7 +43,7 @@ async function scrollToPhase(page: Page, index: number) {
 test.beforeEach(async ({ page }) => {
   await page.goto("/how-matter-control-works");
   await expect(
-    page.getByRole("heading", { name: "We make one live matter ready to manage." })
+    page.getByRole("heading", { name: "One live matter. Reconstructed, controlled and ready for your firm to decide." })
   ).toBeVisible();
   await expect(page.getByText("Fictional demonstration matter")).toBeVisible();
 });
@@ -51,9 +51,11 @@ test.beforeEach(async ({ page }) => {
 test("the opening explains the service with persistent fictional matter context", async ({ page }) => {
   await expect(
     page.getByText(
-      "Sovereignty Control reconstructs the record, controls missing work and prepares the questions your advisors must decide."
+      "Sovereignty Control rebuilds the current record, tracks missing work and prepares the questions and actions that need advisor judgement."
     )
   ).toBeVisible();
+  await expect(page.getByText("For boutique citizenship and residence advisory firms")).toBeVisible();
+  await expect(page.getByText("Your firm keeps the client relationship, advice and every final decision.")).toBeVisible();
 
   const record = page.getByTestId("opening-matter-record");
   await expect(record.getByText("SC-024", { exact: true })).toBeVisible();
@@ -78,11 +80,10 @@ test("scrolling drives all three pinned phases forwards and backwards", async ({
       String(index)
     );
     await expect(page.getByRole("heading", { name: phases[index][1] })).toBeVisible();
-    await expect(
-      page
-        .getByTestId("transformation-canvas")
-        .getByTestId(`phase-visual-${phases[index][0]}`)
-    ).toBeVisible();
+    await expect(page.getByTestId(`phase-layer-${phases[index][0]}`)).toHaveAttribute(
+      "aria-hidden",
+      "false"
+    );
   }
 
   for (let index = phases.length - 2; index >= 0; index -= 1) {
@@ -102,6 +103,10 @@ test("phase controls navigate directly and remain keyboard accessible", async ({
     const tab = controls.getByRole("tab", { name: `${index + 1}. ${phases[index][0]}`, exact: false });
     await tab.click();
     await expect(tab).toHaveAttribute("aria-selected", "true");
+    const layerOpacity = await page
+      .locator('[data-testid^="phase-layer-"]')
+      .evaluateAll((layers) => layers.map((layer) => Number(getComputedStyle(layer).opacity)));
+    expect(layerOpacity.reduce((total, opacity) => total + opacity, 0)).toBeGreaterThan(0.75);
   }
 
   const first = controls.getByRole("tab", { name: "01. Reconstruct" });
@@ -114,6 +119,9 @@ test("the three deliverable groups reveal all seven exact outputs", async ({ pag
   await expect(outputs.getByRole("heading", { name: "A current matter record" })).toBeVisible();
   await expect(outputs.getByRole("heading", { name: "Controlled readiness registers" })).toBeVisible();
   await expect(outputs.getByRole("heading", { name: "An advisor-ready action pack" })).toBeVisible();
+  await expect(outputs.getByText("Spend less time rebuilding status before each discussion.")).toBeVisible();
+  await expect(outputs.getByText("See what is missing, overdue, blocked or unowned.")).toBeVisible();
+  await expect(outputs.getByText("Put the right questions and actions in front of the right people.")).toBeVisible();
 
   const disclosure = page.getByTestId("all-outputs-disclosure");
   await disclosure.locator("summary").click();
@@ -131,6 +139,9 @@ test("the three deliverable groups reveal all seven exact outputs", async ({ pag
 });
 
 test("all five workspace views are manually explorable", async ({ page }) => {
+  const disclosure = page.getByTestId("workspace-disclosure");
+  await expect(disclosure).not.toHaveAttribute("open", "");
+  await disclosure.locator("summary").click();
   const workspace = page.getByTestId("workspace-explore");
   await expect(workspace.getByRole("tab", { name: "Readiness", exact: true })).toHaveAttribute(
     "aria-selected",
@@ -186,13 +197,14 @@ test("change impact, professional boundary, diagnostic disclosure and CTA remain
   ]) {
     await expect(change.getByText(step, { exact: true })).toBeVisible();
   }
+  const changeRecord = page.getByTestId("change-record-disclosure");
+  await changeRecord.locator("summary").click();
   await expect(change.getByText("Fictional Mobility Ministry Notice 18/2026")).toBeVisible();
   await expect(change.getByText("29 July 2026")).toBeVisible();
   await expect(change.getByText("15 August 2026")).toBeVisible();
 
-  const boundary = page.getByTestId("story-boundary");
-  await expect(boundary.getByText("Advises, judges, approves and decides.")).toBeVisible();
-  await expect(boundary.getByText("Reconstructs, tracks, prepares and surfaces.")).toBeVisible();
+  await expect(change.getByText("Advises, judges, approves and decides.")).toBeVisible();
+  await expect(change.getByText("Reconstructs, tracks, prepares and surfaces.")).toBeVisible();
 
   const disclosure = page.getByTestId("data-handling-disclosure");
   await disclosure.locator("summary").click();
@@ -237,6 +249,8 @@ test("the page has stable flowing dimensions and no browser errors", async ({ pa
       }
     );
     return {
+      height: document.documentElement.scrollHeight,
+      viewportHeight: window.innerHeight,
       viewport: window.innerWidth,
       document: document.documentElement.scrollWidth,
       body: document.body.scrollWidth,
@@ -252,6 +266,10 @@ test("the page has stable flowing dimensions and no browser errors", async ({ pa
   expect(dimensions.body).toBeLessThanOrEqual(dimensions.viewport + 1);
   expect(dimensions.sections.every((section) => section.width <= dimensions.viewport + 1)).toBe(true);
   expect(dimensions.textScrollers).toEqual([]);
+
+  if (testInfo.project.name === "standard-desktop-chromium") {
+    expect(dimensions.height / dimensions.viewportHeight).toBeLessThanOrEqual(8.5);
+  }
 
   if (isPinnedDesktop(testInfo)) {
     const transformationPosition = await page

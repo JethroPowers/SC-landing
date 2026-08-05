@@ -20,9 +20,11 @@ export type WorkspaceViewId =
 export type MatterControlStoryTheme = "ivory" | "ink" | "parchment";
 
 export type MatterControlServiceIntro = {
+  audience: string;
   eyebrow: string;
   title: string;
   summary: string;
+  boundary: string;
   scrollLabel: string;
 };
 
@@ -42,6 +44,7 @@ export type MatterControlDeliverableGroup = {
   number: string;
   title: string;
   summary: string;
+  intendedBenefit: string;
   representativeOutput: string;
   includedOutputs: string[];
   theme: MatterControlStoryTheme;
@@ -246,10 +249,12 @@ export const fictionalMatter: FictionalMatterFixture = {
     }
   ],
   serviceIntro: {
+    audience: "For boutique citizenship and residence advisory firms",
     eyebrow: "How Matter Control Works · fictional matter SC-024",
-    title: "We make one live matter ready to manage.",
+    title: "One live matter. Reconstructed, controlled and ready for your firm to decide.",
     summary:
-      "Sovereignty Control reconstructs the record, controls missing work and prepares the questions your advisors must decide.",
+      "Sovereignty Control rebuilds the current record, tracks missing work and prepares the questions and actions that need advisor judgement.",
+    boundary: "Your firm keeps the client relationship, advice and every final decision.",
     scrollLabel: "Scroll to reconstruct"
   },
   operatingPhases: [
@@ -293,6 +298,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       number: "01",
       title: "A current matter record",
       summary: "One reliable view of the household, objective, routes, stage and responsible people.",
+      intendedBenefit: "Spend less time rebuilding status before each discussion.",
       representativeOutput: "Current-state matter map",
       includedOutputs: ["Matter map", "Document-readiness register"],
       theme: "ivory"
@@ -302,6 +308,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       number: "02",
       title: "Controlled readiness registers",
       summary: "Missing work, dependencies, assumptions, owners and escalation points become explicit.",
+      intendedBenefit: "See what is missing, overdue, blocked or unowned.",
       representativeOutput: "Blocker and dependency register",
       includedOutputs: [
         "Blocker and dependency register",
@@ -314,6 +321,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       number: "03",
       title: "An advisor-ready action pack",
       summary: "The firm receives the questions, priorities and next actions that require its judgement.",
+      intendedBenefit: "Put the right questions and actions in front of the right people.",
       representativeOutput: "Immediate action plan",
       includedOutputs: [
         "Advisor-review questions",

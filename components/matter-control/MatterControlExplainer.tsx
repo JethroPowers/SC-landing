@@ -19,7 +19,7 @@ import {
   ShieldCheck,
   UserRoundCheck
 } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { useScrollNarrative } from "@/components/scroll/useScrollNarrative";
@@ -114,8 +114,10 @@ function OpeningSection() {
         <div className={styles.flowOpeningTop}>
           <div>
             <span className={styles.flowEyebrow}>{intro.eyebrow}</span>
+            <span className={styles.flowAudience}>{intro.audience}</span>
             <h1>{intro.title}</h1>
             <p>{intro.summary}</p>
+            <p className={styles.openingBoundary}><Scale size={15} aria-hidden="true" />{intro.boundary}</p>
             <a className={styles.flowScrollCue} href="#transformation">
               <span>{intro.scrollLabel}</span>
               <ArrowDown size={16} aria-hidden="true" />
@@ -243,7 +245,6 @@ function TransformationSection() {
   const {
     activeChapter,
     overallProgress,
-    reducedMotion,
     scrollToChapter,
     trackRef
   } = useScrollNarrative(phases.length);
@@ -263,33 +264,41 @@ function TransformationSection() {
             <span className={styles.flowEyebrow}>One matter · three operating moves</span>
             <p>Scroll to watch SC-024 move from fragmented status to controlled review.</p>
           </div>
-          <div className={styles.transformationBody} aria-live="polite">
-            <AnimatePresence initial={false} mode="wait">
-              <motion.div
-                className={styles.transformationCopy}
-                key={`copy-${activePhase.id}`}
-                initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reducedMotion ? undefined : { opacity: 0, y: -12 }}
-                transition={{ duration: 0.32, ease: "easeOut" }}
-              >
-                <PhaseCopy phase={activePhase} />
-              </motion.div>
-            </AnimatePresence>
+          <p className={styles.stageAnnouncement} aria-live="polite">
+            Stage {activeChapter + 1} of {phases.length}: {activePhase.action}
+          </p>
+          <div className={styles.transformationBody}>
+            <div className={styles.transformationCopyStack}>
+              {phases.map((phase, index) => (
+                <motion.div
+                  className={styles.transformationCopy}
+                  aria-hidden={index !== activeChapter}
+                  key={`copy-${phase.id}`}
+                  initial={false}
+                  animate={{ opacity: index === activeChapter ? 1 : 0 }}
+                  transition={{ duration: 0.24, ease: "easeOut" }}
+                >
+                  <PhaseCopy phase={phase} />
+                </motion.div>
+              ))}
+            </div>
             <div className={styles.transformationRecord}>
               <MatterIdentityStrip compact />
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  className={styles.transformationRecordPanel}
-                  key={`visual-${activePhase.id}`}
-                  initial={reducedMotion ? false : { opacity: 0, scale: 0.985, y: 14 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={reducedMotion ? undefined : { opacity: 0, scale: 0.99, y: -8 }}
-                  transition={{ duration: 0.38, ease: "easeOut" }}
-                >
-                  <PhaseVisual phase={activePhase} />
-                </motion.div>
-              </AnimatePresence>
+              <div className={styles.transformationVisualStack}>
+                {phases.map((phase, index) => (
+                  <motion.div
+                    className={styles.transformationRecordPanel}
+                    aria-hidden={index !== activeChapter}
+                    data-testid={`phase-layer-${phase.id}`}
+                    key={`visual-${phase.id}`}
+                    initial={false}
+                    animate={{ opacity: index === activeChapter ? 1 : 0 }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                  >
+                    <PhaseVisual phase={phase} />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
           <div className={styles.phaseProgress}>
@@ -353,7 +362,7 @@ function DeliverablesSection() {
                 <span>{group.number}</span>
                 <div>
                   <h3>{group.title}</h3>
-                  <p>{group.summary}</p>
+                  <p>{group.intendedBenefit}</p>
                 </div>
                 <div className={styles.deliverableOutput}>
                   <Icon size={19} strokeWidth={1.6} aria-hidden="true" />
@@ -470,35 +479,46 @@ function WorkspaceExploreSection() {
       <div className="container">
         <div className={styles.workspaceExploreHeading}>
           <div>
-            <span className={styles.flowEyebrow}>Explore the working record</span>
-            <h2>The detail is here when you need it.</h2>
+            <span className={styles.flowEyebrow}>Optional detail</span>
+            <h2>Go deeper when you need to.</h2>
           </div>
-          <p>Five views. One fictional matter. You choose what to inspect.</p>
+          <p>Open the fictional working record or the complete seven-step method.</p>
         </div>
-        <div className={styles.workspaceExploreSurface}>
-          <WorkspaceSurface
-            activeView={activeView}
-            instanceId="explore"
-            matter={fictionalMatter}
-            onViewChange={setActiveView}
-            testId="workspace-explore"
-          />
-        </div>
+        <details className={styles.workspaceDisclosure} data-testid="workspace-disclosure">
+          <summary>
+            <span className={styles.workspaceDisclosureTitle}><FolderKanban size={18} aria-hidden="true" /><strong>Explore the SC-024 working record</strong></span>
+            <span className={styles.workspaceDisclosureMetrics} aria-hidden="true">
+              {fictionalMatter.readinessMetrics.map((metric) => (
+                <span key={metric.label}><strong>{metric.value}</strong>{metric.label}</span>
+              ))}
+            </span>
+            <ChevronDown size={18} aria-hidden="true" />
+          </summary>
+          <div className={styles.workspaceExploreSurface}>
+            <WorkspaceSurface
+              activeView={activeView}
+              instanceId="explore"
+              matter={fictionalMatter}
+              onViewChange={setActiveView}
+              testId="workspace-explore"
+            />
+          </div>
+        </details>
         <SevenStepMethod />
       </div>
     </section>
   );
 }
 
-function ChangeImpactSection() {
+function ChangeAndBoundarySection() {
   const change = fictionalMatter.changeImpact;
 
   return (
-    <section className={styles.changeStorySection} data-testid="story-change" id="change">
+    <section className={styles.changeBoundarySection} data-testid="story-change" id="change">
       <div className="container">
         <div className={styles.changeStoryHeading}>
-          <span className={styles.flowEyebrow}>When programme change reaches active work</span>
-          <h2>The issue is surfaced. The firm confirms its effect.</h2>
+          <span className={styles.flowEyebrow}>Programme change and professional judgement</span>
+          <h2>What Control surfaces. What the firm decides.</h2>
         </div>
         <ol className={styles.changeStorySequence} aria-label="Programme-change impact sequence">
           {change.sequence.map((item, index) => (
@@ -508,35 +528,6 @@ function ChangeImpactSection() {
             </li>
           ))}
         </ol>
-        <div className={styles.changeStoryRecord}>
-          <div>
-            <span>Fictional change event</span>
-            <strong>{change.change}</strong>
-          </div>
-          <dl>
-            <div><dt>Source</dt><dd>{change.source}</dd></div>
-            <div><dt>Published</dt><dd>{change.publicationDate}</dd></div>
-            <div><dt>Effective</dt><dd>{change.effectiveDate}</dd></div>
-            <div><dt>Affected route</dt><dd>{change.route}</dd></div>
-            <div><dt>Previous</dt><dd>{change.previousValue}</dd></div>
-            <div><dt>Current</dt><dd>{change.currentValue}</dd></div>
-          </dl>
-          <p><History size={16} aria-hidden="true" />{change.verificationStatus}</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BoundarySection() {
-  return (
-    <section className={styles.boundaryStorySection} data-testid="story-boundary" id="boundary">
-      <div className="container">
-        <div className={styles.boundaryStoryHeading}>
-          <span className={styles.flowEyebrow}>A clear professional boundary</span>
-          <h2>The firm keeps the judgement.</h2>
-          <p>Sovereignty Control keeps the matter ready for it.</p>
-        </div>
         <div className={styles.boundaryStoryColumns}>
           <div>
             <Scale size={21} aria-hidden="true" />
@@ -549,6 +540,24 @@ function BoundarySection() {
             <strong>Reconstructs, tracks, prepares and surfaces.</strong>
           </div>
         </div>
+        <details className={styles.changeRecordDisclosure} data-testid="change-record-disclosure">
+          <summary><span><History size={17} aria-hidden="true" />See the fictional change record</span><ChevronDown size={17} aria-hidden="true" /></summary>
+          <div className={styles.changeStoryRecord}>
+            <div>
+              <span>Fictional change event</span>
+              <strong>{change.change}</strong>
+            </div>
+            <dl>
+              <div><dt>Source</dt><dd>{change.source}</dd></div>
+              <div><dt>Published</dt><dd>{change.publicationDate}</dd></div>
+              <div><dt>Effective</dt><dd>{change.effectiveDate}</dd></div>
+              <div><dt>Affected route</dt><dd>{change.route}</dd></div>
+              <div><dt>Previous</dt><dd>{change.previousValue}</dd></div>
+              <div><dt>Current</dt><dd>{change.currentValue}</dd></div>
+            </dl>
+            <p><History size={16} aria-hidden="true" />{change.verificationStatus}</p>
+          </div>
+        </details>
         <details className={styles.boundaryDetails}>
           <summary><span>See the responsibility split</span><ChevronDown size={17} aria-hidden="true" /></summary>
           <div>
@@ -573,8 +582,8 @@ function OfferSection() {
       <div className="container">
         <div className={styles.flowOfferHeading}>
           <span className={styles.flowEyebrow}>Start with one matter</span>
-          <h2>Test the method before considering anything broader.</h2>
-          <p>Sovereignty Control is an early-stage operating method being validated—not a mature platform or substitute for the firm.</p>
+          <h2>Start with one matter. Decide what comes next.</h2>
+          <p>A complimentary seven-to-ten-working-day diagnostic shows how the method handles one active, recent or anonymised matter. Sovereignty Control remains an early-stage operating method being validated.</p>
         </div>
         <dl className={styles.flowOfferFacts}>
           <div><dt>Fee</dt><dd>{matter.diagnostic.fee}</dd></div>
@@ -612,8 +621,7 @@ export function MatterControlExplainer() {
       <TransformationSection />
       <DeliverablesSection />
       <WorkspaceExploreSection />
-      <ChangeImpactSection />
-      <BoundarySection />
+      <ChangeAndBoundarySection />
       <OfferSection />
     </main>
   );
