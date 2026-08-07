@@ -29,12 +29,10 @@ const fieldLimits: Record<keyof DemoRequestPayload, number> = {
 const requiredFields: Array<keyof DemoRequestPayload> = [
   "name",
   "firmName",
-  "email",
-  "firmType",
-  "mainProblem"
+  "email"
 ];
 
-const allowedInterests = new Set(["", "case-control", "programme-control", "workspace"]);
+const allowedInterests = new Set(["", "matter-control-diagnostic", "other"]);
 
 export async function POST(request: Request) {
   let input: unknown;

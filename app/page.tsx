@@ -1,32 +1,17 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { HomepageOfferProgression } from "@/components/home/HomepageOfferProgression";
+import { HomeCanonicalPath } from "@/components/home/HomeCanonicalPath";
 import { LiveMatterHero } from "@/components/home/LiveMatterHero";
-import { ManagedSetup } from "@/components/home/ManagedSetup";
 import { OutcomeLedger } from "@/components/home/OutcomeLedger";
-import { ScrollConsequences } from "@/components/home/ScrollConsequences";
 import { JsonLd } from "@/components/JsonLd";
 import { homepageStructuredData } from "@/lib/discovery";
 import styles from "@/components/home/HomeExperience.module.css";
 
-const ProgrammeChangeJourney = dynamic(() =>
-  import("@/components/home/ProgrammeChangeJourney").then(
-    (module) => module.ProgrammeChangeJourney
-  )
-);
-
-const ControlRoomStory = dynamic(() =>
-  import("@/components/control-room/ControlRoomStory").then(
-    (module) => module.ControlRoomStory
-  )
-);
-
 export const metadata: Metadata = {
-  title: "Case management for complex cross-border matters",
+  title: "Managed readiness for complex cross-border matters",
   description:
-    "Structure citizenship, residence and relocation matters around programme routes, family costs, application documents, due diligence, deadlines and client updates.",
+    "Turn scattered citizenship, residence and relocation matter information into a controlled record for professional review.",
   alternates: { canonical: "/" }
 };
 
@@ -37,20 +22,15 @@ export default function HomePage() {
       <main className={styles.home}>
         <LiveMatterHero />
         <OutcomeLedger />
-        <ScrollConsequences />
-        <ManagedSetup />
-        <ProgrammeChangeJourney />
-        <ControlRoomStory />
-        <HomepageOfferProgression />
+        <HomeCanonicalPath />
 
         <section className={styles.finalCta}>
           <div className={`container ${styles.finalCtaGrid}`}>
             <div>
-              <h2>Bring one difficult matter to a private working session.</h2>
+              <h2>Bring one difficult matter to a complimentary diagnostic.</h2>
               <p>
-                We will show how the applicants, programme routes, family costs,
-                documents, due-diligence questions and next actions could be recorded.
-                Do not send client-identifiable information through the enquiry form.
+                Over seven to ten working days, we reconstruct one active, recent or
+                anonymised matter into a controlled view. There is no obligation to continue.
               </p>
             </div>
             <Link className="button button-primary" href="/contact?interest=matter-control-diagnostic">

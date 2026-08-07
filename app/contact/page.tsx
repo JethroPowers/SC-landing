@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CheckCircle2, ShieldAlert } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -16,37 +16,30 @@ export default async function ContactPage({
   const { interest } = await searchParams;
 
   return (
-    <main>
-      <section className="contact-intro">
+    <main className="contact-page">
+      <section className="contact-intro contact-conversion">
         <div className="container contact-intro-grid">
-          <div>
+          <div className="contact-conversion-copy">
             <h1>Discuss one matter that would benefit from clearer operational control.</h1>
             <p>
               The complimentary diagnostic covers one active, recent or anonymised
               matter over seven to ten working days. There is no obligation to continue.
-              Do not name a client or submit matter data through this form.
             </p>
           </div>
-          <div className="contact-note">
-            <ShieldAlert size={19} aria-hidden="true" />
-            <p>Do not submit client-identifiable information through this form.</p>
+          <div className="contact-conversion-form" id="request-demo-form">
+            <ContactForm initialInterest={interest} />
           </div>
-        </div>
-      </section>
-      <section className="contact-body" id="request-demo-form">
-        <div className="container contact-grid">
-          <aside>
-            <h2>What the first discussion covers.</h2>
+          <div className="contact-agenda">
             {[
-              "Whether one matter is suitable for a controlled diagnostic.",
-              "Where status, missing items, blockers and dependencies currently live.",
-              "The pseudonymous intake and data-handling boundary.",
-              "Which questions and programme assumptions remain with the firm's advisor."
+              "Whether one matter is suitable for the diagnostic.",
+              "Where status, blockers and dependencies currently live.",
+              "Which professional decisions remain with the firm."
             ].map((item) => (
-              <div className="contact-agenda-line" key={item}><CheckCircle2 size={17} />{item}</div>
+              <div className="contact-agenda-line" key={item}>
+                <CheckCircle2 size={17} aria-hidden="true" />{item}
+              </div>
             ))}
-          </aside>
-          <ContactForm initialInterest={interest} />
+          </div>
         </div>
       </section>
     </main>

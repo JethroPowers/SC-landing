@@ -341,7 +341,7 @@ export const liveMatterStages: LiveMatterStage[] = [
   {
     id: "structured",
     number: "02",
-    title: "The case facts become controlled fields.",
+    title: "The matter facts become controlled fields.",
     description:
       "Applicants, dependants, programme routes, family costs, application documents, due-diligence questions and responsibilities are recorded together.",
     result: "The firm can distinguish confirmed facts from items requiring review"
@@ -709,7 +709,7 @@ export const workflowSteps: WorkflowStep[] = [
 ];
 
 export const demoCase = {
-  reference: "SC-DEMO-042",
+  reference: "SC-024",
   title: "British family of four",
   matter: "Caribbean citizenship comparison",
   objective: "Second citizenship and improved family mobility",

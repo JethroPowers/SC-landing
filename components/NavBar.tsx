@@ -3,12 +3,26 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navItems } from "@/lib/site-data";
 
 export function NavBar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   return (
     <header className="site-header">
@@ -17,7 +31,7 @@ export function NavBar() {
           <span className="brand-mark">SC</span>
           <span className="brand-text">
             <span>Sovereignty Control</span>
-            <span className="brand-sub">Programme data. Client matters.</span>
+              <span className="brand-sub">Programme intelligence. Matter readiness.</span>
           </span>
         </Link>
 
@@ -43,11 +57,12 @@ export function NavBar() {
         </nav>
 
         <div className="nav-actions">
-          <Link className="button button-primary" href="/contact">
-            Discuss diagnostic
+          <Link className="button button-primary" href="/contact?interest=matter-control-diagnostic">
+            Contact
             <ArrowRight size={17} aria-hidden="true" />
           </Link>
           <button
+            ref={toggleRef}
             className="nav-toggle"
             type="button"
             aria-label={open ? "Close navigation" : "Open navigation"}

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function ProductRedirect() {
-  redirect("/control-system");
+  redirect("/how-matter-control-works");
 }

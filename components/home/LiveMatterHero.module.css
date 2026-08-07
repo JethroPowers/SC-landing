@@ -29,7 +29,7 @@
 .heroCopy > p {
   max-width: 720px;
   margin-inline: auto;
-  color: rgba(251, 250, 246, 0.72);
+  color: rgba(251, 250, 246, 0.84);
   font-size: 1.05rem;
   line-height: 1.7;
 }
@@ -37,7 +37,7 @@
 .audience {
   max-width: 680px;
   margin: 16px auto 24px;
-  color: rgba(251, 250, 246, 0.56);
+  color: rgba(251, 250, 246, 0.76);
   font-size: 0.78rem;
 }
 
@@ -111,7 +111,7 @@
   gap: 8px;
   align-items: center;
   margin-bottom: 18px;
-  color: rgba(251, 250, 246, 0.5);
+  color: rgba(251, 250, 246, 0.76);
   font-size: 0.7rem;
 }
 
@@ -130,7 +130,7 @@
 .controlledAction span {
   display: block;
   margin-bottom: 7px;
-  color: rgba(251, 250, 246, 0.46);
+  color: rgba(251, 250, 246, 0.74);
   font-size: 0.66rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -280,7 +280,7 @@
 
   .stageContext p {
     margin: 0;
-    color: rgba(251, 250, 246, 0.6);
+    color: rgba(251, 250, 246, 0.78);
     font-size: 0.85rem;
   }
 
@@ -323,7 +323,7 @@
     border: 0;
     border-right: 1px solid rgba(255, 255, 255, 0.12);
     background: transparent;
-    color: rgba(251, 250, 246, 0.42);
+    color: rgba(251, 250, 246, 0.72);
     text-align: left;
     text-transform: capitalize;
   }

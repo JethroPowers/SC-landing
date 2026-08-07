@@ -3,28 +3,18 @@ import { footerDisclaimer } from "@/lib/site-data";
 
 const columns = [
   {
-    title: "Product",
+    title: "Explore",
     links: [
-      ["What We Do", "/what-we-do"],
-      ["Case Control", "/control-system"],
-      ["Intelligence", "/intelligence"],
       ["How Matter Control Works", "/how-matter-control-works"],
-      ["Demo Case", "/demo-case"]
-    ]
-  },
-  {
-    title: "Start",
-    links: [
-      ["Offers", "/offers"],
-      ["Contact", "/contact"]
+      ["Intelligence", "/intelligence"],
+      ["Complimentary Diagnostic", "/diagnostic"]
     ]
   },
   {
     title: "Company",
     links: [
-      ["Use Cases", "/use-cases"],
-      ["Method", "/method"],
       ["About", "/about"],
+      ["Contact", "/contact"],
       ["Privacy", "/privacy"],
       ["Disclaimer", "/disclaimer"]
     ]
@@ -40,7 +30,7 @@ export function Footer() {
             <span className="brand-mark">SC</span>
             <span className="brand-text">
               <span>Sovereignty Control</span>
-              <span className="brand-sub">Programme data. Client matters.</span>
+              <span className="brand-sub">Programme intelligence. Matter readiness.</span>
             </span>
           </Link>
           <p className="small" style={{ marginTop: 18, maxWidth: 420 }}>
@@ -50,7 +40,7 @@ export function Footer() {
         </div>
         {columns.map((column) => (
           <div key={column.title}>
-            <h4>{column.title}</h4>
+            <h2 className="footer-heading">{column.title}</h2>
             <div className="footer-links">
               {column.links.map(([label, href]) => (
                 <Link key={href} href={href}>

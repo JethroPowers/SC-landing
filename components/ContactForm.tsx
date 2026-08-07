@@ -29,7 +29,6 @@ const interests = [
     value: "matter-control-diagnostic",
     label: "Complimentary Matter Control Diagnostic"
   },
-  { value: "readiness-pilot", label: "30-Day Co-Managed Readiness Pilot" },
   { value: "other", label: "Another matter-readiness question" }
 ];
 
@@ -69,8 +68,7 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
       <div className="form-intro">
         <p className="micro">Diagnostic discussion</p>
         <p className="small">
-          Required fields are marked. Please do not submit client-identifiable
-          information through this form.
+          Use business contact details only. Do not submit client-identifiable matter information.
         </p>
       </div>
       <div className="form-grid">
@@ -86,32 +84,28 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
           <label htmlFor="email">Email <span>Required</span></label>
           <input id="email" name="email" type="email" autoComplete="email" required />
         </div>
-        <div className="form-field">
-          <label htmlFor="firmType">Firm type <span>Required</span></label>
-          <select id="firmType" name="firmType" required defaultValue="">
-            <option value="" disabled>
-              Select firm type
-            </option>
-            {firmTypes.map((type) => (
-              <option key={type}>{type}</option>
-            ))}
-          </select>
-        </div>
-        <div className="form-field full">
-          <label htmlFor="mainProblem">Main problem <span>Required</span></label>
-          <select id="mainProblem" name="mainProblem" required defaultValue="">
-            <option value="" disabled>
-              Select main problem
-            </option>
-            {mainProblems.map((problem) => (
-              <option key={problem}>{problem}</option>
-            ))}
-          </select>
-        </div>
       </div>
       <details className="optional-fields">
         <summary>Optional qualification details</summary>
         <div className="form-grid">
+          <div className="form-field">
+            <label htmlFor="firmType">Firm type <span>Optional</span></label>
+            <select id="firmType" name="firmType" defaultValue="">
+              <option value="">Select firm type</option>
+              {firmTypes.map((type) => (
+                <option key={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-field">
+            <label htmlFor="mainProblem">Main problem <span>Optional</span></label>
+            <select id="mainProblem" name="mainProblem" defaultValue="">
+              <option value="">Select main problem</option>
+              {mainProblems.map((problem) => (
+                <option key={problem}>{problem}</option>
+              ))}
+            </select>
+          </div>
           <div className="form-field full">
             <label htmlFor="interest">Starting point <span>Optional</span></label>
             <select id="interest" name="interest" defaultValue={selectedInterest}>
@@ -160,14 +154,11 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
       {status === "success" ? (
         <div className="form-status success" role="status">
           Thank you. We will review the request and reply about diagnostic suitability.
-          For sensitive matters, please do not submit client-identifiable
-          information through this form.
         </div>
       ) : null}
       {status === "error" ? (
         <div className="form-status error" role="alert">
-          The request could not be submitted. Please try again later and do not
-          include client-identifiable information.
+          The request could not be submitted. Please try again later.
         </div>
       ) : null}
     </form>

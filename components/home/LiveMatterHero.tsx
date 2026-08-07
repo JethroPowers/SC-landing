@@ -68,7 +68,7 @@ function MatterVisual({ stage }: { stage: LiveMatterStage }) {
     <div className={styles.controlledView}>
       <div className={styles.controlledHeader}>
         <div>
-          <span>SC-DEMO-042</span>
+          <span>SC-024</span>
           <strong>British family of four</strong>
         </div>
         <span className={styles.reviewState}>Professional review required</span>
@@ -97,7 +97,7 @@ function MatterVisual({ stage }: { stage: LiveMatterStage }) {
 function HeroCopy() {
   return (
     <div className={styles.heroCopy}>
-      <h1>Run complex citizenship, residence and relocation matters from one case view.</h1>
+      <h1>Run complex citizenship, residence and relocation matters from one controlled view.</h1>
       <p>
         We structure the applicants, programme routes, family costs, documents,
         due-diligence questions, responsibilities and next actions behind each matter.
@@ -108,11 +108,11 @@ function HeroCopy() {
         </span>
       </div>
       <div className={styles.heroActions}>
-        <Link className="button button-gold" href="/contact">
+        <Link className="button button-gold" href="/contact?interest=matter-control-diagnostic">
           Discuss a complimentary diagnostic <ArrowRight size={17} aria-hidden="true" />
         </Link>
-        <Link className={styles.secondaryLink} href="/demo-case">
-          View demo case
+        <Link className={styles.secondaryLink} href="/how-matter-control-works">
+          Explore fictional matter SC-024
         </Link>
       </div>
     </div>

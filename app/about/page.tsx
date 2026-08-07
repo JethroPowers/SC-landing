@@ -61,7 +61,7 @@ export default function AboutPage() {
           <div className="build-principles-list">
             <article><span>01</span><h3>Make uncertainty visible.</h3><p>Proposed, confirmed and review-required information should never look identical.</p></article>
             <article><span>02</span><h3>Keep professional ownership clear.</h3><p>The product records evidence, status and responsibilities while qualified firms retain advice and judgement.</p></article>
-            <article><span>03</span><h3>Build from real matters.</h3><p>Case fields and document lists are checked against real work before they are used across the team.</p></article>
+            <article><span>03</span><h3>Build from real matters.</h3><p>Matter fields and document lists are checked against real work before they are used across the team.</p></article>
           </div>
         </div>
       </section>
@@ -69,7 +69,7 @@ export default function AboutPage() {
         <div className="container current-build-grid">
           <div><h2>From programme database to controlled matter readiness.</h2></div>
           <div>
-            <p>The current build concentrates on the parts of cross-border matters that generic case tools handle poorly:</p>
+            <p>The current build concentrates on the parts of cross-border matters that generic workflow tools handle poorly:</p>
             <ul>
               <li>Route-level programme and pricing records</li>
               <li>Family-adjusted scenario assumptions</li>
@@ -77,7 +77,7 @@ export default function AboutPage() {
               <li>Programme-change impact on active work</li>
               <li>Separate advisor notes and client status views</li>
             </ul>
-            <Link className="text-link" href="/control-system">Inspect the case views <ArrowRight size={15} /></Link>
+            <Link className="text-link" href="/how-matter-control-works#workspace">Inspect the matter views <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
         </div>
       </section>

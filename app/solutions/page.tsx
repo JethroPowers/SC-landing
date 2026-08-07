@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function SolutionsRedirect() {
-  redirect("/use-cases");
+  redirect("/how-matter-control-works");
 }

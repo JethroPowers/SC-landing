@@ -16,7 +16,7 @@ export function OutcomeLedger() {
         <div className={styles.outcomeHeading}>
           <h2 id="outcomes-title">What the firm can answer without rebuilding the matter.</h2>
           <p>
-            Clear case records reduce the time spent finding the current assumption,
+            Clear matter records reduce the time spent finding the current assumption,
             missing item or next responsible person.
           </p>
         </div>

@@ -4,11 +4,10 @@ export type NavItem = {
 };
 
 export const navItems: NavItem[] = [
-  { label: "What We Do", href: "/what-we-do" },
-  { label: "Case Control", href: "/control-system" },
-  { label: "Intelligence", href: "/intelligence" },
   { label: "How It Works", href: "/how-matter-control-works" },
-  { label: "Offers", href: "/offers" }
+  { label: "Intelligence", href: "/intelligence" },
+  { label: "Diagnostic", href: "/diagnostic" },
+  { label: "About", href: "/about" }
 ];
 
 export const footerDisclaimer =

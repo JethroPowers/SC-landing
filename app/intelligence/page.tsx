@@ -29,6 +29,17 @@ export default function IntelligencePage() {
           </div>
         </div>
       </section>
+      <section className="product-hierarchy" aria-label="Sovereignty product hierarchy">
+        <div className="container product-hierarchy-row">
+          <div><span>01</span><strong>Sovereignty Atlas</strong><small>Public orientation</small></div>
+          <ArrowRight size={17} aria-hidden="true" />
+          <div><span>02</span><strong>Sovereignty Intelligence</strong><small>Reviewed programme records</small></div>
+          <ArrowRight size={17} aria-hidden="true" />
+          <div><span>03</span><strong>Sovereignty Control</strong><small>Applied to active matters</small></div>
+          <ArrowRight size={17} aria-hidden="true" />
+          <div><span>04</span><strong>Readiness and Briefing Workspaces</strong><small>Operational views</small></div>
+        </div>
+      </section>
       <section className="container">
         <IntelligenceRegister />
       </section>
@@ -91,8 +102,8 @@ export default function IntelligencePage() {
       </section>
       <section className="home-demo-cta">
         <div className="container home-demo-grid">
-          <div><h2>See what happens when a programme fee changes during a live matter.</h2><p>The demo holds the new figure for advisor review and identifies the affected case and report.</p></div>
-          <Link className="button button-primary" href="/demo-case">View demo case <ArrowRight size={17} /></Link>
+          <div><h2>See what happens when a programme change affects a live matter.</h2><p>SC-024 holds the changed assumption for advisor review and identifies the affected readiness work.</p></div>
+          <Link className="button button-primary" href="/how-matter-control-works#change">See SC-024 change impact <ArrowRight size={17} aria-hidden="true" /></Link>
         </div>
       </section>
     </main>

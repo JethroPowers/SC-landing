@@ -12,17 +12,12 @@ Sovereignty Control does not provide legal, tax, immigration or investment advic
 
 ## Understand the service
 
-- [What We Do](${siteUrl}/what-we-do): How Sovereignty Control maps a real matter, prepares the case and programme files, configures the working views and stays involved while the team uses them.
-- [Case Control](${siteUrl}/control-system): The connected case, scenario, document, programme-change and client-status views.
+- [How Matter Control Works](${siteUrl}/how-matter-control-works): The canonical interactive explanation, following fictional matter SC-024 from minimised intake through readiness, review, change impact and closeout.
 - [Intelligence](${siteUrl}/intelligence): Programme routes, fees, dependant rules, official sources, effective dates, draft updates and release history.
-- [Method](${siteUrl}/method): How one anonymised matter becomes an advisor-reviewed case file.
-- [How Matter Control Works](${siteUrl}/how-matter-control-works): Interactive fictional matter SC-024 from minimised intake through readiness, review, change impact and closeout.
 
-## Commercial starting points
+## Current offer
 
-- [Offers](${siteUrl}/offers): The complimentary one-matter diagnostic and the evidence gates for any later validation stage.
-- [Use Cases](${siteUrl}/use-cases): CBI/RBI advisory firms, UAE relocation firms, Caribbean authorised agents and private-client practices.
-- [Demo Case](${siteUrl}/demo-case): A fictional British family comparing four Caribbean citizenship programmes.
+- [Complimentary Matter Control Diagnostic](${siteUrl}/diagnostic): One active, recent or anonymised matter over seven to ten working days, with no obligation to continue.
 
 ## Company and contact
 
@@ -80,7 +75,7 @@ The relationship is: Intelligence records the programme information; Control sho
 
 The current offer is a complimentary Matter Control Diagnostic for one active, recent or anonymised matter over seven to ten working days. It reconstructs the current state, registers document readiness and dependencies, exposes blockers and ownership gaps, prepares advisor-review questions and closes with an immediate action plan. There is no obligation to continue, and Sovereignty Control does not contact the firm's client, provider or authority during this stage.
 
-## Offers
+## Current offer
 
 ### Complimentary Matter Control Diagnostic
 
@@ -101,7 +96,7 @@ A 30-day co-managed readiness pilot may be discussed privately only after a succ
 
 ## Demonstration matter
 
-The public demo follows a fictional British principal applicant, spouse and two children comparing St Kitts and Nevis, Grenada, Dominica and St Lucia citizenship programmes. The household has an indicative budget equivalent to GBP 350,000 to GBP 500,000 and a target of completing the matter within 12 months. The demonstration shows route comparison, family-cost assumptions, missing documents, source-of-funds review, a draft fee change, advisor review and client status. All values are demonstration data and require professional review.
+The public demonstration uses the single fictional reference SC-024. It follows a principal applicant, spouse and two children through four route contexts, evidence readiness, source-of-funds review, a programme change, advisor review and closeout. All values are demonstration data and require professional review.
 
 ## Professional boundaries
 
@@ -123,14 +118,9 @@ Do not submit client-identifiable or sensitive matter information through the pu
 ## Canonical pages
 
 - ${siteUrl}/
-- ${siteUrl}/what-we-do
-- ${siteUrl}/control-system
-- ${siteUrl}/intelligence
-- ${siteUrl}/use-cases
-- ${siteUrl}/offers
-- ${siteUrl}/method
 - ${siteUrl}/how-matter-control-works
-- ${siteUrl}/demo-case
+- ${siteUrl}/intelligence
+- ${siteUrl}/diagnostic
 - ${siteUrl}/about
 - ${siteUrl}/contact
 - ${siteUrl}/privacy
@@ -174,7 +164,7 @@ export const homepageStructuredData = {
       "@type": "Service",
       "@id": `${siteUrl}/#service`,
       name: "Sovereignty Control",
-      url: `${siteUrl}/what-we-do`,
+      url: `${siteUrl}/how-matter-control-works`,
       serviceType:
         "Managed matter-readiness diagnostic for specialist cross-border advisory firms",
       description:
@@ -188,25 +178,13 @@ export const homepageStructuredData = {
       },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Ways to start",
+        name: "Current offer",
         itemListElement: [
           {
             "@type": "Offer",
             name: "Complimentary Matter Control Diagnostic",
-            url: `${siteUrl}/offers#case-control`,
+            url: `${siteUrl}/diagnostic`,
             description: "One active, recent or anonymised matter reconstructed into a controlled diagnostic record."
-          },
-          {
-            "@type": "Offer",
-            name: "30-Day Co-Managed Readiness Pilot",
-            url: `${siteUrl}/offers#programme-control`,
-            description: "A later validation stage discussed privately after a successful diagnostic closeout."
-          },
-          {
-            "@type": "Offer",
-            name: "Future Managed Readiness Desk",
-            url: `${siteUrl}/offers#workspace`,
-            description: "A future evidence-led offer, not an established or already-scaled service."
           }
         ]
       }
@@ -215,7 +193,7 @@ export const homepageStructuredData = {
       "@type": "WebPage",
       "@id": `${siteUrl}/#webpage`,
       url: siteUrl,
-      name: "Sovereignty Control | Case management for complex cross-border matters",
+      name: "Sovereignty Control | Managed readiness for complex cross-border matters",
       description:
         "Structure citizenship, residence and relocation matters around programme routes, family costs, application documents, due diligence, responsibilities and client status.",
       inLanguage: "en-GB",

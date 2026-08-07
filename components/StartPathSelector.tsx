@@ -5,11 +5,11 @@ import { ArrowRight, BriefcaseBusiness, Database, Layers3 } from "lucide-react";
 
 const paths = [
   {
-    id: "case",
-    label: "One messy case",
-    title: "Start with a Case Control Sprint",
+    id: "matter",
+    label: "One difficult matter",
+    title: "Start with a complimentary Matter Control Diagnostic",
     fit: "A live, recent or anonymised matter is difficult to track.",
-    output: "Case map, family profile, cost model, missing items, blockers, owners, deadlines, advisor report and client status.",
+    output: "Matter map, family profile, cost model, missing items, blockers, owners, deadlines, advisor-review questions and closeout summary.",
     icon: BriefcaseBusiness
   },
   {
