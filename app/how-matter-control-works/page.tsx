@@ -4,7 +4,7 @@ import { MatterControlExplainer } from "@/components/matter-control/MatterContro
 export const metadata: Metadata = {
   title: "How Matter Control Works",
   description:
-    "Explore a fictional matter-control diagnostic from minimised intake through readiness, advisor review, programme-change impact and closeout.",
+    "Explore a fictional matter-control diagnostic from minimised intake through readiness, adviser review, programme-change impact and closeout.",
   alternates: { canonical: "/how-matter-control-works" }
 };
 

@@ -1,121 +1,91 @@
-type DemoRequestPayload = {
-  name?: string;
-  firmName?: string;
-  website?: string;
-  email?: string;
-  role?: string;
-  firmType?: string;
-  mainProblem?: string;
-  interest?: string;
-  activeCases?: string;
-  routes?: string;
-  message?: string;
-};
-
-const fieldLimits: Record<keyof DemoRequestPayload, number> = {
-  name: 120,
-  firmName: 160,
-  website: 300,
-  email: 254,
-  role: 120,
-  firmType: 100,
-  mainProblem: 160,
-  interest: 80,
-  activeCases: 80,
-  routes: 500,
-  message: 2000
-};
-
-const requiredFields: Array<keyof DemoRequestPayload> = [
-  "name",
-  "firmName",
-  "email"
-];
-
-const allowedInterests = new Set(["", "matter-control-diagnostic", "other"]);
+import { validateEnquiry, enquiryStoragePayload } from "@/lib/enquiry";
+import { isEnquiryConfigured } from "@/lib/enquiry-server";
 
 export async function POST(request: Request) {
+  const origin = request.headers.get("origin");
+  if (origin && origin !== new URL(request.url).origin)
+    return Response.json(
+      { ok: false, error: "Please submit the enquiry from this website." },
+      { status: 403 },
+    );
   let input: unknown;
-
   try {
-    input = await request.json();
-  } catch {
-    return Response.json({ ok: false, error: "Invalid JSON payload" }, { status: 400 });
-  }
-
-  if (!input || typeof input !== "object" || Array.isArray(input)) {
-    return Response.json({ ok: false, error: "Invalid request payload" }, { status: 400 });
-  }
-
-  const record = input as Record<string, unknown>;
-  const payload = Object.fromEntries(
-    (Object.keys(fieldLimits) as Array<keyof DemoRequestPayload>).map((field) => {
-      const value = typeof record[field] === "string" ? record[field].trim() : "";
-      return [field, value.slice(0, fieldLimits[field])];
-    })
-  ) as Record<keyof DemoRequestPayload, string>;
-
-  const missing = requiredFields.filter((field) => !payload[field]);
-
-  if (missing.length > 0) {
-    return Response.json(
-      { ok: false, error: "Missing required fields", missing },
-      { status: 400 }
-    );
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
-    return Response.json({ ok: false, error: "Enter a valid email address" }, { status: 400 });
-  }
-
-  if (!allowedInterests.has(payload.interest)) {
-    return Response.json({ ok: false, error: "Invalid starting point" }, { status: 400 });
-  }
-
-  const submission = {
-    ...payload,
-    receivedAt: new Date().toISOString(),
-    source: "sovereignty-control-website"
-  };
-
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  const table = process.env.SUPABASE_DEMO_REQUESTS_TABLE ?? "demo_requests";
-
-  if (supabaseUrl && serviceRoleKey) {
-    const response = await fetch(`${supabaseUrl}/rest/v1/${table}`, {
-      method: "POST",
-      headers: {
-        apikey: serviceRoleKey,
-        Authorization: `Bearer ${serviceRoleKey}`,
-        "Content-Type": "application/json",
-        Prefer: "return=minimal"
-      },
-      body: JSON.stringify(submission)
-    });
-
-    if (!response.ok) {
-      console.error("Demo request storage failed", response.status);
+    if (Number(request.headers.get("content-length")) > 12000)
       return Response.json(
-        { ok: false, error: "The request could not be stored" },
-        { status: 502 }
+        { ok: false, error: "The enquiry is too long." },
+        { status: 413 },
       );
-    }
-  } else if (process.env.NODE_ENV === "production") {
+    const body = await request.text();
+    if (body.length > 12000)
+      return Response.json(
+        { ok: false, error: "The enquiry is too long." },
+        { status: 413 },
+      );
+    input = JSON.parse(body);
+  } catch {
     return Response.json(
-      { ok: false, error: "Demo request storage is not configured" },
-      { status: 503 }
+      { ok: false, error: "Please check the enquiry details." },
+      { status: 400 },
     );
-  } else {
-    console.info("Demo request accepted in development", {
-      firmType: submission.firmType,
-      mainProblem: submission.mainProblem,
-      receivedAt: submission.receivedAt
-    });
   }
-
-  return Response.json({
-    ok: true,
-    message: "Demo request received."
-  });
+  const result = validateEnquiry(input);
+  if (!result.ok)
+    return Response.json({ ok: false, error: result.error }, { status: 400 });
+  if (!isEnquiryConfigured())
+    return Response.json(
+      {
+        ok: false,
+        error:
+          "Enquiry delivery is not configured in this preview. Your enquiry has not been sent.",
+      },
+      { status: 503 },
+    );
+  const table = process.env.SUPABASE_DEMO_REQUESTS_TABLE ?? "demo_requests";
+  if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(table))
+    return Response.json(
+      {
+        ok: false,
+        error: "Enquiry delivery is unavailable. Please try again later.",
+      },
+      { status: 503 },
+    );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SUPABASE_URL!.replace(/\/$/, "")}/rest/v1/${table}`,
+      {
+        method: "POST",
+        headers: {
+          apikey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+          Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          ...enquiryStoragePayload(result.payload),
+          receivedAt: new Date().toISOString(),
+          source: "juris-partners-website",
+        }),
+        signal: AbortSignal.timeout(10000),
+      },
+    );
+    if (!response.ok)
+      return Response.json(
+        {
+          ok: false,
+          error:
+            "Your enquiry could not be stored. Your entries are still here; please try again later.",
+        },
+        { status: 502 },
+      );
+    return Response.json({ ok: true, message: "Enquiry received." });
+  } catch {
+    return Response.json(
+      {
+        ok: false,
+        error:
+          "Delivery could not be confirmed. Your entries are still here; please try again later.",
+      },
+      { status: 502 },
+    );
+  }
 }

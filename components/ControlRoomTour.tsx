@@ -14,7 +14,7 @@ const moments = [
     rows: [
       ["Current stage", "Document collection"],
       ["Main blocker", "Source-of-funds review"],
-      ["Owner", "Private Client Advisor"],
+      ["Owner", "Private Client Adviser"],
       ["Next action", "Confirm route preference and source notes"]
     ]
   },
@@ -22,8 +22,8 @@ const moments = [
     id: "cost",
     label: "Family pricing",
     title: "Headline programme minimums do not answer the family-cost question.",
-    outcome: "The advisor sees real household assumptions before discussing routes.",
-    status: "Needs advisor review",
+    outcome: "The adviser sees real household assumptions before discussing routes.",
+    status: "Needs adviser review",
     rows: [
       ["Household", "Main applicant, spouse, two children"],
       ["Budget range", "£350k-£500k equivalent"],
@@ -41,7 +41,7 @@ const moments = [
       ["Changed field", "Dominica family contribution"],
       ["Old value", "£155k"],
       ["Draft value", "£165k"],
-      ["Affected outputs", "2 scenarios and 1 advisor report"]
+      ["Affected outputs", "2 scenarios and 1 adviser report"]
     ]
   },
   {
@@ -54,7 +54,7 @@ const moments = [
       ["Client stage", "Programme comparison and document preparation"],
       ["Complete", "Initial profile and passport copies"],
       ["Missing", "Police certificates and references"],
-      ["Next milestone", "Advisor recommendation after review"]
+      ["Next milestone", "Adviser recommendation after review"]
     ]
   }
 ];

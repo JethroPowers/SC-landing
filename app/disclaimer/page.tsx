@@ -1,33 +1,29 @@
 import type { Metadata } from "next";
 import { footerDisclaimer } from "@/lib/site-data";
-import { CTASection } from "@/components/CTASection";
-import { Hero } from "@/components/Hero";
-import { PolicyHeroVisual } from "@/components/HeroVisuals";
+import { PageIntro, NextPages } from "@/components/partners/Website";
+import styles from "@/components/partners/Website.module.css";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Sovereignty Control supports matter readiness and programme information, not professional advice.",
-  alternates: { canonical: "/disclaimer" }
+    "Juris Control supports matter readiness and programme information, not professional advice.",
+  alternates: { canonical: "/disclaimer" },
 };
 
 export default function DisclaimerPage() {
   return (
-    <main>
-      <Hero
-        title="Matter-readiness support and programme information, not professional advice."
-        subtitle={footerDisclaimer}
-        variant="plain"
-        primaryLabel="Discuss a complimentary diagnostic"
-        primaryHref="/contact"
+    <main className={styles.page}>
+      <PageIntro
+        eyebrow="DISCLAIMER"
+        title="Clear professional responsibilities."
       >
-        <PolicyHeroVisual type="disclaimer" />
-      </Hero>
+        <p>{footerDisclaimer}</p>
+      </PageIntro>
 
       <section className="section section-surface">
         <div className="container split-even">
           <article className="card">
-            <h3>Professional review</h3>
+            <h2>Professional review</h2>
             <p className="muted">
               Programme data, costs, timelines, requirements and assumptions
               should be reviewed by qualified professionals before being relied
@@ -35,19 +31,48 @@ export default function DisclaimerPage() {
             </p>
           </article>
           <article className="card">
-            <h3>Advice boundaries</h3>
+            <h2>Advice boundaries</h2>
             <p className="muted">
-              Sovereignty Control does not provide legal, tax, immigration,
-              investment or regulated financial advice and does not replace a
-              professional firm's judgment.
+              Juris Control does not provide legal, tax, immigration, investment
+              or regulated financial advice and does not replace a professional
+              firm's judgement.
             </p>
           </article>
         </div>
       </section>
 
-      <CTASection
-        title="Review the matter-control method with clear advice boundaries."
-        description="The early-stage method supports firms that already provide or coordinate professional advice."
+      <section className={styles.section}>
+        <div className="container">
+          <h2>Illustrative work and agreed services.</h2>
+          <p>
+            The early-stage Juris Control method supports firms that already
+            provide or coordinate professional advice. The displayed matter and
+            programme registers are fictional examples. Live work requires a
+            separately agreed scope and appropriate authority.
+          </p>
+        </div>
+      </section>
+      <NextPages
+        pages={[
+          {
+            href: "/how-matter-control-works",
+            label: "The operational method",
+            description:
+              "See how the fictional record separates preparation from professional review.",
+          },
+          {
+            href: "/offers",
+            label: "Working together",
+            description:
+              "The scope, agreement and acceptance of a piece of work.",
+          },
+          {
+            href: "/privacy",
+            label: "Enquiry privacy",
+            description:
+              "Business contact information and the boundary around client data.",
+          },
+        ]}
       />
     </main>
   );

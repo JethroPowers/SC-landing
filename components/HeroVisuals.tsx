@@ -83,7 +83,7 @@ export function OffersHeroVisual() {
 
 export function UseCasesHeroVisual() {
   const cases = [
-    ["CBI/RBI firm", "Family-cost comparisons", "Needs advisor review"],
+    ["CBI/RBI firm", "Family-cost comparisons", "Needs adviser review"],
     ["UAE relocation", "Visa, company, banking sequence", "Blocked"],
     ["Caribbean agent", "Submission readiness", "Client action required"],
     ["Private client", "Immigration, tax, banking handoffs", "Pending review"]
@@ -113,7 +113,7 @@ export function IntelligenceHeroVisual() {
       </div>
       {[
         ["Route fee", "Draft", "Cost model"],
-        ["Source note", "Source required", "Advisor review"],
+        ["Source note", "Source required", "Adviser review"],
         ["Physical presence", "Confirmed", "Client report"],
         ["Risk note", "Pending review", "Proposal check"]
       ].map(([field, state, use]) => (
@@ -184,7 +184,7 @@ export function AboutHeroVisual() {
       <div>
         <CheckCircle2 size={19} aria-hidden="true" />
         <strong>Founder-led</strong>
-        <span>Built with early specialist firms handling live matters.</span>
+        <span>An early-stage method for discussion with specialist firms.</span>
       </div>
     </div>
   );
@@ -220,7 +220,7 @@ export function PolicyHeroVisual({ type }: { type: "privacy" | "disclaimer" }) {
       <p>
         {type === "privacy"
           ? "Use the diagnostic enquiry for firm details and a high-level description of the operational problem only."
-          : "Sovereignty Control records case information; it does not make legal, tax, immigration or investment decisions."}
+          : "Juris Control records case information; it does not make legal, tax, immigration or investment decisions."}
       </p>
       <div>
         <CircleAlert size={17} aria-hidden="true" />

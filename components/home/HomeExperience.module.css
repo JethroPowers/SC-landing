@@ -204,6 +204,15 @@
   margin: 0;
 }
 
+.outcomeKicker {
+  display: block;
+  margin-bottom: 15px;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
 .outcomeHeading p {
   margin: 0;
   color: var(--slate);

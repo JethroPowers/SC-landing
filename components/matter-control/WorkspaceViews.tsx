@@ -5,16 +5,17 @@ import {
   FileQuestion,
   FolderKanban,
   History,
-  LayoutList
+  LayoutList,
 } from "lucide-react";
 import { useRef } from "react";
 import type { KeyboardEvent, ReactNode } from "react";
 import type {
   FictionalMatterFixture,
-  WorkspaceViewId
+  WorkspaceViewId,
 } from "@/lib/matter-control-fixture";
 import { StatusLanguage } from "./StatusLanguage";
 import styles from "./MatterControl.module.css";
+import { programmeOptions } from "@/lib/control-room-data";
 
 type WorkspaceViewsProps = {
   matter: FictionalMatterFixture;
@@ -27,15 +28,21 @@ export const workspaceViews = [
   { id: "readiness", label: "Readiness", icon: ClipboardCheck },
   { id: "review", label: "Review Queue", icon: FileQuestion },
   { id: "change", label: "Change Impact", icon: History },
-  { id: "closeout", label: "Closeout", icon: LayoutList }
-] satisfies Array<{ id: WorkspaceViewId; label: string; icon: typeof FolderKanban }>;
+  { id: "closeout", label: "Closeout", icon: LayoutList },
+] satisfies Array<{
+  id: WorkspaceViewId;
+  label: string;
+  icon: typeof FolderKanban;
+}>;
 
 function MatterView({ matter }: { matter: FictionalMatterFixture }) {
   return (
     <div className={styles.matterView}>
       <div className={styles.viewLead}>
         <span className={styles.kicker}>One current operational record</span>
-        <h3>The matter is visible without reconstructing six partial versions.</h3>
+        <h3>
+          The matter is visible without reconstructing six partial versions.
+        </h3>
         <p>
           This is a fictional demonstration of the information state, not an
           eligibility view or programme recommendation.
@@ -49,6 +56,66 @@ function MatterView({ matter }: { matter: FictionalMatterFixture }) {
           </div>
         ))}
       </div>
+      <details className={styles.comparisonDisclosure}>
+        <summary>Compare the four fictional route assumptions</summary>
+        <p>
+          Sample working values only. Capital, family charges and due-diligence
+          charges stay separate. Professional fees, ancillary costs and any tax
+          effects are not included; a subtotal is not a complete client quote.
+          No route is recommended.
+        </p>
+        <div
+          className={styles.comparisonScroll}
+          tabIndex={0}
+          role="region"
+          aria-label="Fictional family fee assumptions"
+        >
+          <table>
+            <caption>
+              JP-024 · fictional amounts in GBP for a family of four
+            </caption>
+            <thead>
+              <tr>
+                <th>Programme</th>
+                <th>Capital</th>
+                <th>Family charges</th>
+                <th>Due diligence</th>
+                <th>Subtotal</th>
+                <th>Review point</th>
+              </tr>
+            </thead>
+            <tbody>
+              {programmeOptions.map((option) => (
+                <tr key={option.id}>
+                  <th scope="row">{option.programme}</th>
+                  <td>{option.indicativeMinimum}</td>
+                  <td>{option.familyFees}</td>
+                  <td>{option.dueDiligence}</td>
+                  <td>
+                    £
+                    {[
+                      option.indicativeMinimum,
+                      option.familyFees,
+                      option.dueDiligence,
+                    ].reduce(
+                      (sum, value) =>
+                        sum + Number(value.replace(/[^0-9.]/g, "")),
+                      0,
+                    )}
+                    k
+                  </td>
+                  <td>{option.reviewRequired}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Example workbook entries require source and professional review.
+          Programme C also has a fictional dependant-condition review; changing
+          a source or value does not complete that review.
+        </p>
+      </details>
       <div className={styles.issueTable}>
         <div className={styles.tableHeader}>
           <span>Current issue</span>
@@ -69,7 +136,7 @@ function MatterView({ matter }: { matter: FictionalMatterFixture }) {
 
 function ReadinessView({
   matter,
-  focus
+  focus,
 }: {
   matter: FictionalMatterFixture;
   focus?: "evidence" | "blockers";
@@ -82,7 +149,8 @@ function ReadinessView({
           <h3>Attention is concentrated where the firm can act.</h3>
         </div>
         <p>
-          Status language is operational: ready, attention, dependency and blocked.
+          Status language is operational: ready, attention, dependency and
+          blocked.
         </p>
       </div>
       <div className={styles.metrics}>
@@ -155,8 +223,8 @@ function ReviewQueueView({ matter }: { matter: FictionalMatterFixture }) {
       <div className={styles.assumptionNote}>
         <strong>Programme assumption requiring confirmation</strong>
         <span>
-          A superseded government-fee value is held outside approved client use until
-          the firm's advisor confirms the current basis.
+          A superseded government-fee value is held outside approved client use
+          until the firm's adviser confirms the current basis.
         </span>
       </div>
     </div>
@@ -173,9 +241,15 @@ function ChangeImpactView({ matter }: { matter: FictionalMatterFixture }) {
           <span className={styles.kicker}>Fictional programme change</span>
           <h3>Intelligence matters only when it reaches the affected work.</h3>
         </div>
-        <p>The system surfaces the issue. The firm confirms its professional effect.</p>
+        <p>
+          The system surfaces the issue. The firm confirms its professional
+          effect.
+        </p>
       </div>
-      <ol className={styles.changeSequence} aria-label="Programme-change impact sequence">
+      <ol
+        className={styles.changeSequence}
+        aria-label="Programme-change impact sequence"
+      >
         {change.sequence.map((item, index) => (
           <li key={item}>
             <span>{index + 1}</span>
@@ -213,7 +287,7 @@ function ChangeImpactView({ matter }: { matter: FictionalMatterFixture }) {
             <dd>{change.previousValue}</dd>
           </div>
           <div>
-            <dt>Current value</dt>
+            <dt>Future value at effective date</dt>
             <dd>{change.currentValue}</dd>
           </div>
           <div className={styles.verificationFact}>
@@ -234,7 +308,7 @@ function CloseoutView({ matter }: { matter: FictionalMatterFixture }) {
           <span className={styles.kicker}>Diagnostic closeout</span>
           <h3>A usable operating pack—not a speculative software promise.</h3>
         </div>
-        <p>Sample outputs from the fictional matter SC-024.</p>
+        <p>Sample outputs from the fictional matter JP-024.</p>
       </div>
       <div className={styles.outputList}>
         {matter.closeoutOutputs.map((output, index) => (
@@ -262,7 +336,7 @@ type WorkspaceSurfaceProps = WorkspaceViewsProps & {
 export function WorkspaceViewPanel({
   matter,
   view,
-  focus
+  focus,
 }: {
   matter: FictionalMatterFixture;
   view: WorkspaceViewId;
@@ -286,7 +360,7 @@ export function WorkspaceSurface({
   instanceId = "default",
   panelOverride,
   panelTestId,
-  testId = "workspace"
+  testId = "workspace",
 }: WorkspaceSurfaceProps) {
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);
 
@@ -297,7 +371,10 @@ export function WorkspaceSurface({
     buttons.current[nextIndex]?.focus();
   }
 
-  function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+  function handleKeyDown(
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) {
     if (event.key === "ArrowRight" || event.key === "ArrowDown") {
       event.preventDefault();
       moveFocus(index + 1);
@@ -321,77 +398,93 @@ export function WorkspaceSurface({
       className={`${styles.workspace} ${compact ? styles.workspaceCompact : ""}`}
       data-testid={testId}
     >
+      <div
+        aria-label="Matter workspace views"
+        className={styles.viewControl}
+        role="tablist"
+      >
+        {workspaceViews.map((view, index) => {
+          const Icon = view.icon;
+          const selected = activeView === view.id;
+          return (
+            <button
+              aria-controls={
+                selected
+                  ? `workspace-${instanceId}-panel-${view.id}`
+                  : undefined
+              }
+              aria-selected={selected}
+              className={selected ? styles.viewButtonActive : styles.viewButton}
+              id={`workspace-${instanceId}-tab-${view.id}`}
+              key={view.id}
+              onClick={() => onViewChange(view.id)}
+              onKeyDown={(event) => handleKeyDown(event, index)}
+              ref={(node) => {
+                buttons.current[index] = node;
+              }}
+              role="tab"
+              tabIndex={selected ? 0 : -1}
+              type="button"
+            >
+              <Icon size={16} strokeWidth={1.7} aria-hidden="true" />
+              <span>{view.label}</span>
+            </button>
+          );
+        })}
+      </div>
+      <div
+        className={styles.workspaceMatterBar}
+        aria-label="Persistent matter summary"
+      >
+        <strong>{matter.reference}</strong>
+        <span>{matter.household}</span>
+        <span>{matter.objective}</span>
+        <span>{matter.routeCount} routes</span>
+        <span>{matter.status}</span>
+        <span>Review {matter.nextReviewDate}</span>
+      </div>
+      <div className={styles.workspacePanels}>
         <div
-          aria-label="Matter workspace views"
-          className={styles.viewControl}
-          role="tablist"
+          aria-labelledby={`workspace-${instanceId}-tab-${activeView}`}
+          className={styles.workspacePanelActive}
+          data-testid={panelTestId ?? `workspace-view-${activeView}`}
+          id={`workspace-${instanceId}-panel-${activeView}`}
+          key={activeView}
+          role="tabpanel"
         >
-          {workspaceViews.map((view, index) => {
-            const Icon = view.icon;
-            const selected = activeView === view.id;
-            return (
-              <button
-                aria-controls={
-                  selected
-                    ? `workspace-${instanceId}-panel-${view.id}`
-                    : undefined
-                }
-                aria-selected={selected}
-                className={selected ? styles.viewButtonActive : styles.viewButton}
-                id={`workspace-${instanceId}-tab-${view.id}`}
-                key={view.id}
-                onClick={() => onViewChange(view.id)}
-                onKeyDown={(event) => handleKeyDown(event, index)}
-                ref={(node) => {
-                  buttons.current[index] = node;
-                }}
-                role="tab"
-                tabIndex={selected ? 0 : -1}
-                type="button"
-              >
-                <Icon size={16} strokeWidth={1.7} aria-hidden="true" />
-                <span>{view.label}</span>
-              </button>
-            );
-          })}
-        </div>
-        <div className={styles.workspaceMatterBar} aria-label="Persistent matter summary">
-          <strong>{matter.reference}</strong>
-          <span>{matter.household}</span>
-          <span>{matter.objective}</span>
-          <span>{matter.routeCount} routes</span>
-          <span>{matter.status}</span>
-          <span>Review {matter.nextReviewDate}</span>
-        </div>
-        <div className={styles.workspacePanels}>
-          <div
-            aria-labelledby={`workspace-${instanceId}-tab-${activeView}`}
-            className={styles.workspacePanelActive}
-            data-testid={panelTestId ?? `workspace-view-${activeView}`}
-            id={`workspace-${instanceId}-panel-${activeView}`}
-            key={activeView}
-            role="tabpanel"
-          >
-            {panelOverride ?? (
-              <WorkspaceViewPanel focus={focus} matter={matter} view={activeView} />
-            )}
-          </div>
+          {panelOverride ?? (
+            <WorkspaceViewPanel
+              focus={focus}
+              matter={matter}
+              view={activeView}
+            />
+          )}
         </div>
       </div>
+    </div>
   );
 }
 
-export function WorkspaceViews({ matter, activeView, onViewChange }: WorkspaceViewsProps) {
+export function WorkspaceViews({
+  matter,
+  activeView,
+  onViewChange,
+}: WorkspaceViewsProps) {
   return (
-    <section className={styles.workspaceSection} aria-labelledby="workspace-heading">
+    <section
+      className={styles.workspaceSection}
+      aria-labelledby="workspace-heading"
+    >
       <div className={styles.sectionHeadingDark}>
         <div>
           <span className={styles.kickerLight}>Readiness Workspace</span>
-          <h2 id="workspace-heading">The same matter, prepared for judgement.</h2>
+          <h2 id="workspace-heading">
+            The same matter, prepared for judgement.
+          </h2>
         </div>
         <p>
-          Five controlled views share one fictional matter record. Changing view does
-          not change your selected process step.
+          Five controlled views share one fictional matter record. Changing view
+          does not change your selected process step.
         </p>
       </div>
       <WorkspaceSurface

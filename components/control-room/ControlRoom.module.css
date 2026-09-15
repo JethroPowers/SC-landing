@@ -1186,7 +1186,9 @@
   }
 }
 
-@media (max-width: 1023px), (max-height: 699px), (prefers-reduced-motion: reduce) {
+@media (max-width: 1023px),
+  (max-height: 699px),
+  (prefers-reduced-motion: reduce) {
   .storyTrack {
     display: none;
   }
@@ -1195,5 +1197,44 @@
     display: grid;
     gap: 20px;
     padding-bottom: 72px;
+  }
+}
+
+/* Publication-scale labels and content for the visible programme register. */
+.register .windowIdentity strong,
+.register .filter,
+.register .recordButton {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.register .windowIdentity > span,
+.register .subtle,
+.register .badge {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+.register .registerTable {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.register .registerTable th {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #c1cdd5;
+}
+.register .registerTable td {
+  padding-block: 22px;
+}
+.register .drawerSection p {
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.register .drawerSection .kicker,
+.register .drawerHeader .kicker {
+  font-size: 0.875rem;
+}
+@media (max-width: 700px) {
+  .register .registerTable td {
+    padding-block: 9px;
   }
 }

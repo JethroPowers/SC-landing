@@ -14,7 +14,7 @@ export function MethodRunbook() {
     <div className={`container ${styles.method}`} ref={ref}>
       <aside className={styles.methodRail}>
         <p className="small">Complimentary diagnostic</p>
-        <strong>From scattered matter state to advisor review</strong>
+        <strong>From scattered matter state to adviser review</strong>
         <div className={styles.methodProgress}>
           <motion.span style={reducedMotion ? { height: "100%", width: "100%" } : { height: scrollYProgress }} />
         </div>
@@ -28,7 +28,7 @@ export function MethodRunbook() {
               <p className="lead">{step.description}</p>
               <div className={styles.methodRoles}>
                 <div><strong>The firm</strong><p>{step.firmRole}</p></div>
-                <div><strong>Sovereignty Control</strong><p>{step.controlRole}</p></div>
+                <div><strong>Juris Control</strong><p>{step.controlRole}</p></div>
               </div>
               <p className="output-stamp">{step.output}</p>
             </div>

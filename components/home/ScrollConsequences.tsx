@@ -21,7 +21,7 @@ export function ScrollConsequences() {
               <p>
                 Most firms do not lose sight of a matter because they lack expertise.
                 The facts are spread across programme files, email, messages,
-                proposals, document folders and advisor notes.
+                proposals, document folders and adviser notes.
               </p>
             </div>
 
@@ -73,7 +73,7 @@ export function ScrollConsequences() {
             <p>
               Most firms do not lose sight of a matter because they lack expertise.
               The facts are spread across programme files, email, messages,
-              proposals, document folders and advisor notes.
+              proposals, document folders and adviser notes.
             </p>
           </div>
           <div>

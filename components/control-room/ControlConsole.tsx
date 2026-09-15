@@ -69,7 +69,7 @@ export function ControlConsole() {
           <strong>{demoCase.title} · {demoCase.matter}</strong>
           <span>{demoCase.reference}</span>
         </div>
-        <span className={styles.badge} data-tone="warn">Advisor review required</span>
+        <span className={styles.badge} data-tone="warn">Adviser review required</span>
       </div>
       <div className={styles.consoleTabs} role="tablist" aria-label="Control views" onKeyDown={onKeyDown}>
         {views.map((view) => {
@@ -119,7 +119,7 @@ export function ControlConsole() {
             <div className={styles.miniRow}><strong>Release</strong><span>July 2026 · review</span></div>
           </div>
           <div className={styles.stageOutcome}>
-            The advisor remains responsible for programme eligibility, legal, tax,
+            The adviser remains responsible for programme eligibility, legal, tax,
             immigration and investment advice.
           </div>
         </aside>
@@ -200,7 +200,7 @@ function ChangeView() {
   return (
     <>
       <p className={styles.kicker}>Programme update</p>
-      <h2 className={styles.viewTitle}>A proposed government-fee change is held for advisor review.</h2>
+      <h2 className={styles.viewTitle}>A proposed government-fee change is held for adviser review.</h2>
       <div className={styles.changeCompare}>
         <div className={styles.changeValue}><span className={styles.subtle}>Current published value</span><strong>{change.oldValue}</strong></div>
         <span>→</span>
@@ -208,7 +208,7 @@ function ChangeView() {
       </div>
       <div className={styles.list}>
         <div className={styles.listRow}><strong>Affected active cases</strong><span>{change.affectedCases}</span></div>
-        <div className={styles.listRow}><strong>Affected advisor reports</strong><span>{change.affectedReports}</span></div>
+        <div className={styles.listRow}><strong>Affected adviser reports</strong><span>{change.affectedReports}</span></div>
       </div>
     </>
   );

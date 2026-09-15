@@ -19,7 +19,7 @@ const scatteredRecords = [
   { icon: Mail, source: "Client email", value: "Spouse and two children" },
   { icon: FileSpreadsheet, source: "Fee workbook", value: "Four programme routes" },
   { icon: FolderOpen, source: "Document folder", value: "Three items still missing" },
-  { icon: MessageSquareText, source: "Advisor message", value: "Source-of-funds detail to follow" }
+  { icon: MessageSquareText, source: "Adviser message", value: "Source-of-funds detail to follow" }
 ];
 
 const structuredFields = [
@@ -68,26 +68,26 @@ function MatterVisual({ stage }: { stage: LiveMatterStage }) {
     <div className={styles.controlledView}>
       <div className={styles.controlledHeader}>
         <div>
-          <span>SC-024</span>
+          <span>JP-024</span>
           <strong>British family of four</strong>
         </div>
         <span className={styles.reviewState}>Professional review required</span>
       </div>
       <dl className={styles.controlledFacts}>
-        <div><dt>Stage</dt><dd>Programme comparison</dd></div>
-        <div><dt>Programme release</dt><dd>July 2026 · review</dd></div>
-        <div><dt>Missing</dt><dd>3 documents</dd></div>
-        <div><dt>Owner</dt><dd>Private Client Team</dd></div>
+        <div><dt>Stage</dt><dd>Adviser review preparation</dd></div>
+        <div><dt>Operational owner</dt><dd>Matter coordinator</dd></div>
+        <div><dt>Last chase</dt><dd>12 Aug · provider</dd></div>
+        <div><dt>Next escalation</dt><dd>13 Aug · operations lead</dd></div>
       </dl>
       <div className={styles.controlledAction}>
         <ShieldAlert size={18} aria-hidden="true" />
         <div>
           <span>Current blocker</span>
-          <strong>Source-of-funds review</strong>
+          <strong>Provider response overdue by six days</strong>
         </div>
         <div>
           <span>Next action</span>
-          <strong>Advisor reviews supporting evidence</strong>
+          <strong>Escalate provider and prepare the Adviser Review Pack</strong>
         </div>
       </div>
     </div>
@@ -97,10 +97,12 @@ function MatterVisual({ stage }: { stage: LiveMatterStage }) {
 function HeroCopy() {
   return (
     <div className={styles.heroCopy}>
-      <h1>Run complex citizenship, residence and relocation matters from one controlled view.</h1>
+      <span className={styles.heroKicker}>Managed matter-readiness desk</span>
+      <h1>Keep active citizenship, residence and relocation matters ready for professional review.</h1>
       <p>
-        We structure the applicants, programme routes, family costs, documents,
-        due-diligence questions, responsibilities and next actions behind each matter.
+        Juris Control keeps status, blockers, owners, chasing and change exposure
+        current. Your firm keeps the client relationship, professional judgement and every
+        final decision.
       </p>
       <div className={styles.audience}>
         <span>
@@ -112,7 +114,7 @@ function HeroCopy() {
           Discuss a complimentary diagnostic <ArrowRight size={17} aria-hidden="true" />
         </Link>
         <Link className={styles.secondaryLink} href="/how-matter-control-works">
-          Explore fictional matter SC-024
+          Explore fictional matter JP-024
         </Link>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { juris } from "./partners";
 export type MatterStatus = "ready" | "attention" | "dependency" | "blocked";
 
 export type MatterControlStep = {
@@ -129,8 +130,8 @@ export type FictionalMatterFixture = {
 };
 
 export const fictionalMatter: FictionalMatterFixture = {
-  fictionalLabel: "Fictional demonstration matter",
-  reference: "SC-024",
+  fictionalLabel: "Simulated fictional demonstration matter",
+  reference: "JP-024",
   household: "Principal applicant, spouse and two children",
   objective: "Mobility plus a long-term residence option",
   routeCount: 4,
@@ -138,7 +139,7 @@ export const fictionalMatter: FictionalMatterFixture = {
   nextReviewDate: "12 August 2026",
   currentStage: "Matter reconstructed · blockers being controlled",
   matterFacts: [
-    { label: "Reference", value: "SC-024" },
+    { label: "Reference", value: "JP-024" },
     { label: "Household", value: "Principal applicant, spouse and two children" },
     { label: "Objective", value: "Mobility plus a long-term residence option" },
     { label: "Routes", value: "Four programme routes under consideration" }
@@ -146,7 +147,7 @@ export const fictionalMatter: FictionalMatterFixture = {
   currentIssues: [
     { label: "Evidence", value: "Three items missing", status: "attention" },
     {
-      label: "Advisor direction",
+      label: "Adviser direction",
       value: "One source-of-funds question",
       status: "blocked"
     },
@@ -157,7 +158,7 @@ export const fictionalMatter: FictionalMatterFixture = {
     },
     {
       label: "Programme assumption",
-      value: "One government-fee value superseded",
+      value: "One fictional government-fee value superseded",
       status: "attention"
     },
     { label: "Next actions", value: "Two without owners", status: "attention" }
@@ -172,7 +173,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       firmResponsibility:
         "Selects the matter, keeps the client relationship and approves the participation, communication and data boundaries.",
       recordChange:
-        "SC-024 is opened with a pseudonymous reference, household outline, objective, four route contexts and named firm sponsor.",
+        "JP-024 is opened with a pseudonymous reference, household outline, objective, four route contexts and named firm sponsor.",
       output: "Approved intake gate and diagnostic scope."
     },
     {
@@ -196,7 +197,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       firmResponsibility:
         "Confirms factual accuracy and remains responsible for route interpretation, suitability and all client advice.",
       recordChange:
-        "A single current-state matter map replaces six partial views across messages, files, notes and memory.",
+        "In the example, a single current-state matter map replaces six partial views across messages, files, notes and memory.",
       output: "Current-state matter map."
     },
     {
@@ -225,15 +226,15 @@ export const fictionalMatter: FictionalMatterFixture = {
     },
     {
       id: "review",
-      shortTitle: "Advisor-review questions prepared",
-      title: "Unresolved issues become specific advisor-review questions.",
+      shortTitle: "Adviser-review questions prepared",
+      title: "Unresolved issues become specific adviser-review questions.",
       sovereigntyControl:
         "Prepares concise context, evidence state, consequence and requested decision for each professional review point.",
       firmResponsibility:
         "Confirms the source-of-funds direction, dependent treatment, programme assumptions and all professional effects.",
       recordChange:
         "Two questions enter the review queue and the superseded government-fee assumption is held for confirmation.",
-      output: "Advisor-review questions and programme-assumption register."
+      output: "Adviser-review questions and programme-assumption register."
     },
     {
       id: "closeout",
@@ -249,13 +250,13 @@ export const fictionalMatter: FictionalMatterFixture = {
     }
   ],
   serviceIntro: {
-    audience: "For boutique citizenship and residence advisory firms",
-    eyebrow: "How Matter Control Works · fictional matter SC-024",
-    title: "One live matter. Reconstructed, controlled and ready for your firm to decide.",
+    audience: "For boutique citizenship and residence advisery firms",
+    eyebrow: "How Matter Control Works · fictional matter JP-024",
+    title: "One fictional matter. Reconstructed and prepared for review.",
     summary:
-      "Sovereignty Control rebuilds the current record, tracks missing work and prepares the questions and actions that need advisor judgement.",
+      "Juris Control rebuilds the current record, tracks missing work and prepares the questions and actions that need adviser judgement.",
     boundary: "Your firm keeps the client relationship, advice and every final decision.",
-    scrollLabel: "Scroll to reconstruct"
+    scrollLabel: "Explore the method"
   },
   operatingPhases: [
     {
@@ -287,7 +288,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       title: "Judgement reaches the right questions.",
       summary:
         "Professional issues arrive with context, consequence and the decision required—without rebuilding the matter first.",
-      recordChange: "Two review questions and one held assumption enter the advisor queue.",
+      recordChange: "Two review questions and one held assumption enter the adviser queue.",
       firmRetains: "The firm advises, approves and makes every final decision.",
       visualState: "prepare"
     }
@@ -317,14 +318,14 @@ export const fictionalMatter: FictionalMatterFixture = {
       theme: "parchment"
     },
     {
-      id: "advisor-pack",
+      id: "adviser-pack",
       number: "03",
-      title: "An advisor-ready action pack",
-      summary: "The firm receives the questions, priorities and next actions that require its judgement.",
-      intendedBenefit: "Put the right questions and actions in front of the right people.",
-      representativeOutput: "Immediate action plan",
+      title: "An Adviser Review Pack",
+      summary: "The firm receives each professional question with its evidence state, consequence, current assumption and decision required.",
+      intendedBenefit: "Review the professional issue without reconstructing the matter first.",
+      representativeOutput: "Adviser Review Pack",
       includedOutputs: [
-        "Advisor-review questions",
+        "Adviser-review questions",
         "Immediate action plan",
         "Closeout summary"
       ],
@@ -354,7 +355,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       status: "dependency"
     },
     {
-      label: "Advisor-review questions",
+      label: "Adviser-review questions",
       value: "2",
       note: "Prepared for decision",
       status: "attention"
@@ -369,25 +370,25 @@ export const fictionalMatter: FictionalMatterFixture = {
   dependencies: [
     {
       item: "Provider suitability confirmation",
-      owner: "Daniel Okoro · Provider liaison",
+      owner: "Provider liaison",
       timing: "Overdue by 6 days",
       status: "dependency"
     },
     {
       item: "Child 2 education evidence",
-      owner: "Amelia Grant · Case manager",
+      owner: "Matter coordinator",
       timing: "Due 11 Aug",
       status: "attention"
     },
     {
       item: "Source-of-funds direction",
-      owner: "Priya Shah · Firm advisor",
-      timing: "Advisor decision required",
+      owner: "Firm adviser",
+      timing: "Adviser decision required",
       status: "blocked"
     },
     {
       item: "Certified relationship record",
-      owner: "Marcus Reed · Client operations",
+      owner: "Client operations",
       timing: "Due 14 Aug",
       status: "ready"
     }
@@ -400,7 +401,7 @@ export const fictionalMatter: FictionalMatterFixture = {
         "The operational record contains an asset-sale summary, but the required professional evidence threshold has not been confirmed.",
       consequence:
         "Route recommendation and client-facing wording remain blocked.",
-      owner: "Priya Shah · Firm advisor",
+      owner: "Firm adviser",
       status: "blocked"
     },
     {
@@ -410,7 +411,7 @@ export const fictionalMatter: FictionalMatterFixture = {
         "A fictional source notice records a new age-and-education condition with a future effective date.",
       consequence:
         "The route remains visible, but no professional effect is applied until the firm confirms it.",
-      owner: "Elena Moore · Immigration counsel",
+      owner: "Immigration counsel",
       status: "attention"
     }
   ],
@@ -424,11 +425,11 @@ export const fictionalMatter: FictionalMatterFixture = {
     currentValue: "Dependent children under 23 and in full-time education",
     verificationStatus: "Source recorded · professional effect pending firm confirmation",
     sequence: [
-      "Source change detected",
+      "Source change recorded in example",
       "Effective date recorded",
       "Affected route identified",
       "Active matter flagged",
-      "Advisor confirmation requested"
+      "Adviser confirmation requested"
     ]
   },
   closeoutOutputs: [
@@ -448,7 +449,7 @@ export const fictionalMatter: FictionalMatterFixture = {
       status: "dependency"
     },
     {
-      title: "Advisor-review questions",
+      title: "Adviser-review questions",
       sample: "Two decision questions with context, evidence state and consequence.",
       status: "blocked"
     },
@@ -469,10 +470,10 @@ export const fictionalMatter: FictionalMatterFixture = {
     }
   ],
   diagnostic: {
-    fee: "Complimentary",
-    scope: "One active, recent or anonymised matter",
-    timing: "Seven to ten working days",
-    obligation: "No obligation to continue",
+    fee: juris.diagnostic.fee,
+    scope: juris.diagnostic.scope,
+    timing: juris.diagnostic.timing,
+    obligation: juris.diagnostic.obligation,
     communicationBoundary:
       "No contact with the firm's client, provider or authority during this stage"
   },

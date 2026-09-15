@@ -14,7 +14,7 @@ type ProcessJourneyProps = {
 const detailFields = [
   {
     key: "sovereigntyControl" as const,
-    label: "What Sovereignty Control does",
+    label: "What Juris Control does",
     icon: RefreshCw
   },
   {

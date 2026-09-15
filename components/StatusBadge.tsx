@@ -5,7 +5,7 @@ type StatusBadgeProps = {
 const toneByLabel: Record<string, string> = {
   draft: "status-draft",
   "pending review": "status-review",
-  "needs advisor review": "status-review",
+  "needs adviser review": "status-review",
   "source required": "status-source",
   proposed: "status-proposed",
   published: "status-published",

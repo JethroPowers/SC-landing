@@ -90,7 +90,7 @@ export type OfferPath = {
   next: string;
 };
 
-export type BusinessOutcome = {
+export type MatterStallReason = {
   id: string;
   title: string;
   description: string;
@@ -162,7 +162,7 @@ export const caseStages: CaseStage[] = [
     id: "intake",
     number: "01",
     title: "Open the matter",
-    summary: "Collect the enquiry, family details, objectives and advisor notes.",
+    summary: "Collect the enquiry, family details, objectives and adviser notes.",
     outcome: "The principal applicant, dependants, budget, target date and missing facts are recorded."
   },
   {
@@ -170,7 +170,7 @@ export const caseStages: CaseStage[] = [
     number: "02",
     title: "Compare routes",
     summary: "Build family-cost comparisons for the programme routes under consideration.",
-    outcome: "The advisor sees government fees, due-diligence costs and assumptions for the whole family."
+    outcome: "The adviser sees government fees, due-diligence costs and assumptions for the whole family."
   },
   {
     id: "control",
@@ -188,37 +188,49 @@ export const caseStages: CaseStage[] = [
   }
 ];
 
-export const businessOutcomes: BusinessOutcome[] = [
+export const matterStallReasons: MatterStallReason[] = [
   {
-    id: "blockers",
-    title: "Know what prevents progress",
+    id: "missing-information",
+    title: "Missing information has no stated consequence",
     description:
-      "See the missing document, unresolved due-diligence question or advisor review preventing the next stage."
+      "An overdue document is visible, but its consequence, chase owner and next step are not."
   },
   {
-    id: "assumptions",
-    title: "Quote from reviewed assumptions",
+    id: "ownership",
+    title: "The next action has no operational owner",
     description:
-      "Keep programme routes, dependant rules, government fees, sources and effective dates consistent across the team."
+      "The work looks active even though nobody owns the next chase, escalation or handoff."
+  },
+  {
+    id: "dependencies",
+    title: "External dependencies age silently",
+    description:
+      "Responses from providers, translators, banks and authorities remain open without an age or escalation point."
+  },
+  {
+    id: "adviser-decisions",
+    title: "Professional decisions stay buried in messages",
+    description:
+      "The adviser receives a question without the evidence, consequence or decision context needed to answer it."
   },
   {
     id: "client-status",
-    title: "Give clients a clearer status",
+    title: "Client status drifts from the internal record",
     description:
-      "Separate internal review notes from the action, document request and milestone the client needs."
+      "Client updates and internal records diverge, leaving teams to reconstruct the latest position."
   },
   {
-    id: "reconstruction",
-    title: "Reduce repeated reconstruction",
+    id: "programme-change",
+    title: "Programme changes miss active work",
     description:
-      "Stop rebuilding the same matter from email, spreadsheets, messages and individual advisor memory."
+      "A new fee, dependant rule or effective date is recorded without flagging the affected proposal or live matter."
   }
 ];
 
 export const matterConsequences: MatterConsequence[] = [
   {
     id: "fees",
-    problem: "Different advisors use different fee assumptions.",
+    problem: "Different advisers use different fee assumptions.",
     effect: "Comparisons and proposals require another round of checking."
   },
   {
@@ -265,7 +277,7 @@ export const managedServiceStages: ManagedServiceStage[] = [
     number: "03",
     title: "Configure",
     description:
-      "Set up case views, responsibilities, review states, advisor reports and client updates around the firm.",
+      "Set up case views, responsibilities, review states, adviser reports and client updates around the firm.",
     evidence: "Firm-specific case views and reports"
   },
   {
@@ -292,7 +304,7 @@ export const programmeChangeSteps: ProgrammeChangeStep[] = [
     number: "02",
     title: "The change enters review",
     description:
-      "The source, effective date and claim status are checked before advisor use.",
+      "The source, effective date and claim status are checked before adviser use.",
     result: "Pending review"
   },
   {
@@ -320,12 +332,12 @@ export const programmeChangeSteps: ProgrammeChangeStep[] = [
     result: "Two active matters flagged"
   },
   {
-    id: "advisor",
+    id: "adviser",
     number: "06",
-    title: "The advisor sees what to review",
+    title: "The adviser sees what to review",
     description:
-      "The affected comparison and advisor report are named before client figures change.",
-    result: "One advisor report requires review"
+      "The affected comparison and adviser report are named before client figures change.",
+    result: "One adviser report requires review"
   }
 ];
 
@@ -335,7 +347,7 @@ export const liveMatterStages: LiveMatterStage[] = [
     number: "01",
     title: "The matter exists across six places.",
     description:
-      "Family details sit in email, programme costs in a spreadsheet, evidence in document folders and the latest question in an advisor message.",
+      "Family details sit in email, programme costs in a spreadsheet, evidence in document folders and the latest question in an adviser message.",
     result: "No single record shows whether the matter can move"
   },
   {
@@ -349,17 +361,17 @@ export const liveMatterStages: LiveMatterStage[] = [
   {
     id: "controlled",
     number: "03",
-    title: "The team sees what happens next.",
+    title: "The operational state stays maintained.",
     description:
-      "The matter view names the blocker, owner, next action, client request and programme release being used by the advisor.",
-    result: "One maintained view for the advisor and the client matter"
+      "The matter view names the blocker, owner, last chase, next escalation, client request and professional review point.",
+    result: "A maintained operational state around the firm’s judgement"
   }
 ];
 
 export const programmeOptions: ProgrammeOption[] = [
   {
     id: "st-kitts",
-    programme: "St Kitts and Nevis",
+    programme: "Fictional Programme A",
     route: "Contribution",
     indicativeMinimum: "£210k",
     familyFees: "£78k",
@@ -374,7 +386,7 @@ export const programmeOptions: ProgrammeOption[] = [
   },
   {
     id: "grenada",
-    programme: "Grenada",
+    programme: "Fictional Programme B",
     route: "Contribution",
     indicativeMinimum: "£185k",
     familyFees: "£84k",
@@ -389,8 +401,8 @@ export const programmeOptions: ProgrammeOption[] = [
   },
   {
     id: "dominica",
-    programme: "Dominica",
-    route: "Contribution",
+    programme: "Fictional Programme C",
+    route: "Fictional residence fund",
     indicativeMinimum: "£165k",
     familyFees: "£72k",
     dueDiligence: "£22k",
@@ -404,7 +416,7 @@ export const programmeOptions: ProgrammeOption[] = [
   },
   {
     id: "st-lucia",
-    programme: "St Lucia",
+    programme: "Fictional Programme D",
     route: "Property or contribution",
     indicativeMinimum: "£195k",
     familyFees: "£76k",
@@ -434,7 +446,7 @@ export const caseBlockers: Blocker[] = [
   {
     id: "source-of-funds",
     title: "Source-of-funds review required",
-    owner: "Private Client Advisor",
+    owner: "Private Client Adviser",
     effect: "Programme recommendation cannot be finalised.",
     status: "Blocked"
   },
@@ -448,8 +460,8 @@ export const caseBlockers: Blocker[] = [
   {
     id: "route",
     title: "Confirm contribution or property preference",
-    owner: "Advisor",
-    effect: "St Lucia scenario cannot be narrowed.",
+    owner: "Adviser",
+    effect: "Fictional Programme D scenario cannot be narrowed.",
     status: "Pending review"
   }
 ];
@@ -457,12 +469,12 @@ export const caseBlockers: Blocker[] = [
 export const changeEvents: ChangeEvent[] = [
   {
     id: "dominica-family-contribution",
-    programme: "Dominica",
-    field: "Family contribution",
+    programme: "Fictional Programme C",
+    field: "Fictional family contribution",
     oldValue: "£155k",
     proposedValue: "£165k",
     effectiveDate: "Draft: July 2026",
-    source: "Issuing authority notice requires confirmation",
+    source: "Fictional notice; review pending",
     reviewer: "Programme Data Review",
     status: "Pending review",
     affectedCases: 2,
@@ -470,12 +482,12 @@ export const changeEvents: ChangeEvent[] = [
   },
   {
     id: "grenada-dependant-note",
-    programme: "Grenada",
+    programme: "Fictional Programme B",
     field: "Dependant education evidence",
     oldValue: "General evidence note",
     proposedValue: "Age-specific evidence required",
     effectiveDate: "Review date: 18 July 2026",
-    source: "Official programme guidance",
+    source: "Fictional programme guidance",
     reviewer: "Private Client Team",
     status: "Published",
     affectedCases: 1,
@@ -490,7 +502,7 @@ export const clientStatus: ClientStatus = {
     "Your case is currently in programme comparison and document preparation. The next step is to confirm family details and complete source-of-funds review before a programme recommendation is finalised.",
   completed: ["Initial family profile", "Passport copies", "Budget range"],
   missing: ["Police certificates", "Professional references", "Children's exact ages"],
-  nextMilestone: "Advisor recommendation after professional review"
+  nextMilestone: "Adviser recommendation after professional review"
 };
 
 export const offerPaths: OfferPath[] = [
@@ -500,12 +512,12 @@ export const offerPaths: OfferPath[] = [
     title: "Complimentary Matter Control Diagnostic",
     price: "Complimentary",
     timing: "7-10 working days · one matter",
-    useWhen: "One live, recent or anonymised matter is spread across email, spreadsheets, PDFs and advisor notes.",
+    useWhen: "One live, recent or anonymised matter is spread across email, spreadsheets, PDFs and adviser notes.",
     outcome: "One controlled record showing the household, routes, missing evidence, blockers, owners and next professional questions.",
     buyingTrigger:
-      "A complex, delayed or difficult-to-track matter is spread across files, messages and advisor notes.",
+      "A complex, delayed or difficult-to-track matter is spread across files, messages and adviser notes.",
     workPerformed:
-      "We reconstruct the current matter state, register evidence and dependencies, expose ownership gaps and prepare advisor-review questions.",
+      "We reconstruct the current matter state, register evidence and dependencies, expose ownership gaps and prepare adviser-review questions.",
     firmOutcome:
       "The firm receives one controlled diagnostic record showing what is known, missing, blocked, unowned and ready for review.",
     engagementFormat:
@@ -514,7 +526,7 @@ export const offerPaths: OfferPath[] = [
       "Current-state matter map",
       "Document-readiness register",
       "Blocker and dependency register",
-      "Advisor-review questions",
+      "Adviser-review questions",
       "Programme assumptions and action plan"
     ],
     next: "Test the approach on one matter before applying it to other cases."
@@ -523,23 +535,23 @@ export const offerPaths: OfferPath[] = [
     id: "programme-control",
     step: "Validate recurring control",
     title: "30-Day Co-Managed Readiness Pilot",
-    price: "Founding terms agreed privately after Stage 0",
+    price: "Scope and commercial terms agreed separately after diagnostic closeout",
     timing: "30 days · 5-10 named matters",
     useWhen: "A completed diagnostic shows that several live matters need recurring readiness, blocker and review-queue control.",
     outcome: "A small portfolio is maintained through four weekly readiness cycles with before-and-after evidence.",
     buyingTrigger:
       "The firm wants to test whether the method can keep several live matters current over time.",
     workPerformed:
-      "We establish matter records, run weekly readiness reviews, maintain blockers and prepare advisor-review queues through the firm.",
+      "We establish matter records, run weekly readiness reviews, maintain blockers and prepare adviser-review queues through the firm.",
     firmOutcome:
-      "The firm can measure matter movement, blocker age, ownership and advisor-preparation effort before considering paid continuation.",
+      "The firm can measure matter movement, blocker age, ownership and adviser-preparation effort before considering paid continuation.",
     engagementFormat:
       "Co-managed validation stage offered only after a successful diagnostic decision.",
     deliverables: [
       "Five to ten controlled matter records",
       "Weekly readiness cycle",
       "Blocker and dependency maintenance",
-      "Advisor-review queue",
+      "Adviser-review queue",
       "Pilot measurement and closeout"
     ],
     next: "Proceed only if delivery is controlled, useful and commercially credible."
@@ -574,44 +586,44 @@ export const offerPaths: OfferPath[] = [
 export const intelligenceRecords: IntelligenceRecord[] = [
   {
     id: "stk-2026-07",
-    programme: "St Kitts and Nevis",
-    jurisdiction: "Caribbean",
+    programme: "Fictional Programme A",
+    jurisdiction: "Fictional jurisdictions",
     routeCount: 2,
     release: "July 2026",
-    sourceState: "Official notice + reviewer note",
+    sourceState: "Fictional notice + example reviewer note",
     status: "Review",
     lastReviewed: "24 Jul 2026",
-    note: "Fee schedule requires final advisor confirmation before client use."
+    note: "Fee schedule requires final adviser confirmation before client use."
   },
   {
     id: "grd-2026-07",
-    programme: "Grenada",
-    jurisdiction: "Caribbean",
+    programme: "Fictional Programme B",
+    jurisdiction: "Fictional jurisdictions",
     routeCount: 2,
     release: "July 2026",
-    sourceState: "Confirmed source",
+    sourceState: "Fictional source recorded",
     status: "Published",
     lastReviewed: "18 Jul 2026",
     note: "Dependant evidence note updated and released."
   },
   {
     id: "dma-2026-07",
-    programme: "Dominica",
-    jurisdiction: "Caribbean",
+    programme: "Fictional Programme C",
+    jurisdiction: "Fictional jurisdictions",
     routeCount: 2,
     release: "July 2026 draft",
     sourceState: "Source required",
     status: "Draft",
     lastReviewed: "22 Jul 2026",
-    note: "Family contribution change remains proposed."
+    note: "Fictional family contribution change remains proposed."
   },
   {
     id: "lca-2026-06",
-    programme: "St Lucia",
-    jurisdiction: "Caribbean",
+    programme: "Fictional Programme D",
+    jurisdiction: "Fictional jurisdictions",
     routeCount: 3,
     release: "June 2026",
-    sourceState: "Confirmed source",
+    sourceState: "Fictional source recorded",
     status: "Published",
     lastReviewed: "30 Jun 2026",
     note: "Contribution and property routes published."
@@ -621,7 +633,7 @@ export const intelligenceRecords: IntelligenceRecord[] = [
 export const useCasePaths: UseCasePath[] = [
   {
     id: "cbi-rbi",
-    label: "CBI/RBI advisory",
+    label: "CBI/RBI advisery",
     title: "Check family pricing before it reaches the proposal.",
     situation: "The firm compares several citizenship or residence programmes for families with different dependant profiles.",
     blocker: "Headline minimums hide family fees, review assumptions and stale programme figures.",
@@ -639,7 +651,7 @@ export const useCasePaths: UseCasePath[] = [
   },
   {
     id: "caribbean",
-    label: "Caribbean agent",
+    label: "Fictional jurisdictions agent",
     title: "Know whether every applicant is submission-ready.",
     situation: "The authorised agent must coordinate applicants, dependants, introducers and programme documents before submission.",
     blocker: "One missing or review-required record can hold the entire application.",
@@ -652,7 +664,7 @@ export const useCasePaths: UseCasePath[] = [
     title: "Coordinate the case without blurring professional ownership.",
     situation: "Immigration, tax, corporate, banking and family matters move at different speeds and may be handled by different professionals.",
     blocker: "The client sees separate advice streams rather than one understandable case sequence.",
-    workflow: ["Objectives", "Advisor responsibilities", "Dependencies", "Client status"],
+    workflow: ["Objectives", "Adviser responsibilities", "Dependencies", "Client status"],
     recommendedOffer: "programme-control"
   }
 ];
@@ -669,7 +681,7 @@ export const workflowSteps: WorkflowStep[] = [
   {
     id: "map",
     title: "Reconstruct the current state",
-    description: "Find the relevant operational facts across spreadsheets, PDFs, email, proposals and advisor notes.",
+    description: "Find the relevant operational facts across spreadsheets, PDFs, email, proposals and adviser notes.",
     firmRole: "Explain how the team handles the matter and where work usually stalls.",
     controlRole: "Map the household, possible routes, evidence states, dependencies and missing facts.",
     output: "Current matter map"
@@ -696,7 +708,7 @@ export const workflowSteps: WorkflowStep[] = [
     description: "Check source-of-funds direction, programme assumptions and other professional effects.",
     firmRole: "Answer review questions and approve what may be used in the matter.",
     controlRole: "Prepare concise questions with context, evidence state and consequence.",
-    output: "Advisor-review queue"
+    output: "Adviser-review queue"
   },
   {
     id: "operate",
@@ -709,10 +721,10 @@ export const workflowSteps: WorkflowStep[] = [
 ];
 
 export const demoCase = {
-  reference: "SC-024",
-  title: "British family of four",
-  matter: "Caribbean citizenship comparison",
-  objective: "Second citizenship and improved family mobility",
+  reference: "JP-024",
+  title: "Fictional family of four",
+  matter: "Fictional jurisdictions citizenship comparison",
+  objective: "Mobility plus a long-term residence option",
   family: "Main applicant, spouse and two children",
   budget: "£350k-£500k equivalent",
   timeline: "Within 12 months",

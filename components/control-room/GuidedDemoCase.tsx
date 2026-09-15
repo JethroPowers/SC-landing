@@ -19,7 +19,7 @@ const steps = [
   "Programme model",
   "Document readiness",
   "Fee-change impact",
-  "Advisor and client views"
+  "Adviser and client views"
 ];
 
 function tone(status: string) {
@@ -184,7 +184,7 @@ function Readiness() {
   return (
     <>
       <p className={styles.kicker}>Application documents</p>
-      <h2 className={styles.viewTitle}>Three missing or review-required items prevent the advisor recommendation.</h2>
+      <h2 className={styles.viewTitle}>Three missing or review-required items prevent the adviser recommendation.</h2>
       <div className={`${styles.list} ${styles.documentGrid}`}>
         {caseDocuments.map((item) => <div className={styles.listRow} key={item.id}><div><strong>{item.name}</strong><span className={styles.subtle}>{item.person}</span></div><span className={styles.badge} data-tone={tone(item.status)}>{item.status}</span></div>)}
       </div>
@@ -196,13 +196,13 @@ function ChangeImpact({ change }: { change: (typeof changeEvents)[number] }) {
   return (
     <>
       <p className={styles.kicker}>Simulated programme update</p>
-      <h2 className={styles.viewTitle}>A draft fee change creates an advisor review task before any client figure changes.</h2>
+      <h2 className={styles.viewTitle}>A draft fee change creates an adviser review task before any client figure changes.</h2>
       <div className={styles.changeCompare}>
         <div className={styles.changeValue}><span className={styles.subtle}>Published</span><strong>{change.oldValue}</strong></div>
         <ArrowRight size={20} aria-hidden="true" />
         <div className={styles.changeValue}><span className={styles.subtle}>{change.effectiveDate}</span><strong>{change.proposedValue}</strong></div>
       </div>
-      <div className={styles.stageOutcome}>{change.affectedCases} active cases and {change.affectedReports} advisor report now require review.</div>
+      <div className={styles.stageOutcome}>{change.affectedCases} active cases and {change.affectedReports} adviser report now require review.</div>
     </>
   );
 }
@@ -210,8 +210,8 @@ function ChangeImpact({ change }: { change: (typeof changeEvents)[number] }) {
 function Outputs() {
   return (
     <>
-      <p className={styles.kicker}>Advisor and client views</p>
-      <h2 className={styles.viewTitle}>The advisor sees the review points. The client sees what happens next.</h2>
+      <p className={styles.kicker}>Adviser and client views</p>
+      <h2 className={styles.viewTitle}>The adviser sees the review points. The client sees what happens next.</h2>
       <div className={styles.clientPanel}>
         <CheckCircle2 size={22} aria-hidden="true" />
         <h3>{clientStatus.stage}</h3>
@@ -220,7 +220,7 @@ function Outputs() {
         <p>{clientStatus.nextMilestone}</p>
       </div>
       <div className={styles.list}>
-        {caseBlockers.slice(0, 2).map((item) => <div className={styles.listRow} key={item.id}><strong>Advisor report · {item.title}</strong><span className={styles.badge} data-tone={tone(item.status)}>{item.status}</span></div>)}
+        {caseBlockers.slice(0, 2).map((item) => <div className={styles.listRow} key={item.id}><strong>Adviser report · {item.title}</strong><span className={styles.badge} data-tone={tone(item.status)}>{item.status}</span></div>)}
       </div>
     </>
   );

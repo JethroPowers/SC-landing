@@ -1,12 +1,20 @@
-import { CircleAlert, FileCheck2, MessageSquareText, RefreshCcw } from "lucide-react";
-import { businessOutcomes } from "@/lib/control-room-data";
+import {
+  Clock3,
+  FileWarning,
+  MessageSquareText,
+  RefreshCcw,
+  UserRoundX
+} from "lucide-react";
+import { matterStallReasons } from "@/lib/control-room-data";
 import styles from "./HomeExperience.module.css";
 
 const icons = {
-  blockers: CircleAlert,
-  assumptions: FileCheck2,
+  "missing-information": FileWarning,
+  ownership: UserRoundX,
+  dependencies: Clock3,
+  "adviser-decisions": MessageSquareText,
   "client-status": MessageSquareText,
-  reconstruction: RefreshCcw
+  "programme-change": RefreshCcw
 };
 
 export function OutcomeLedger() {
@@ -14,14 +22,18 @@ export function OutcomeLedger() {
     <section className={styles.outcomes} aria-labelledby="outcomes-title">
       <div className="container">
         <div className={styles.outcomeHeading}>
-          <h2 id="outcomes-title">What the firm can answer without rebuilding the matter.</h2>
+          <div>
+            <span className={styles.outcomeKicker}>The operational problem</span>
+            <h2 id="outcomes-title">What actually slows an active matter?</h2>
+          </div>
           <p>
-            Clear matter records reduce the time spent finding the current assumption,
-            missing item or next responsible person.
+            Most matters do not stall because the advice is unclear. They stall because
+            missing information, unresolved dependencies and next actions are not actively
+            controlled.
           </p>
         </div>
         <div className={styles.outcomeLedger}>
-          {businessOutcomes.map((outcome, index) => {
+          {matterStallReasons.map((outcome, index) => {
             const Icon = icons[outcome.id as keyof typeof icons];
             return (
               <article className={styles.outcomeRow} key={outcome.id}>

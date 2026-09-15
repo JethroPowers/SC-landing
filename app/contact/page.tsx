@@ -1,44 +1,50 @@
 import type { Metadata } from "next";
-import { CheckCircle2 } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
+import { juris } from "@/lib/partners";
+import { isEnquiryConfigured } from "@/lib/enquiry-server";
+import styles from "@/components/partners/Partners.module.css";
 
 export const metadata: Metadata = {
-  title: "Discuss the Complimentary Diagnostic",
-  description: "Discuss whether one active, recent or anonymised matter is suitable for the complimentary matter-control diagnostic.",
-  alternates: { canonical: "/contact" }
+  title: "Discuss your firm’s needs",
+  description: juris.description,
+  alternates: { canonical: "/contact" },
 };
-
 export default async function ContactPage({
-  searchParams
+  searchParams,
 }: {
-  searchParams: Promise<{ interest?: string }>;
+  searchParams: Promise<{ interest?: string; stage?: string }>;
 }) {
-  const { interest } = await searchParams;
-
+  const { interest, stage } = await searchParams;
+  const isDiagnostic =
+    interest === "matter-control-diagnostic" ||
+    (interest === "operational-workflow" && stage === "diagnostic");
   return (
-    <main className="contact-page">
-      <section className="contact-intro contact-conversion">
-        <div className="container contact-intro-grid">
-          <div className="contact-conversion-copy">
-            <h1>Discuss one matter that would benefit from clearer operational control.</h1>
+    <main className={styles.page}>
+      <section className={styles.contactSection}>
+        <div className={`container ${styles.contactGrid}`}>
+          <div>
+            <span className={styles.kicker}>A CONVERSATION WITH JURIS</span>
+            <h1 style={{ fontSize: "clamp(2.8rem,4.5vw,4.2rem)" }}>
+              {isDiagnostic ? "Discuss the diagnostic." : "Talk to Juris."}
+            </h1>
             <p>
-              The complimentary diagnostic covers one active, recent or anonymised
-              matter over seven to ten working days. There is no obligation to continue.
+              {isDiagnostic
+                ? "Tell us what makes a current or recent matter difficult to reconstruct. Start with a non-confidential description; client documents are not needed here."
+                : "Tell us about your firm and the work or relationship you want to discuss. A founder will review your enquiry and discuss the appropriate next step."}
+            </p>
+            <p className={styles.caption}>
+              {isDiagnostic
+                ? "One matter · Complimentary · 7–10 working days · No obligation to continue."
+                : "Submitting an enquiry does not create a membership or service commitment."}
             </p>
           </div>
-          <div className="contact-conversion-form" id="request-demo-form">
-            <ContactForm initialInterest={interest} />
-          </div>
-          <div className="contact-agenda">
-            {[
-              "Whether one matter is suitable for the diagnostic.",
-              "Where status, blockers and dependencies currently live.",
-              "Which professional decisions remain with the firm."
-            ].map((item) => (
-              <div className="contact-agenda-line" key={item}>
-                <CheckCircle2 size={17} aria-hidden="true" />{item}
-              </div>
-            ))}
+          <div id="enquiry">
+            <span id="request-demo-form" />
+            <ContactForm
+              initialInterest={interest}
+              initialStage={stage}
+              configured={isEnquiryConfigured()}
+            />
           </div>
         </div>
       </section>

@@ -16,9 +16,9 @@ function IntakeView() {
   return (
     <>
       <p className={styles.kicker}>First enquiry</p>
-      <h3 className={styles.viewTitle}>The family details are spread across messages, files and advisor notes.</h3>
+      <h3 className={styles.viewTitle}>The family details are spread across messages, files and adviser notes.</h3>
       <p className={styles.viewCopy}>
-        Before routes can be compared, the advisor needs one record of the principal
+        Before routes can be compared, the adviser needs one record of the principal
         applicant, dependants, budget, target date and unanswered questions.
       </p>
       <div className={styles.fragmentGrid}>
@@ -27,7 +27,7 @@ function IntakeView() {
           <p>“Two children. We would like options within twelve months.”</p>
         </div>
         <div className={styles.fragment}>
-          <span className={styles.fragmentLabel}>Spreadsheet · Advisor</span>
+          <span className={styles.fragmentLabel}>Spreadsheet · Adviser</span>
           <p>Grenada / Dominica / St Kitts / St Lucia</p>
         </div>
         <div className={styles.fragment}>
@@ -46,7 +46,7 @@ function ModelView() {
       <h3 className={styles.viewTitle}>Headline minimums become family-cost comparisons.</h3>
       <p className={styles.viewCopy}>
         Government fees, due-diligence costs, route requirements and assumptions are
-        shown for the whole family before an advisor relies on the comparison.
+        shown for the whole family before an adviser relies on the comparison.
       </p>
       <div className={styles.fieldGrid}>
         {fields.map(([label, value], index) => (
@@ -103,7 +103,7 @@ function CommunicateView() {
       <h3 className={styles.viewTitle}>Internal case notes become a clear request to the client.</h3>
       <p className={styles.viewCopy}>
         The client sees the current stage, documents required and next milestone.
-        Due-diligence notes and unresolved programme assumptions stay with the advisor.
+        Due-diligence notes and unresolved programme assumptions stay with the adviser.
       </p>
       <div className={styles.clientPanel}>
         <span className={styles.fragmentLabel}>Client status · 27 July 2026</span>
@@ -132,9 +132,9 @@ export function ControlRoomStory() {
     <section className={`${styles.story} ${styles.shell}`}>
       <div className="container">
         <div className={styles.storyIntro}>
-          <h2>Follow one family matter from first enquiry to an advisor-ready case file.</h2>
+          <h2>Follow one family matter from first enquiry to an adviser-ready case file.</h2>
           <p>
-            One fictional family, four stages. Each stage answers a question the advisor
+            One fictional family, four stages. Each stage answers a question the adviser
             must settle before the matter can progress.
           </p>
         </div>

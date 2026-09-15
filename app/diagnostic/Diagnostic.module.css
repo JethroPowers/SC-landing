@@ -1,10 +1,11 @@
 .page {
-  background: var(--paper);
+  background: #fff;
+  overflow-wrap: anywhere;
 }
 
 .intro {
-  padding: 94px 0 0;
-  background: var(--ink);
+  padding: 72px 0 0;
+  background: #172a35;
   color: var(--paper);
 }
 
@@ -19,8 +20,8 @@
   display: block;
   margin-bottom: 18px;
   color: var(--gold-2);
-  font-size: 0.74rem;
-  font-weight: 760;
+  font-size: 0.875rem;
+  font-weight: 550;
   text-transform: uppercase;
 }
 
@@ -28,7 +29,7 @@
   max-width: 760px;
   margin-bottom: 0;
   color: var(--paper);
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(2.75rem, 4.4vw, 4.5rem);
 }
 
 .introCopy p {
@@ -58,20 +59,20 @@
 
 .facts dt {
   color: rgba(251, 250, 246, 0.72);
-  font-size: 0.7rem;
-  font-weight: 760;
+  font-size: 0.875rem;
+  font-weight: 550;
   text-transform: uppercase;
 }
 
 .facts dd {
   margin: 5px 0 0;
-  font-weight: 720;
+  font-weight: 550;
 }
 
 .outputs,
 .boundary,
 .close {
-  padding: 108px 0;
+  padding: 96px 0;
 }
 
 .sectionHeading {
@@ -117,7 +118,7 @@
 
 .outputList span {
   color: var(--gold);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
 }
 
 .outputList svg {
@@ -125,7 +126,7 @@
 }
 
 .boundary {
-  background: #e9eff4;
+  background: #f2eee5;
 }
 
 .boundaryGrid {
@@ -221,6 +222,23 @@
   .outputs,
   .boundary,
   .close {
-    padding: 78px 0;
+    padding: 60px 0;
   }
 }
+
+.continuationDetail {
+  grid-column: 1/-1;
+  border-top: 1px solid #c9cfc5;
+  padding-top: 24px;
+  font-size: 0.875rem;
+}
+.continuationDetail summary {
+  cursor: pointer;
+  font-weight: 550;
+}
+.continuationDetail p {
+  max-width: 900px;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+.page h1,.page h2 { font-weight:450; line-height:1.13; letter-spacing:-.035em; }

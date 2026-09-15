@@ -103,7 +103,7 @@ export function IntelligenceRegister() {
             <motion.aside
               className={styles.drawer}
               role="dialog"
-              aria-modal="true"
+              aria-modal="false"
               aria-label={`${selected.programme} release record`}
               initial={reducedMotion ? false : { x: 40, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -125,16 +125,16 @@ export function IntelligenceRegister() {
               </div>
               <div className={styles.drawerSection}>
                 <p className={styles.kicker}>Source record</p>
-                <p>{selected.sourceState}. Last reviewed {selected.lastReviewed}. The source link, issuing authority and retrieval date remain attached to the programme record.</p>
-                <span className={styles.subtle}><ExternalLink size={13} aria-hidden="true" /> External source placeholder</span>
+                <p>{selected.sourceState}. Last reviewed {selected.lastReviewed}. A live record would require an official source link, issuing authority and retrieval date.</p>
+                <span className={styles.subtle}><ExternalLink size={13} aria-hidden="true" /> Fictional source · no official notice linked</span>
               </div>
               <div className={styles.drawerSection}>
                 <p className={styles.kicker}>Release history</p>
-                <p>Draft → advisor review → published. Proposed values stay out of client comparisons and reports until approved.</p>
+                <p>Draft → adviser review → published. Proposed values stay out of client comparisons and reports until approved.</p>
               </div>
               <div className={styles.drawerSection}>
                 <p className={styles.kicker}>Matters requiring review</p>
-                <p>{changeEvents[0].affectedCases} active cases and {changeEvents[0].affectedReports} advisor report would require review if the pending value is approved.</p>
+                <p>{changeEvents[0].affectedCases} fictional matters and {changeEvents[0].affectedReports} example adviser report would require review if the pending value is approved.</p>
               </div>
             </motion.aside>
           )}

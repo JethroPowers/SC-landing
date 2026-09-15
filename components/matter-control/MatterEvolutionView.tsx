@@ -127,7 +127,7 @@ function MappedMatter({ matter }: { matter: FictionalMatterFixture }) {
         <div>
           <UserRoundCheck size={16} aria-hidden="true" />
           <span>Firm sponsor</span>
-          <strong>Priya Shah · Firm advisor</strong>
+          <strong>Firm adviser</strong>
         </div>
       </div>
       <div className={styles.evolutionRouteList}>

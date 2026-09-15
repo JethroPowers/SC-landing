@@ -20,7 +20,7 @@ function ChangeIntro() {
     <div className={styles.changeIntro}>
       <h2>
         When a programme rule changes, know which comparison, active matter and
-        advisor report it affects.
+        adviser report it affects.
       </h2>
       <p>
         Intelligence holds programme routes, government fees, dependant rules,

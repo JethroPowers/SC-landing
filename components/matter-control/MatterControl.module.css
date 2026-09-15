@@ -2983,7 +2983,9 @@
   }
 }
 
-@media (max-width: 1099px), (max-height: 699px), (prefers-reduced-motion: reduce) {
+@media (max-width: 1099px),
+  (max-height: 699px),
+  (prefers-reduced-motion: reduce) {
   .flowTransformation {
     min-height: 0;
   }
@@ -3861,7 +3863,9 @@
   opacity: 0;
   pointer-events: none;
   transform: translate(-50%, 4px);
-  transition: opacity 0.16s ease, transform 0.16s ease;
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
 }
 
 .chapterDot:hover::after,
@@ -4540,7 +4544,9 @@
     top: 74px;
     display: block;
     min-height: calc(100svh - 74px);
-    transition: background-color 0.42s ease, color 0.42s ease;
+    transition:
+      background-color 0.42s ease,
+      color 0.42s ease;
   }
 
   .narrativeFallback {
@@ -4588,7 +4594,9 @@
   }
 }
 
-@media (max-width: 1023px), (max-height: 699px), (prefers-reduced-motion: reduce) {
+@media (max-width: 1023px),
+  (max-height: 699px),
+  (prefers-reduced-motion: reduce) {
   .narrativeFallback > :global(.container) {
     position: relative;
     z-index: 1;
@@ -4833,4 +4841,376 @@
   .workspaceCompact [data-focus="blockers"] .metrics {
     transition: none;
   }
+}
+
+/* Explicit controls replace the old scroll-driven transformation. */
+.manualTransformation {
+  padding: 65px 0;
+  background: #f4f4ed;
+  scroll-margin-top: 100px;
+}
+.manualTabs {
+  display: flex;
+  gap: 10px;
+  margin: 25px 0 32px;
+}
+.manualTabs button {
+  padding: 12px 20px;
+  border: 1px solid #b8c2af;
+  background: transparent;
+  color: #273725;
+  border-radius: 3px;
+  font-size: 0.875rem;
+}
+.manualTabs button[aria-selected="true"] {
+  background: #253923;
+  color: white;
+}
+.manualGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 45px;
+  align-items: center;
+}
+.manualGrid > div {
+  min-width: 0;
+}
+.manualGrid .phaseCopy h2 {
+  font-size: clamp(2rem, 3.4vw, 3rem);
+}
+.manualTransformation .methodDisclosure {
+  margin: 28px 0;
+}
+.manualTransformation .methodDisclosureBody {
+  padding: 25px;
+}
+.manualTransformation .methodDisclosureBody p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.manualTransformation :focus-visible {
+  outline: 3px solid #ad8640;
+  outline-offset: 4px;
+}
+@media (max-width: 800px) {
+  .manualGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .manualTabs {
+    gap: 6px;
+  }
+  .manualTabs button {
+    padding: 11px 12px;
+    font-size: 0.8rem;
+  }
+  .manualTransformation {
+    padding: 45px 0;
+  }
+}
+
+.manualTransformation .methodDisclosure {
+  color: #253923;
+  border-color: #b8c2af;
+}
+.manualTransformation .flowMatterStrip {
+  color: #c5d0c0;
+  font-size: 0.75rem;
+}
+.manualTransformation .phaseRecordHeading span,
+.manualTransformation .phaseReviewHead span,
+.manualTransformation .phaseContextGrid span,
+.manualTransformation .phaseRouteRail span {
+  color: #b8c6b1;
+  font-size: 0.75rem;
+}
+.manualTransformation .phaseContextGrid strong,
+.manualTransformation .phaseRouteRail strong,
+.manualTransformation .phaseDependencyList,
+.manualTransformation .phaseQuestions small {
+  font-size: 0.75rem;
+}
+.manualTransformation .phaseDependencyList,
+.manualTransformation .phaseQuestions small {
+  color: #c6d1bf;
+}
+.manualTransformation .transformationRecord {
+  background: #182722;
+  border-color: #3c4c3a;
+}
+.manualTransformation .transformationRecordPanel {
+  padding: 18px;
+}
+.manualTransformation .phaseContextGrid,
+.manualTransformation .phaseMetrics,
+.manualTransformation .phaseRouteRail {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.manualTransformation .phaseQuestions > div {
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 12px;
+}
+.manualTransformation .phaseQuestions small {
+  grid-column: 2;
+}
+.manualTransformation .phaseMetrics > div > span:not(.status) {
+  color: #c5d0be;
+  font-size: 0.75rem;
+}
+
+.comparisonDisclosure {
+  margin: 22px 0;
+  border-block: 1px solid #5c6b5a;
+  padding: 16px 0;
+}
+.comparisonDisclosure summary {
+  cursor: pointer;
+  color: #e0cfaa;
+  font-size: 0.9rem;
+}
+.comparisonDisclosure p {
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: #c9d3c0;
+  margin: 16px 0;
+}
+.comparisonScroll {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid #51614a;
+}
+.comparisonScroll table {
+  border-collapse: collapse;
+  min-width: 650px;
+  width: 100%;
+  font-size: 0.8rem;
+}
+.comparisonScroll caption {
+  text-align: left;
+  padding: 12px;
+  color: #c3d0b9;
+}
+.comparisonScroll th,
+.comparisonScroll td {
+  padding: 13px 12px;
+  border-bottom: 1px solid #56604d;
+  text-align: left;
+  color: #ebede2;
+}
+.comparisonScroll thead th {
+  color: #c8b685;
+  font-weight: 500;
+}
+.comparisonScroll:focus-visible {
+  outline: 3px solid #b88c40;
+  outline-offset: 3px;
+}
+
+/* Readable operational surfaces in the Juris Partners publication. */
+.flowOpeningTop h1 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 450;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+.flowOpeningTop > div:first-child > p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.openingBoundary {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+.flowAudience,
+.flowScrollCue {
+  font-size: 0.8125rem;
+}
+.openingRecordCore strong,
+.openingRecordSignal strong {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.manualTransformation {
+  background: #f2eee5;
+  padding: 90px 0;
+}
+.manualTabs button[aria-selected="true"] {
+  background: #233641;
+}
+.manualTransformation .transformationRecord {
+  background: #182c37;
+  border-color: #45555c;
+}
+.manualTransformation .methodDisclosureBody p,
+.manualTransformation .phaseContextGrid strong,
+.manualTransformation .phaseRouteRail strong,
+.manualTransformation .phaseDependencyList,
+.manualTransformation .phaseQuestions small {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+.manualTransformation .flowMatterStrip,
+.manualTransformation .phaseRecordHeading span,
+.manualTransformation .phaseReviewHead span,
+.manualTransformation .phaseContextGrid span,
+.manualTransformation .phaseRouteRail span,
+.manualTransformation .phaseMetrics > div > span:not(.status) {
+  font-size: 0.875rem;
+  color: #c7d2d6;
+}
+.matterView .factRow,
+.matterView .issueRow,
+.matterView .dependencyRow {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.matterView .viewLead p,
+.matterView .viewLeadCompact p,
+.comparisonDisclosure p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.comparisonScroll table {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.comparisonScroll caption {
+  color: #c7d2d6;
+}
+@media (max-width: 800px) {
+  .manualTransformation {
+    padding: 60px 0;
+  }
+  .manualTransformation .phaseContextGrid,
+  .manualTransformation .phaseRouteRail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .flowOpeningTop > div:first-child > p {
+    font-size: 1rem;
+  }
+}
+
+.workspaceExploreSurface .viewButton,
+.workspaceExploreSurface .viewButtonActive {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #c6d2d9;
+}
+.workspaceExploreSurface .viewButtonActive {
+  color: #fff9ed;
+}
+.workspaceExploreSection .workspaceMatterBar > :is(span, strong) {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+.workspaceExploreSection .workspaceMatterBar > span {
+  color: #c2ced5;
+}
+.workspaceExploreSurface .kicker {
+  color: #d3bd8b;
+  font-size: 0.8125rem;
+  font-weight: 550;
+  letter-spacing: 0.08em;
+}
+.workspaceExploreSurface .viewLead p,
+.workspaceExploreSurface .viewLeadCompact p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #c4cfd5;
+}
+.workspaceExploreSurface .viewLead h3,
+.workspaceExploreSurface .viewLeadCompact h3 {
+  font-weight: 450;
+}
+.workspaceExploreSurface .factRow strong,
+.workspaceExploreSurface .dependencyRow,
+.workspaceExploreSurface .issueRow {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #ced8dc;
+}
+.workspaceExploreSurface .factRow span,
+.workspaceExploreSurface .tableHeader,
+.workspaceExploreSurface .tableHeaderWide,
+.workspaceExploreSurface .metric small {
+  font-size: 0.875rem;
+  color: #b7c7d1;
+  line-height: 1.65;
+  font-weight: 450;
+}
+.workspaceExploreSurface .metric > span:not(.status) {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.workspaceExploreSurface .status {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 500;
+  border-radius: 3px;
+}
+.workspaceExploreSurface .tableHeaderWide,
+.workspaceExploreSurface .dependencyRow {
+  grid-template-columns: 1.2fr 1fr 0.9fr 150px;
+  gap: 22px;
+  padding-block: 18px;
+}
+.workspaceExploreSurface .tableHeader,
+.workspaceExploreSurface .issueRow {
+  grid-template-columns: 0.8fr 1fr 150px;
+  padding-block: 15px;
+}
+.workspaceExploreSurface .reviewDetails dt,
+.workspaceExploreSurface .changeFacts dt {
+  font-size: 0.875rem;
+  color: #b7c7d1;
+  line-height: 1.7;
+}
+.workspaceExploreSurface .reviewDetails dd,
+.workspaceExploreSurface .changeFacts dd,
+.workspaceExploreSurface .assumptionNote span,
+.workspaceExploreSurface .outputRow,
+.workspaceExploreSurface .changeRecord p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #cbd7dd;
+}
+@media (max-width: 800px) {
+  .workspaceExploreSection .workspaceMatterBar {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px 18px;
+    padding: 20px 18px;
+  }
+  .workspaceExploreSection .workspaceMatterBar span:nth-child(n) {
+    display: block;
+    grid-column: auto;
+  }
+  .workspaceExploreSurface .tableHeaderWide,
+  .workspaceExploreSurface .tableHeader {
+    display: none;
+  }
+  .workspaceExploreSurface .dependencyRow,
+  .workspaceExploreSurface .issueRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .workspaceExploreSurface .metric {
+    padding: 18px 12px;
+  }
+}
+.workspaceExploreSurface .outputRow strong,
+.workspaceExploreSurface .assumptionNote strong {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.workspaceExploreSurface .changeSequence strong {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.workspaceExploreSurface .changeRecordHead div > span {
+  font-size: 0.875rem;
+  color: #b7c7d1;
+}
+.workspaceExploreSurface .changeRecordHead div > strong {
+  font-size: 1rem;
 }

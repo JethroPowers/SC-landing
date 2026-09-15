@@ -1,27 +1,28 @@
 import type { Metadata } from "next";
-import { CTASection } from "@/components/CTASection";
-import { Hero } from "@/components/Hero";
-import { PolicyHeroVisual } from "@/components/HeroVisuals";
+import {
+  PageIntro,
+  ConversationCta,
+  NextPages,
+} from "@/components/partners/Website";
+import styles from "@/components/partners/Website.module.css";
 
 export const metadata: Metadata = {
   title: "Privacy",
   description:
-    "Privacy information for Sovereignty Control diagnostic discussions and professional-firm enquiries.",
-  alternates: { canonical: "/privacy" }
+    "Privacy information for Juris Partners professional-firm enquiries.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
   return (
-    <main>
-      <Hero
-        title="Privacy for high-level firm enquiries, not client matter intake."
-        subtitle="Sovereignty Control collects only the information needed to understand whether a complimentary diagnostic is relevant to your firm. Do not submit client-identifiable information or matter data through the enquiry form."
-        variant="plain"
-        primaryLabel="Discuss a complimentary diagnostic"
-        primaryHref="/contact"
-      >
-        <PolicyHeroVisual type="privacy" />
-      </Hero>
+    <main className={styles.page}>
+      <PageIntro eyebrow="PRIVACY" title="Your professional enquiry.">
+        <p>
+          The enquiry form collects business contact details and your selected
+          professional interest. Do not submit client-identifiable information
+          or matter data through the enquiry form.
+        </p>
+      </PageIntro>
 
       <section className="section section-surface">
         <div className="container split">
@@ -31,9 +32,18 @@ export default function PrivacyPage() {
           </div>
           <div className="stack">
             <p className="lead">
-              The request form asks for contact details, firm type, website,
-              role, active case volume, relevant programmes or relocation routes
-              and a short message about the case or programme-data problem.
+              The form requires a name, business email, firm name and main
+              interest. Business website, role, jurisdictions served and a
+              non-confidential description are optional. Workflow enquiries may
+              include the selected workflow stage and an optional approximate
+              active-matter range.
+            </p>
+            <p>
+              Adviser-network interest uses the same business enquiry process.
+              Service type and a relevant professional-register or credential
+              link are optional. These details support a conversation about
+              mutual fit; submission does not establish professional status or
+              authorise public profile publication.
             </p>
             <p className="muted">
               Diagnostic enquiries should not include client names, passports,
@@ -47,26 +57,49 @@ export default function PrivacyPage() {
       <section className="section">
         <div className="container split-even">
           <article className="card">
-            <h3>Use of information</h3>
+            <h2>Use of information</h2>
             <p className="muted">
               Submitted information is used to review the enquiry, decide a
-              suitable diagnostic path and respond to the professional firm.
+              suitable next step and respond to the professional firm.
             </p>
           </article>
           <article className="card">
-            <h3>Storage and retention</h3>
+            <h2>Enquiry storage</h2>
             <p className="muted">
-              Enquiry data should be stored only in the configured production
-              contact records and retained only for as long as it is needed to review,
-              respond to and administer the professional-firm enquiry.
+              Successfully received enquiries are stored for review and a
+              response to your request. If delivery cannot be confirmed, the
+              form shows an error and keeps your entries available. It does not
+              treat an unconfirmed submission as a received enquiry.
             </p>
           </article>
         </div>
       </section>
 
-      <CTASection
-        title="Need to discuss a sensitive client matter?"
-        description="Use the form for high-level details only. Sensitive matter details should be handled through an agreed private process."
+      <ConversationCta title="Need to discuss a sensitive client matter?">
+        Use the form for high-level details only. Sensitive matter details
+        should be handled through an agreed private process.
+      </ConversationCta>
+      <NextPages
+        pages={[
+          {
+            href: "/disclaimer",
+            label: "Professional boundaries",
+            description:
+              "Programme information, advice and the firm’s responsibilities.",
+          },
+          {
+            href: "/diagnostic",
+            label: "Diagnostic inputs",
+            description:
+              "The minimum operational status needed for the one-matter review.",
+          },
+          {
+            href: "/contact",
+            label: "Professional enquiry",
+            description:
+              "Discuss your firm’s needs using non-confidential business context.",
+          },
+        ]}
       />
     </main>
   );

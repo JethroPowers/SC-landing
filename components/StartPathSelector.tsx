@@ -9,7 +9,7 @@ const paths = [
     label: "One difficult matter",
     title: "Start with a complimentary Matter Control Diagnostic",
     fit: "A live, recent or anonymised matter is difficult to track.",
-    output: "Matter map, family profile, cost model, missing items, blockers, owners, deadlines, advisor-review questions and closeout summary.",
+    output: "Matter map, family profile, cost model, missing items, blockers, owners, deadlines, adviser-review questions and closeout summary.",
     icon: BriefcaseBusiness
   },
   {

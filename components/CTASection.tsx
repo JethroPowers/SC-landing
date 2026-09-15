@@ -28,7 +28,7 @@ export function CTASection({
         </div>
         <div className="dark-panel">
           <p className="muted">
-            Intelligence controls the programme knowledge. Sovereignty Control
+            Intelligence controls the programme knowledge. Juris Control
             prepares the operational matter record for the firm's judgement.
           </p>
           <div className="cta-actions">

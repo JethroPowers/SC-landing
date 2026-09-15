@@ -1,58 +1,66 @@
 import Link from "next/link";
+import { JurisBrand } from "./JurisBrand";
+import { juris } from "@/lib/partners";
 import { footerDisclaimer } from "@/lib/site-data";
 
-const columns = [
+const groups = [
   {
-    title: "Explore",
+    title: "Work with Juris",
     links: [
-      ["How Matter Control Works", "/how-matter-control-works"],
-      ["Intelligence", "/intelligence"],
-      ["Complimentary Diagnostic", "/diagnostic"]
-    ]
+      ["What we do", "/what-we-do"],
+      ["Adviser network", "/advisers"],
+      ["Juris Control", "/how-matter-control-works"],
+      ["Juris Intelligence", "/intelligence"],
+    ],
   },
   {
-    title: "Company",
+    title: "Guides & examples",
+    links: [
+      ["For your firm", "/use-cases"],
+      ["Worked example", "/demo-case"],
+      ["Complimentary diagnostic", "/diagnostic"],
+      ["Working together", "/offers"],
+    ],
+  },
+  {
+    title: "Juris Partners",
     links: [
       ["About", "/about"],
       ["Contact", "/contact"],
       ["Privacy", "/privacy"],
-      ["Disclaimer", "/disclaimer"]
-    ]
-  }
+      ["Disclaimer", "/disclaimer"],
+    ],
+  },
 ];
-
 export function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="container footer-grid">
-        <div>
-          <Link className="brand" href="/" aria-label="Sovereignty Control home">
-            <span className="brand-mark">SC</span>
-            <span className="brand-text">
-              <span>Sovereignty Control</span>
-              <span className="brand-sub">Programme intelligence. Matter readiness.</span>
-            </span>
-          </Link>
-          <p className="small" style={{ marginTop: 18, maxWidth: 420 }}>
-            An early-stage managed matter-readiness method for firms handling
-            citizenship, residence, relocation and investment-migration matters.
-          </p>
-        </div>
-        {columns.map((column) => (
-          <div key={column.title}>
-            <h2 className="footer-heading">{column.title}</h2>
-            <div className="footer-links">
-              {column.links.map(([label, href]) => (
+    <footer className="juris-footer">
+      <div className="container">
+        <div className="juris-footer-grid">
+          <div>
+            <JurisBrand />
+            <p>
+              Global mobility intelligence, independent expertise and clearer
+              client work.
+            </p>
+            <a href={juris.adviceUrl}>Looking for advice for yourself? ↗</a>
+            <a href={juris.publicUrl}>Public Juris platform ↗</a>
+          </div>
+          {groups.map((group) => (
+            <div key={group.title}>
+              <h2>{group.title}</h2>
+              {group.links.map(([label, href]) => (
                 <Link key={href} href={href}>
                   {label}
                 </Link>
               ))}
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="container footer-disclaimer">
-        <strong>Disclaimer:</strong> {footerDisclaimer}
+          ))}
+        </div>
+        <div className="juris-footer-bottom">
+          <span>© {new Date().getFullYear()} Juris Partners</span>
+          <p>{footerDisclaimer}</p>
+        </div>
       </div>
     </footer>
   );

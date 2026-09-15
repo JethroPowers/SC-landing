@@ -23,7 +23,7 @@ export function DashboardMockup() {
   ] as const;
 
   return (
-    <div className="visual-shell mockup" aria-label="Sovereignty Control case dashboard mockup">
+    <div className="visual-shell mockup" aria-label="Juris Control case dashboard mockup">
       <div className="mockup-topbar">
         <div className="window-dots" aria-hidden="true">
           <span />
@@ -98,7 +98,7 @@ export function DashboardMockup() {
                   <td>Complete source-of-funds review</td>
                 </tr>
                 <tr>
-                  <td>Advisor owner</td>
+                  <td>Adviser owner</td>
                   <td>Private Client Team</td>
                 </tr>
                 <tr>
@@ -168,7 +168,7 @@ export function SystemMapMockup() {
     ["Client and family", "Applicant, spouse, children, dependant rules"],
     ["Programme options", "Routes, fees, effective dates, risk notes"],
     ["Document readiness", "Complete, missing, expired, needs review"],
-    ["Blockers and owners", "Source-of-funds, route preference, advisor review"],
+    ["Blockers and owners", "Source-of-funds, route preference, adviser review"],
     ["Client status", "Current stage, next action, expected milestone"]
   ];
 
@@ -222,7 +222,7 @@ export function ProgrammeImpactMockup() {
         </div>
         <div>
           <FileText size={17} aria-hidden="true" />
-          <span>1 advisor report contains the old estimate</span>
+          <span>1 adviser report contains the old estimate</span>
         </div>
         <div>
           <Database size={17} aria-hidden="true" />
@@ -259,7 +259,7 @@ export function ProgrammeChangeLog() {
     },
     {
       date: "08 Jul 2026",
-      change: "St Lucia processing-time range confirmed after advisor review.",
+      change: "St Lucia processing-time range confirmed after adviser review.",
       status: "Confirmed"
     }
   ];
@@ -315,7 +315,7 @@ export function ClientStatusPanel() {
   );
 }
 
-export function AdvisorReportPreview() {
+export function AdviserReportPreview() {
   const rows = [
     ["Programme shortlist", "St Kitts and Nevis, Grenada, Dominica, St Lucia"],
     ["Cost comparison", "Family-adjusted demo model with review-required assumptions"],
@@ -325,13 +325,13 @@ export function AdvisorReportPreview() {
   ];
 
   return (
-    <div className="report-preview" aria-label="Advisor report preview">
+    <div className="report-preview" aria-label="Adviser report preview">
       <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
         <div>
-          <p className="micro">Advisor report preview</p>
+          <p className="micro">Adviser report preview</p>
           <h3>British family of four - Caribbean CBI comparison</h3>
         </div>
-        <StatusBadge>Needs advisor review</StatusBadge>
+        <StatusBadge>Needs adviser review</StatusBadge>
       </div>
       {rows.map(([label, value]) => (
         <div className="report-row" key={label}>

@@ -17,12 +17,21 @@
   text-align: center;
 }
 
+.heroKicker {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--gold-2);
+  font-size: 0.72rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
 .heroCopy h1 {
   max-width: 900px;
   margin-inline: auto;
   margin-bottom: 22px;
   color: var(--paper);
-  font-size: clamp(3rem, 4.2vw, 4.3rem);
+  font-size: clamp(2.8rem, 3.9vw, 4rem);
   line-height: 1.01;
 }
 
@@ -254,7 +263,7 @@
   }
 
   .heroCopy h1 {
-    font-size: clamp(3rem, 4vw, 4rem);
+    font-size: clamp(2.75rem, 3.75vw, 3.85rem);
   }
 
   .matterFrame {
@@ -352,11 +361,22 @@
 
 @media (max-width: 700px) {
   .heroFallback {
-    padding-top: 64px;
+    padding-top: 48px;
   }
 
   .heroCopy h1 {
-    font-size: 2.5rem;
+    margin-bottom: 18px;
+    font-size: 2.08rem;
+  }
+
+  .heroCopy > p {
+    font-size: 0.98rem;
+    line-height: 1.58;
+  }
+
+  .audience {
+    margin-top: 13px;
+    margin-bottom: 20px;
   }
 
   .heroActions,
