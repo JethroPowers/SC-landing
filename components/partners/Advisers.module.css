@@ -247,7 +247,7 @@
 }
 .sectionHead {
   max-width: 800px;
-  margin-bottom: 62px;
+  margin-bottom: 50px;
 }
 .sectionHead p {
   max-width: 580px;
@@ -257,7 +257,7 @@
   grid-template-columns: 1fr 1.35fr;
   gap: 100px;
   border-top: 1px solid #bfb7a9;
-  padding: 55px 0 60px;
+  padding: 45px 0 50px;
 }
 .benefitTitle > span {
   font-size: 0.75rem;
@@ -620,7 +620,7 @@
     max-width: 640px;
   }
   .sectionHead {
-    margin-bottom: 44px;
+    margin-bottom: 35px;
   }
 }
 @media (max-width: 550px) {

@@ -72,9 +72,11 @@ See the [benefits/status register](juris-adviser-network-review.md#benefits-and-
 
 ## Final spacing refinement
 
-Following the approved design review, increased hero and major-section breathing room by approximately 12–20 px, heading-to-content separation by 8–12 px, and editorial-row padding by 8–10 px. Supporting and adviser pages use the same spacing rhythm; mobile increases are restrained. Content, navigation, interface states and commitments are unchanged. Desktop/mobile captures and the full verification below were rerun after this adjustment.
+Following the approved design review, increased breathing room around the hero and major sections. After the spacing review, restored the original internal padding and gaps in content blocks, editorial rows, benefit groups, headings and workflow panels. Font sizes and content widths are unchanged. Supporting and adviser pages retain the same outer spacing rhythm; mobile increases are restrained. Content, navigation, interface states and commitments are unchanged.
 
-## Final verification
+Correction verification: production build and diff check passed; **27 existing tests passed** across desktop, mobile and reduced-motion Chromium. All 13 pages rendered at desktop/mobile widths with no overflow or browser errors; all 56 internal destinations resolved. Homepage checks also passed at 1280, 1024 and 768 px, plus 360 px with 200% text. Typography and content-width declarations are unchanged across all three edited stylesheets.
+
+## Full rebuild verification (before the spacing correction)
 
 - `npm run build`, `npm run typecheck` and `git diff --check` passed.
 - Full Playwright suite: **75 passed, 0 failed** across desktop, mobile and reduced-motion Chromium (30.5 seconds).

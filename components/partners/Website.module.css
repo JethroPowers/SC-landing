@@ -90,7 +90,7 @@
   grid-template-columns: 1.2fr 1fr;
   gap: 80px;
   align-items: start;
-  margin-bottom: 54px;
+  margin-bottom: 42px;
 }
 .sectionHeading h2 {
   margin: 13px 0 0;
@@ -407,7 +407,7 @@
     padding: 72px 0;
   }
   .sectionHeading {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   .row {
     grid-template-columns: 25px minmax(0, 1fr);
@@ -528,10 +528,10 @@
 .introAside{background:transparent;border-top:0;border-left:1px solid #b9ac92;padding:10px 0 10px 34px}
 .introAside h2{font-weight:430;font-size:2.1rem;letter-spacing:-.035em}
 .page :where(h2,h3){font-weight:430;letter-spacing:-.04em;text-wrap:balance}
-.row{padding:62px 0;gap:38px;grid-template-columns:42px .95fr 1.05fr}.row h2{font-size:2.35rem}.row p{font-size:1.0625rem}
-.output{border-radius:0;background:#eeeae0;padding:29px 28px;box-shadow:none}
+.row{padding:52px 0;gap:38px;grid-template-columns:42px .95fr 1.05fr}.row h2{font-size:2.35rem}.row p{font-size:1.0625rem}
+.output{border-radius:0;background:#eeeae0;padding:23px 25px;box-shadow:none}
 .dark{background:#142c37}.conversation{background:#142c37}
 .conversation h2{font-weight:430;letter-spacing:-.04em}
 .related{background:#f5f2eb;padding:48px 0}.related li p{font-size:.9375rem;line-height:1.75}.related a{font-weight:500}
-@media(max-width:800px){.intro{padding:77px 0}.introGrid{gap:43px}.introAside{padding-left:25px}.row{gap:25px}.row h2{font-size:2rem}}
-@media(max-width:550px){.intro{padding:60px 0 70px}.intro h1,.introGrid h1{font-size:3rem}.introCopy p{font-size:1.0625rem}.introAside{padding:0 0 0 22px}.row{grid-template-columns:1fr;padding:44px 0;gap:24px}.row h2{font-size:2rem}.related{padding:38px 0}}
+@media(max-width:800px){.intro{padding:77px 0}.introGrid{gap:35px}.introAside{padding-left:25px}.row{gap:25px}.row h2{font-size:2rem}}
+@media(max-width:550px){.intro{padding:60px 0 70px}.intro h1,.introGrid h1{font-size:3rem}.introCopy p{font-size:1.0625rem}.introAside{padding:0 0 0 22px}.row{grid-template-columns:1fr;padding:36px 0;gap:18px}.row h2{font-size:2rem}.related{padding:38px 0}}
